@@ -1,0 +1,20 @@
+.containerSignup{
+   max-width: 300px;
+   max-height: 800px;
+   margin: 30px auto 0;
+   border: 1px solid #ccc;
+   padding: 20px;
+   background-color: rgb(253, 253, 253);
+}
+
+@media (max-width: 768px) {
+   .containerSignup {
+     border: none;
+   }
+ }
+
+ .error{
+  word-wrap: break-word;
+  color: #ec6969;
+  font-weight:600;
+ }
