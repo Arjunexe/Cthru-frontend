@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import '../signup/signup.css'
 import Container from 'react-bootstrap/esm/Container';
 import { useState } from 'react';
-import { signupValid } from '../../valid.js/signupValid';
+import { isValidate } from '../../valid.js/signupValid';
 import axios from 'axios'
 
 function Signup() {
@@ -27,13 +27,14 @@ const handleClick = async (e) =>{
   try{
   e.preventDefault()
   const userData = {Fullname, Username, EmailOrMobile, Password}
-  const isValidate = await signupValid(userData)
-  if (isValidate) {
+  // const isValidate = await signupValid(userData)
+  if (await isValidate({...userData, seter : setError})) {
     await axios.post('http://localhost:5000/user/signup', userData);
     setFullName('')
     setUsername('')
     setEmailOrMobile('')
     setPassword('')
+    setError('')
   } else {
     console.log('meeeeeeeeeeeeeeeeeeeeh');
   }
@@ -74,13 +75,14 @@ const handleClick = async (e) =>{
             <Form.Control type="password" value={Password} onChange={(e) =>setPassword(e.target.value)} name='Password' placeholder="Password" />
 
           </Form.Group>
+         
+
+          <Button className='buttonSubmit' variant="primary" type='submit' onClick={handleClick} >
+            Sign Up
+          </Button>
           {error ?(
               <p className='error'>{`! ${error}`}</p>
           ) : null}
-
-          <Button variant="primary" type='submit' onClick={handleClick} >
-            Sign Up
-          </Button>
         </Form>
       </Container>
     </div>
