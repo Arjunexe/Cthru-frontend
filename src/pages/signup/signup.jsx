@@ -1,92 +1,288 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import '../signup/signup.css'
-import Container from 'react-bootstrap/esm/Container';
-import { useState } from 'react';
-import { isValidate } from '../../valid.js/signupValid';
-import axios from 'axios'
+// import Button from "react-bootstrap/Button";
+// import '../../bootstrap/bootstrap.min.css'
+// import Form from "react-bootstrap/Form";
+import "../signup/signup.css";
+// import Container from "react-bootstrap/esm/Container";
+import { useEffect, useState } from "react";
+import { isValidate } from "../../valid.js/signupValid";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { jwtToken } from "../../jwt/jwt";
+
+// import { UserLoggedIn } from "../../valid.js/userCheck";
 
 function Signup() {
+  const navigate = useNavigate();
+  const [Fullname, setFullName] = useState("");
+  const [Username, setUsername] = useState("");
+  const [EmailOrMobile, setEmailOrMobile] = useState("");
+  const [error, setError] = useState("");
+  const [Password, setPassword] = useState("");
+  const [passErrors, setPassError] = useState("");
 
-const [Fullname, setFullName] = useState('')
-const [Username, setUsername] = useState('')
-const [EmailOrMobile, setEmailOrMobile] = useState('')
-const [Password, setPassword] = useState('')
-const [error, setError] = useState('')
+  const storedToken = localStorage.getItem("jwtToken");
+  useEffect(() => {
+    if (storedToken) {
+      navigate("/");
+    }
+  });
 
+  
+
+  function passwordValid(value) {
+    const passwordRegex = /^(?!\s*$).+/;
+    if (!passwordRegex.test(value)) {
+      setPassError("Password is required.");
+    } else {
+      if (!/[A-Z]/.test(value)) {
+        setPassError("Password must contain at least one uppercase letter.");
+        return;
+      }
+      if (!/[a-z]/.test(value)) {
+        setPassError("Password must contain at least one lowercase letter.");
+        return;
+      }
+      if (!/\d/.test(value)) {
+        setPassError("Password must contain at least one digit.");
+        return;
+      }
+      if (!/[@$#!%*?&]/.test(value)) {
+        setPassError(
+          "Password must contain at least one special character (@$!%*?&)."
+        );
+        return;
+      }
+      if (value.length < 6) {
+        setPassError("Password must contain at least 6 characters");
+        return;
+      }
+    }
+    setPassError("");
+    return;
+  }
+
+  const handlePassword = async (value) => {
+    setPassword(value);
+    passwordValid(value);
+  };
+
+  const handleClick = async (e) => {
+    try {
+      e.preventDefault();
+      const userData = { Fullname, Username, EmailOrMobile, Password };
+      // const isValidate = await signupValid(userData)
+      if (await isValidate({ ...userData, seter: setError }))  {
+        const response = await axios.post(
+          "http://localhost:5000/user/signup",
+          userData
+        );
+        localStorage.setItem(jwtToken, response.data.token);
+        console.log("hiiiiiiiii");
+        // UserLoggedIn(userData)
+        navigate("/");
+
+        setFullName("");
+        setUsername("");
+        setEmailOrMobile("");
+        setPassword("");
+        setError("");
+        setPassError("");
+      } else {
+        console.log("didn't go through Axios");
+      }
+    } catch (error) {
+      console.log("error during handleClick: ", error);
+    }
+  };
+
+  return (
+    // <div className="form">
+    //   <Container className="containerSignup">
+    //     <p>Sign up to see photos and videos from your friends.</p>
+    //     <Form className="formm">
+    //       <Form.Group className="mb-1" controlId="formBasicFullName">
+    //         <Form.Label>Full Name</Form.Label>
+    //         <Form.Control
+    //           type="text"
+    //           name="Fullname"
+    //           value={Fullname}
+    //           onChange={(e) => {
+    //             setFullName(e.target.value);
+    //           }}
+    //           placeholder="Enter your full name"
+    //         />
+    //       </Form.Group>
+
+    //       <Form.Group className="mb-1" controlId="formBasicUsername">
+    //         <Form.Label>Username</Form.Label>
+    //         <Form.Control
+    //           type="text"
+    //           name="Username"
+    //           value={Username}
+    //           onChange={(e) => {
+    //             setUsername(e.target.value);
+    //           }}
+    //           placeholder="Enter a username"
+    //         />
+    //       </Form.Group>
+
+    //       <Form.Group className="mb-1" controlId="formBasicEmailOrMobile">
+    //         <Form.Label>Email or Mobile Number</Form.Label>
+    //         <Form.Control
+    //           type="text"
+    //           name="EmailOrMobile"
+    //           value={EmailOrMobile}
+    //           onChange={(e) => {
+    //             setEmailOrMobile(e.target.value);
+    //           }}
+    //           placeholder="Enter your email or mobile number"
+    //         />
+    //         <Form.Text className="text-muted">
+    //           We'll never share your email or mobile number with anyone else.
+    //         </Form.Text>
+    //       </Form.Group>
+
+    //       <Form.Group className="mb-1" controlId="formBasicPassword">
+    //         <Form.Label>Password</Form.Label>
+    //         <Form.Control
+    //           type="password"
+    //           value={Password}
+    //           onChange={(e) => {
+    //             handlePassword(e.target.value);
+    //           }}
+    //           name="Password"
+    //           placeholder="Password"
+    //         />
+    //       </Form.Group>
+
+    //       {passErrors ? <p className="error">{passErrors}</p> : null}
+
+    //       <Button
+    //         className="buttonSubmit"
+    //         variant="primary"
+    //         type="submit"
+    //         onClick={handleClick}
+    //       >
+    //         Sign Up
+    //       </Button>
+
+    //       {error ? <p className="error">{`! ${error}`}</p> : null}
+    //     </Form>
+    //   </Container>
+    // </div>
+
+    //BARD
+
+//     <div class="form">
+//   <div class="container mx-auto px-4"> <p class="text-center mb-4">Sign up to see photos and videos from your friends.</p>
+//     <form class="mt-4"> <div class="mb-4"> <label for="formBasicFullName" class="block text-gray-700 font-bold mb-2">Full Name</label>
+//         <input type="text" id="formBasicFullName" name="Fullname" value={Fullname} onChange={(e) => setFullName(e.target.value)} placeholder="Enter your full name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+//       </div>
+
+//       <button type="submit" onClick={handleClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+
+//       {passErrors ? <p class="text-red-500 text-sm">{passErrors}</p> : null}
+//       {error ? <p class="text-red-500 text-sm">{`! ${error}`}</p> : null}
+//     </form>
+//   </div>
+// </div>
+
+
+//CHAT GPT
+
+<div className="form">
+  <div className="container mx-auto p-4">
+    <p className="text-center">Sign up to see photos and videos from your friends.</p>
+    <form className="mt-4">
+      <div className="mb-4">
+        <label htmlFor="fullName" className="block text-sm font-medium text-gray-600">
+          Full Name
+        </label>
+        <input
+          type="text"
+          id="fullName"
+          name="Fullname"
+          value={Fullname}
+          onChange={(e) => setFullName(e.target.value)}
+          className="mt-1 p-2 w-full border rounded-md"
+          placeholder="Enter your full name"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+          Username
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="Username"
+          value={Username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="mt-1 p-2 w-full border rounded-md"
+          placeholder="Enter a username"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="emailOrMobile" className="block text-sm font-medium text-gray-600">
+          Email or Mobile Number
+        </label>
+        <input
+          type="text"
+          id="emailOrMobile"
+          name="EmailOrMobile"
+          value={EmailOrMobile}
+          onChange={(e) => setEmailOrMobile(e.target.value)}
+          className="mt-1 p-2 w-full border rounded-md"
+          placeholder="Enter your email or mobile number"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          We'll never share your email or mobile number with anyone else.
+        </p>
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+          Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="Password"
+          value={Password}
+          onChange={(e) => handlePassword(e.target.value)}
+          className="mt-1 p-2 w-full border rounded-md"
+          placeholder="Password"
+        />
+      </div>
+
+      {passErrors ? <p className="text-red-500 text-sm">{passErrors}</p> : null}
+
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        type="button"
+        onClick={handleClick}
+      >
+        Sign Up
+      </button>
+
+      {error ? <p className="text-red-500 text-sm mt-2">{`! ${error}`}</p> : null}
+    </form>
+  </div>
+</div>
+
+
+  );
+}
+
+export default Signup;
 
 // const handleClick = async (e) =>{
 //   e.preventDefault()
-//   await axios.post('http://localhost:5000/user/signup', {Fullname, Username, EmailOrMobile, Password});  
+//   await axios.post('http://localhost:5000/user/signup', {Fullname, Username, EmailOrMobile, Password});
 //   setFullName('')
 //   setUsername('')
 //   setEmailOrMobile('')
 //   setPassword('')
 // }
-const handleClick = async (e) =>{
-  try{
-  e.preventDefault()
-  const userData = {Fullname, Username, EmailOrMobile, Password}
-  // const isValidate = await signupValid(userData)
-  if (await isValidate({...userData, seter : setError})) {
-    await axios.post('http://localhost:5000/user/signup', userData);
-    setFullName('')
-    setUsername('')
-    setEmailOrMobile('')
-    setPassword('')
-    setError('')
-  } else {
-    console.log('meeeeeeeeeeeeeeeeeeeeh');
-  }
-  } catch(error){
-    console.log('error during handleClick: ',error);
-  }
-}
-
-
-
-
-  return (
-    <div className='form'>
-      <Container className='containerSignup'>
-        <p>Sign up to see photos and videos from your friends.</p>
-        <Form >
-
-          <Form.Group className="mb-3" controlId="formBasicFullName">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control type="text" name='Fullname' value={Fullname} onChange={(e) =>{setFullName(e.target.value)}} placeholder="Enter your full name" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" name='Username' value={Username} onChange={(e) =>{setUsername(e.target.value)}} placeholder="Enter a username" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicEmailOrMobile">
-            <Form.Label>Email or Mobile Number</Form.Label>
-            <Form.Control type="text" name='EmailOrMobile' value={EmailOrMobile} onChange={(e) =>{setEmailOrMobile(e.target.value)}} placeholder="Enter your email or mobile number" />
-            <Form.Text className="text-muted">
-              We'll never share your email or mobile number with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" value={Password} onChange={(e) =>setPassword(e.target.value)} name='Password' placeholder="Password" />
-
-          </Form.Group>
-         
-
-          <Button className='buttonSubmit' variant="primary" type='submit' onClick={handleClick} >
-            Sign Up
-          </Button>
-          {error ?(
-              <p className='error'>{`! ${error}`}</p>
-          ) : null}
-        </Form>
-      </Container>
-    </div>
-  );
-}
-
-export default Signup;

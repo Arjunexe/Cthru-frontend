@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { jwtToken } from "../../jwt/jwt";
 import "../home/home.css";
-// import jwt from "jsonwebtoken";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -17,61 +16,44 @@ function Home() {
 
   const Token = localStorage.getItem(jwtToken);
 
-  // useEffect(()=> {
-  //   if(Token) {
-  //     navigate("/login")
-  //   }
-  // });
-
-
-  // Sending the userId to the backend and getting the userDetail
-  async function getUser(userId) {
+  // Function to fetch user details based on userId
+  const getUser = async (userId) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/user/getUser/${userId}`
       );
       const userDetails = response.data;
-
-      // SENDING USER DETAILS TO THE CONTEXT
-      setUserDetails(userDetails);
+      console.log("response of userId is:", userDetails);
+      setUserDetails(userDetails); // SENDING USER DETAILS TO THE CONTEXT
     } catch (error) {
       console.log("error during getUser: ", error);
     }
-  }
+  };
 
-  // Decoding UserDetails from token and passing it to the function 'getUser',
-  // UseEffect helps from not looping
+  // useEffect to check token validity and fetch user details
   useEffect(() => {
     if (Token) {
       try {
         const decodedToken = jwtDecode(Token);
         const userId = decodedToken.userId;
+        const timerToken = decodedToken.exp < Date.now() / 1000; // Check if token is expired
 
-        const timerToken = decodedToken.exp < Date.now() / 1000;
-        
         if (!timerToken) {
           getUser(userId);
         } else {
-          localStorage.removeItem(jwtToken)
           console.log("Token expired, navigating to login");
           navigate("/login");
-          return () => navigate(null);
         }
       } catch (error) {
-        console.log("Error during decoding token: ", error);
+        console.log("error during decoding token:", error);
       }
     } else {
-      console.log("no one is logged");
+      console.log("No one is logged in, navigating to login");
       navigate("/login");
     }
-  }, [Token, navigate]);
+  }, [Token, navigate, setUserDetails]); // Add necessary dependencies
 
-  try {
-  } catch (error) {
-    console.log("error during decodToken :", error);
-  }
-
-  //Function to open and close the createPostModal
+  // Function to open and close the create post modal
   function openCreateModal() {
     setPostModal(true);
   }

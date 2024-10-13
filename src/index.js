@@ -1,14 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import Router from "./routes/userRoutes/userRouter";
+import "./index.css";
 /* eslint-disable import/no-webpack-loader-syntax */
-import './bootstrap/bootstrap.min.css'
-import App from './App';
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+ 
+    <RouterProvider router={Router}>
+      <App />
+    </RouterProvider>
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function

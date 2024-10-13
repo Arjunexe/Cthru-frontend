@@ -106,3 +106,25 @@ function validEmailorPhone(EmailOrMobile, seter) {
 //     return false;
 //   }
 // }
+
+
+
+//////////////////////  login //////////////////////
+
+export function isitEmpty({emailOrmobile, password, setError}) {
+    try{
+        const isEmpty = /^\s*$/;
+        if(isEmpty.test(emailOrmobile)) {
+            setError('Email or Mobile number required')
+            return false;
+        } else if(isEmpty.test(password)) {
+            setError('Password required')
+            return false;
+        } else {
+            return true;
+        }
+    } catch(error) {
+        console.log('error during isitEmpty : ', error);
+        return false;
+    }
+}

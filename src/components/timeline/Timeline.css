@@ -1,0 +1,14 @@
+.timeline {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  
+}
+
+.left_timeline {
+  flex: 0.7;
+}
+
+.right_timeline {
+  flex: 0.3;
+}

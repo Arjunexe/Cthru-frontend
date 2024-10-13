@@ -1,0 +1,38 @@
+.sidebar{
+    /* background-color: blue; */
+    /* position: fixed; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+    
+}
+
+.sidebar_logo{
+    width: 120px;
+    margin: 25px;
+}
+
+.sidebar_buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebutton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 15px 10px 15px;
+
+}
+
+.sidebutton:hover{
+    cursor: pointer;
+}
+
+.sidebar_more{
+    bottom: 4px;
+    /* position: fixed; */
+    
+}

@@ -1,3 +1,11 @@
-body{
-    background-color: aqua;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* install 'postcss language support' extension to remove the warning */
+
+* {
+    background-color: rgb(52, 52, 52);
+    color: rgb(255, 255, 255);
+    margin: 0;
 }

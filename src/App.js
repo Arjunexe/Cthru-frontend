@@ -1,13 +1,36 @@
-import './App.css';
+// import React from "react";
+// import "./App.css";
+// import { Outlet } from "react-router-dom";
 
-import Signup from './pages/signup/signup';
+// function App() {
+//   return (
+//     <div className="App">
+//       <Outlet />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+// import './App.css';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import ImageProvider from "./hooks/provider";
 
 function App() {
+
+  
   return (
-    <div className="App">
     
-      <Signup/>
-    </div>
+      <ImageProvider>
+      <Outlet />
+      </ImageProvider>
+   
+      
+    
   );
 }
 
