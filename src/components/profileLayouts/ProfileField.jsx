@@ -13,9 +13,9 @@ export default function ProfileField() {
 
       <img
         className="w-52 h-52 rounded-full object-cover "
-        src={defaultLogo}
+        src={userDetails.userData.ProfilePic}
         alt=""
-        
+              
       />
        </div>
     </>

@@ -20,7 +20,7 @@ export default function Profile() {
         <Siidebar />
         <div>
           <div
-            className="bg-red-800 cursor-pointer flex "
+            className=" cursor-pointer flex "
             onClick={handleClick}
           >
             profile
