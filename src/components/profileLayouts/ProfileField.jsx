@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import ImageContext from "../../hooks/context";
+import MainContext from "../../hooks/context";
 import defaultLogo from "../../assests/IconAsests/defaultProfilePicture.png"
 
 export default function ProfileField() {
-    const { userDetails } = useContext(ImageContext);
+    const { userDetails } = useContext(MainContext);
     console.log("there you go you filty animal : ",userDetails);
      
 

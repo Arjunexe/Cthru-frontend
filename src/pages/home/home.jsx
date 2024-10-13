@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 import CreatePostModal from "../../components/createPostModal/createPostModal";
-import ImageContext from "../../hooks/context";
+import MainContext from "../../hooks/context";
 
 function Home() {
   const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
-  const { setUserDetails } = useContext(ImageContext);
+  const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
 
@@ -47,7 +47,8 @@ function Home() {
         const decodedToken = jwtDecode(Token);
         const userId = decodedToken.userId;
 
-        const timerToken = decodedToken.exp < Date.now() / 1000;
+        // const timerToken = decodedToken.exp < Date.now() / 1000;
+        const timerToken =  decodedToken.exp * 1000 < Date.now()   //Ai 
         
         if (!timerToken) {
           getUser(userId);

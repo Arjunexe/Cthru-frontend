@@ -1,16 +1,16 @@
 import { useState } from "react";
-import ImageContext from "./context";
+import MainContext from "./context";
 
-function ImageProvider({ children }) {
+function MainContextProvider({ children }) {
   const [imgUploaded, setImgUploaded] = useState(false);
   const [userDetails, setUserDetails] = useState("")
 
   return (
-    <ImageContext.Provider value={{ imgUploaded, setImgUploaded , userDetails, setUserDetails }}>
+    <MainContext.Provider value={{ imgUploaded, setImgUploaded , userDetails, setUserDetails }}>
       {children}
-    </ImageContext.Provider>
+    </MainContext.Provider>
   );
 }
 
 
-export default ImageProvider;
+export default MainContextProvider;

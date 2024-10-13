@@ -18,16 +18,16 @@
 // import './App.css';
 import React from "react";
 import { Outlet } from "react-router-dom";
-import ImageProvider from "./hooks/provider";
+import MainContextProvider from "./hooks/provider";
 
 function App() {
 
   
   return (
     
-      <ImageProvider>
+      <MainContextProvider>
       <Outlet />
-      </ImageProvider>
+      </MainContextProvider>
    
       
     
