@@ -2,16 +2,19 @@ import React, { useContext } from "react";
 import "../Profile/profile.css";
 import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
-// import ImageContext from "../../hooks/context";
+import MainContext from "../../hooks/context";
+// import { jwtToken } from "../../jwt/jwt";
+// import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  // const { userDetails } = useContext(ImageContext)
-  // const userName = userDetails?.userData?.Username || "Guest"; 
-  // console.log("here is you username : ",userName);
+  // const navigate = useNavigate()
+  const { userDetails } = useContext(MainContext);
+  const userName = userDetails?.userData?.Username || "Guest";
+  console.log("here is you username : ", userName);
 
-    
   function handleClick() {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("userData");
   }
 
   return (
@@ -19,11 +22,10 @@ export default function Profile() {
       <div className="flex h-screen w-screen ">
         <Siidebar />
         <div>
-          <div
-            className=" cursor-pointer flex "
-            onClick={handleClick}
-          >
-            profile
+          <div>
+            <div>
+              <button className="cursor-pointer" onClick={handleClick}>Logout</button>
+            </div>
             <ProfileField />
           </div>
         </div>
@@ -31,5 +33,3 @@ export default function Profile() {
     </>
   );
 }
-
-
