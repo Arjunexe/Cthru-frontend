@@ -8,6 +8,7 @@ import App from "../../App";
 import Profile from "../../pages/Profile/profile";
 import Xample from "../../pages/egxample/xample";
 import Message from "../../pages/Message/Message";
+import ProfileUpload from "../../pages/Profile/ProfileUpload";
 
 const Router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const Router = createBrowserRouter([
       {
         path:"message",
         element: <Message />
+      },
+      {
+        path:"profileUpload",
+        element: <ProfileUpload />
       }
     ],
   },

@@ -79,7 +79,7 @@ function Signup() {
         localStorage.setItem(jwtToken, response.data.token);
         console.log("hiiiiiiiii");
         // UserLoggedIn(userData)
-        navigate("/");
+        navigate("/ProfileUpload");
 
         setFullName("");
         setUsername("");
@@ -96,99 +96,9 @@ function Signup() {
   };
 
   return (
-    // <div className="form">
-    //   <Container className="containerSignup">
-    //     <p>Sign up to see photos and videos from your friends.</p>
-    //     <Form className="formm">
-    //       <Form.Group className="mb-1" controlId="formBasicFullName">
-    //         <Form.Label>Full Name</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           name="Fullname"
-    //           value={Fullname}
-    //           onChange={(e) => {
-    //             setFullName(e.target.value);
-    //           }}
-    //           placeholder="Enter your full name"
-    //         />
-    //       </Form.Group>
+    
 
-    //       <Form.Group className="mb-1" controlId="formBasicUsername">
-    //         <Form.Label>Username</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           name="Username"
-    //           value={Username}
-    //           onChange={(e) => {
-    //             setUsername(e.target.value);
-    //           }}
-    //           placeholder="Enter a username"
-    //         />
-    //       </Form.Group>
-
-    //       <Form.Group className="mb-1" controlId="formBasicEmailOrMobile">
-    //         <Form.Label>Email or Mobile Number</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           name="EmailOrMobile"
-    //           value={EmailOrMobile}
-    //           onChange={(e) => {
-    //             setEmailOrMobile(e.target.value);
-    //           }}
-    //           placeholder="Enter your email or mobile number"
-    //         />
-    //         <Form.Text className="text-muted">
-    //           We'll never share your email or mobile number with anyone else.
-    //         </Form.Text>
-    //       </Form.Group>
-
-    //       <Form.Group className="mb-1" controlId="formBasicPassword">
-    //         <Form.Label>Password</Form.Label>
-    //         <Form.Control
-    //           type="password"
-    //           value={Password}
-    //           onChange={(e) => {
-    //             handlePassword(e.target.value);
-    //           }}
-    //           name="Password"
-    //           placeholder="Password"
-    //         />
-    //       </Form.Group>
-
-    //       {passErrors ? <p className="error">{passErrors}</p> : null}
-
-    //       <Button
-    //         className="buttonSubmit"
-    //         variant="primary"
-    //         type="submit"
-    //         onClick={handleClick}
-    //       >
-    //         Sign Up
-    //       </Button>
-
-    //       {error ? <p className="error">{`! ${error}`}</p> : null}
-    //     </Form>
-    //   </Container>
-    // </div>
-
-    //BARD
-
-//     <div class="form">
-//   <div class="container mx-auto px-4"> <p class="text-center mb-4">Sign up to see photos and videos from your friends.</p>
-//     <form class="mt-4"> <div class="mb-4"> <label for="formBasicFullName" class="block text-gray-700 font-bold mb-2">Full Name</label>
-//         <input type="text" id="formBasicFullName" name="Fullname" value={Fullname} onChange={(e) => setFullName(e.target.value)} placeholder="Enter your full name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-//       </div>
-
-//       <button type="submit" onClick={handleClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
-
-//       {passErrors ? <p class="text-red-500 text-sm">{passErrors}</p> : null}
-//       {error ? <p class="text-red-500 text-sm">{`! ${error}`}</p> : null}
-//     </form>
-//   </div>
-// </div>
-
-
-//CHAT GPT
+// Ai
 
 <div className="form">
   <div className="container mx-auto p-4">
@@ -277,12 +187,3 @@ function Signup() {
 }
 
 export default Signup;
-
-// const handleClick = async (e) =>{
-//   e.preventDefault()
-//   await axios.post('http://localhost:5000/user/signup', {Fullname, Username, EmailOrMobile, Password});
-//   setFullName('')
-//   setUsername('')
-//   setEmailOrMobile('')
-//   setPassword('')
-// }

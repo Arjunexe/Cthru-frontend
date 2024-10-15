@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../post/Post.css";
-import MainContext from "../../hooks/context";
+// import MainContext from "../../hooks/context";
+// import ProfileField from "../profileLayouts/ProfileField";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -18,7 +19,7 @@ function Post({ post }) {
     setrealImg(imagee); // Update state with the fetched image URL
     setUsername(username);
     setDp(profilepic);
-  }, [post.postImage, Dp]);
+  }, [post.postImage, post.userId.ProfilePic,post.userId.Username ]);
 
   if (!post || post.length === 0) {
     return <div>Loading...</div>;
@@ -30,6 +31,7 @@ function Post({ post }) {
       <div className="post_header">
         <div className="post_author">
           <img className="timeline_profilePic" src={Dp} alt="" />
+          {/* <ProfileField /> */}
           {username} • <span>12 h</span>
         </div>
         •••
