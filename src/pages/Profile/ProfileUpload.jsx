@@ -1,14 +1,16 @@
-import React, {useState } from "react";
+import React, {useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import { jwtToken } from "../../jwt/jwt";
 import { jwtDecode } from "jwt-decode";
+import MainContext from "../../hooks/context";
 
 
 function ProfileUpload() {
 const [profilePic, setProfilePic] = useState("")
 const [profilePicUrl, setProfilePicUrl] = useState("")
+const { setUserDetails } = useContext(MainContext)
   const navigate = useNavigate();
 
   function handleChangeClick(event){
@@ -60,6 +62,7 @@ const [profilePicUrl, setProfilePicUrl] = useState("")
      // SENDING IMAGE TO BACKEND ACCORDING TO THE USER ID
       const response = await axios.post("http://localhost:5000/user/profileImgUrl",{ProfilePic:url,userId:userId})
       console.log("backend img url response :",response);
+      setUserDetails(response)
     //   setImgUploaded(response)
       
     } catch (error) {

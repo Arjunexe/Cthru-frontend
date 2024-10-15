@@ -19,12 +19,12 @@ export default function Profile() {
     setProfilePic(DP)
     console.log("The Dp is here :",DP);
     
-  },[DP])
+  },[DP,userDetails])
 
   function handleClick() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userData");
-  }
+  }//profilePic
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function Profile() {
             <div>
               <button className="cursor-pointer" onClick={handleClick}>Logout</button>
             </div>
-            <ProfileField profilePic={profilePic} />
+            <ProfileField DP={DP} /> 
           </div>
         </div>
       </div>

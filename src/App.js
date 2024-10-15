@@ -1,5 +1,5 @@
 // import './App.css';
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./hooks/provider";
 import { jwtDecode } from "jwt-decode";
@@ -10,8 +10,9 @@ import { jwtToken,userData } from ".././src/jwt/jwt";
 
 function App() {
   const navigate = useNavigate();
+  
 
-  const { userDetails, setUserDetails } = useContext(MainContext);
+  const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
   
@@ -28,11 +29,12 @@ function App() {
         const response = await axios.get(
           `http://localhost:5000/user/getUser/${userId}`
         );
-        const userDetails = response.data;
-        // console.log("userDetails in app.js :",userDetails);
+        const userData = response.data;
+        console.log("userDetails in app.js :",userData);
         
         // SENDING USER DETAILS TO THE CONTEXT
-        setUserDetails(userDetails);
+        setUserDetails(userData);
+        
       } catch (error) {
         console.log("error during getUser: ", error);
       }
@@ -66,7 +68,7 @@ function App() {
       console.log("no one is logged");
       navigate("/login");
     }
-  }, [Token, navigate, setUserDetails, userDetails ]);
+  }, [Token, navigate, setUserDetails ]);
 
   return <Outlet />;
 }
