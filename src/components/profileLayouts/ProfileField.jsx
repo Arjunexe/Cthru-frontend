@@ -4,7 +4,7 @@ import MainContext from "../../hooks/context";
 
 export default function ProfileField() {
   const [Dp, setDp] = useState("");
-  const { userDetails } = useContext(MainContext);
+  const { userDetails, setUserDetails } = useContext(MainContext);
   console.log("there's your userDetails : ", userDetails);
 
   useEffect(() => {
@@ -12,7 +12,9 @@ export default function ProfileField() {
   }, [userDetails]);
 
   function handleProfileUpload(){
-    setDp("https://res.cloudinary.com/da05006gl/image/upload/v1728845334/yuyg3oob30i8jzsu1vvy.png")
+    const newProfile = "https://res.cloudinary.com/da05006gl/image/upload/v1728845334/yuyg3oob30i8jzsu1vvy.png"
+    setDp(newProfile)
+    setUserDetails({...userDetails,userData: {...userDetails.userData,ProfilePic: newProfile}})
   }
 
   return (

@@ -11,11 +11,18 @@ function Timeline() {
 
   useEffect(() => {
     async function getImageUrl() {
+      try{
+
+
       console.log("kinda working");
       const response = await axios.get("http://localhost:5000/user/getUrl");
 
       setPostImage(response.data);
       console.log("all data", response.data);
+      } catch (error){
+        console.log("error duing getImageUrl frontend :",error);
+        
+      }
     }
 
     getImageUrl();
