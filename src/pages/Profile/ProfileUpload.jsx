@@ -42,6 +42,7 @@ const [profilePicUrl, setProfilePicUrl] = useState("")
           console.log("Your profile picture:", response);
           console.log("and the url of profilePicture:", response.data.secure_url);
           sendProfileImgUrl(response.data.secure_url);
+          navigate("/")
         });
     } catch (error) {
       console.log("error during createPost handleclick", error);
@@ -57,7 +58,7 @@ const [profilePicUrl, setProfilePicUrl] = useState("")
       const decode = jwtDecode(Token)
       const userId = decode.userId
      // SENDING IMAGE TO BACKEND ACCORDING TO THE USER ID
-      const response = await axios.post("http://localhost:5000/user/imgUrl",{ProfilePic:url,userId:userId})
+      const response = await axios.post("http://localhost:5000/user/profileImgUrl",{ProfilePic:url,userId:userId})
       console.log("backend img url response :",response);
     //   setImgUploaded(response)
       
