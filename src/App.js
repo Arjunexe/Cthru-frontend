@@ -11,7 +11,7 @@ import { jwtToken,userData } from ".././src/jwt/jwt";
 function App() {
   const navigate = useNavigate();
 
-  const { setUserDetails } = useContext(MainContext);
+  const { userDetails, setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
   
@@ -29,7 +29,8 @@ function App() {
           `http://localhost:5000/user/getUser/${userId}`
         );
         const userDetails = response.data;
-  
+        // console.log("userDetails in app.js :",userDetails);
+        
         // SENDING USER DETAILS TO THE CONTEXT
         setUserDetails(userDetails);
       } catch (error) {
@@ -65,7 +66,7 @@ function App() {
       console.log("no one is logged");
       navigate("/login");
     }
-  }, [Token, navigate, setUserDetails]);
+  }, [Token, navigate, setUserDetails, userDetails ]);
 
   return <Outlet />;
 }

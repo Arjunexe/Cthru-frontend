@@ -13,10 +13,12 @@ export default function Profile() {
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
 
-  console.log("here is you username : ", userName);
+  console.log("here is you username : ", DP);
   
   useEffect(() => {
     setProfilePic(DP)
+    console.log("The Dp is here :",DP);
+    
   },[DP])
 
   function handleClick() {
