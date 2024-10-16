@@ -21,6 +21,10 @@ export default function Profile() {
     
   },[DP,userDetails])
 
+  // function handleChangeClick (event){
+  //   handleChangeClickAPI(event, setProfilePics, setProfilePicUrl )
+  // }
+
   function handleClick() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userData");
@@ -36,7 +40,10 @@ export default function Profile() {
             <div>
               <button className="cursor-pointer" onClick={handleClick}>Logout</button>
             </div>
-            <ProfileField DP={DP} /> 
+            <ProfileField profilePic={profilePic} /> 
+          </div>
+          <div>
+            {/* <button onClick={handleChangeClick}>Upload</button> */}
           </div>
         </div>
       </div>
