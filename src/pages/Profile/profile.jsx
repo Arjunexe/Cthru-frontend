@@ -8,7 +8,11 @@ import MainContext from "../../hooks/context";
 
 export default function Profile() {
   // const navigate = useNavigate()
-  const [profilePic, setProfilePic ] = useState("")
+  const [profilePicUrl, setProfilePic ] = useState("")
+  const [profilePic, setProfilePics] = useState("")
+  const []
+
+
   const { userDetails } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
@@ -21,9 +25,10 @@ export default function Profile() {
     
   },[DP,userDetails])
 
-  // function handleChangeClick (event){
-  //   handleChangeClickAPI(event, setProfilePics, setProfilePicUrl )
-  // }
+  // Handles the upload Change in Profile Page
+  function handleChangeClick (event){
+    handleChangeClickAPI(event, setProfilePics, setProfilePicUrl )
+  }
 
   function handleClick() {
     localStorage.removeItem("jwtToken");
@@ -40,10 +45,10 @@ export default function Profile() {
             <div>
               <button className="cursor-pointer" onClick={handleClick}>Logout</button>
             </div>
-            <ProfileField profilePic={profilePic} /> 
+            <ProfileField profilePicUrl={profilePicUrl} /> 
           </div>
           <div>
-            {/* <button onClick={handleChangeClick}>Upload</button> */}
+            <button onClick={handleChangeClick}>Upload</button>
           </div>
         </div>
       </div>

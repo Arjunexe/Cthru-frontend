@@ -12,16 +12,15 @@ function ProfileUpload() {
   const { setUserDetails } = useContext(MainContext);
   const navigate = useNavigate();
 
+  // Handles the Change
   function handleChangeClick(event) {
     const selectedFile = event.target.files[0];
     setProfilePic(selectedFile);
-
     const fileURL = URL.createObjectURL(selectedFile);
     console.log("temp file :", fileURL);
-
     setProfilePicUrl(fileURL);
   }
-
+  // Handles the Upload to Cloudinary 
   async function handleUploadClick() {
     if (!profilePic) {
       alert("Select and image");
@@ -72,7 +71,7 @@ function ProfileUpload() {
       }
     }
   }
-
+ // Handles the Skip
   function handleSkipClick() {
     navigate("/");
   }

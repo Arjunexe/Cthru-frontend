@@ -2,16 +2,16 @@ import React, {  useEffect, useState } from "react";
 // import MainContext from "../../hooks/context";
 // import defaultLogo from "../../assests/IconAsests/defaultProfilePicture.png"
 
-export default function ProfileField({profilePic}) {
+export default function ProfileField({profilePicUrl}) {
   const [Dp, setDp] = useState("");
 
 
   useEffect(() => {
-    if(profilePic){
-      setDp(profilePic)
+    if(profilePicUrl){
+      setDp(profilePicUrl)
     } 
     
-  }, [profilePic]);
+  }, [profilePicUrl]);
 
 
 
