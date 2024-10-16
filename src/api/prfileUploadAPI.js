@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
 
 
+
 export async function handleChangeClickAPI( event, setProfilePic, setProfilePicUrl ) {
     const selectedFile = event.target.files[0];
     setProfilePic(selectedFile);
@@ -48,6 +49,7 @@ export async function handleUploadClickAPI (profilePic) {
 
 
 async function sendProfileImgUrl (url){
+    
     const Token = localStorage.getItem(jwtToken);
     if (Token) {
       try {
@@ -60,7 +62,7 @@ async function sendProfileImgUrl (url){
           { ProfilePic: url, userId: userId }
         );
         console.log("backend img url response :", response);
-        setUserDetails(response);
+        // setUserDetails(response);
         //   setImgUploaded(response)
       } catch (error) {
         console.log("error during sendImgUrl :", error);

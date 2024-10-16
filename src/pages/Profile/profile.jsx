@@ -3,6 +3,7 @@ import "../Profile/profile.css";
 import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
+import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
 // import { jwtToken } from "../../jwt/jwt";
 // import { useNavigate } from "react-router-dom";
 
@@ -10,10 +11,8 @@ export default function Profile() {
   // const navigate = useNavigate()
   const [profilePicUrl, setProfilePic ] = useState("")
   const [profilePic, setProfilePics] = useState("")
-  const []
-
-
-  const { userDetails } = useContext(MainContext);
+  // const []
+  const { userDetails, setUserDetails } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
 
@@ -25,9 +24,31 @@ export default function Profile() {
     
   },[DP,userDetails])
 
+  //
+  useEffect(() => {
+    if(profilePic){
+      
+      async function uploadProfileImage () {
+        const uploadedImg = await handleUploadClickAPI(profilePic)
+        return uploadedImg;
+      }
+
+        uploadProfileImage().then((uploadedImg) => {
+      if (uploadedImg) {
+        setUserDetails(uploadedImg);
+      }
+    });
+    }
+  },[profilePic,setUserDetails])
+
   // Handles the upload Change in Profile Page
-  function handleChangeClick (event){
-    handleChangeClickAPI(event, setProfilePics, setProfilePicUrl )
+  async function handleChangeClick (event){
+    const selectedFile = event.target.files[0]
+    setProfilePics(selectedFile)
+    // const uploadedImg =  handleUploadClickAPI(profilePic)
+    // setUserDetails(uploadedImg)
+   
+
   }
 
   function handleClick() {
@@ -48,7 +69,13 @@ export default function Profile() {
             <ProfileField profilePicUrl={profilePicUrl} /> 
           </div>
           <div>
-            <button onClick={handleChangeClick}>Upload</button>
+          <input
+          className="inputType"
+          name="image"
+          type="file"
+          onChange={handleChangeClick}
+        />
+            {/* <button onClick={handleChangeClick}>Upload</button> */}
           </div>
         </div>
       </div>
