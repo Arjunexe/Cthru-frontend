@@ -29,15 +29,12 @@ export default function Profile() {
     if(profilePic){
       
       async function uploadProfileImage () {
-        const uploadedImg = await handleUploadClickAPI(profilePic)
+        const uploadedImg = await handleUploadClickAPI(profilePic,setUserDetails)
+        console.log("uploadedIMg :", uploadedImg);
+        
         return uploadedImg;
       }
-
-        uploadProfileImage().then((uploadedImg) => {
-      if (uploadedImg) {
-        setUserDetails(uploadedImg);
-      }
-    });
+      uploadProfileImage()
     }
   },[profilePic,setUserDetails])
 

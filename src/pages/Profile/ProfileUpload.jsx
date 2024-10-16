@@ -43,7 +43,6 @@ function ProfileUpload() {
             response.data.secure_url
           );
           sendProfileImgUrl(response.data.secure_url);
-          navigate("/");
         });
     } catch (error) {
       console.log("error during createPost handleclick", error);
@@ -65,6 +64,7 @@ function ProfileUpload() {
         );
         console.log("backend img url response :", response);
         setUserDetails(response);
+        navigate("/");
         //   setImgUploaded(response)
       } catch (error) {
         console.log("error during sendImgUrl :", error);
