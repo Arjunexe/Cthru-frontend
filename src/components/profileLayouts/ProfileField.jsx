@@ -1,27 +1,19 @@
-import React, {  useEffect, useState } from "react";
-// import MainContext from "../../hooks/context";
-// import defaultLogo from "../../assests/IconAsests/defaultProfilePicture.png"
+import React, { useEffect, useState } from "react";
 
-export default function ProfileField({profilePicUrl}) {
+export default function ProfileField({ profilePicUrl }) {
   const [Dp, setDp] = useState("");
 
-
   useEffect(() => {
-    if(profilePicUrl){
-      setDp(profilePicUrl)
-    } 
-    
+    if (profilePicUrl) {
+      setDp(profilePicUrl);
+    }
   }, [profilePicUrl]);
-
-
 
   return (
     <>
       <div className="">
-        <img className="w-52 h-52 rounded-full object-cover " src={Dp} alt="" />
-        <div className="">
-          {/* <button onClick={handleProfileUpload}>Upload</button> */}
-        </div>
+        <img className="w-12 h-12 rounded-full object-cover" src={Dp} alt="" />
+        <div className=""></div>
       </div>
     </>
   );

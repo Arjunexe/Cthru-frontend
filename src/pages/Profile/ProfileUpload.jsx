@@ -63,7 +63,7 @@ function ProfileUpload() {
           { ProfilePic: url, userId: userId }
         );
         console.log("backend img url response :", response);
-        setUserDetails(response);
+        setUserDetails({userData: {...response.data.ProfilePicData}});
         navigate("/");
         //   setImgUploaded(response)
       } catch (error) {

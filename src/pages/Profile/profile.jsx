@@ -9,49 +9,43 @@ import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
 
 export default function Profile() {
   // const navigate = useNavigate()
-  const [profilePicUrl, setProfilePic ] = useState("")
-  const [profilePic, setProfilePics] = useState("")
-  // const []
+  const [profilePicUrl, setProfilePic] = useState("");
+  const [profilePic, setProfilePics] = useState("");
   const { userDetails, setUserDetails } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
 
   console.log("here is you username : ", DP);
-  
+
   useEffect(() => {
-    setProfilePic(DP)
-    console.log("The Dp is here :",DP);
-    
-  },[DP,userDetails])
+    setProfilePic(DP);
+    console.log("The Dp is here :", DP);
+  }, [DP, userDetails]);
 
   //
   useEffect(() => {
-    if(profilePic){
-      
-      async function uploadProfileImage () {
-        const uploadedImg = await handleUploadClickAPI(profilePic,setUserDetails)
-        console.log("uploadedIMg :", uploadedImg);
-        
+    if (profilePic) {
+      async function uploadProfileImage() {
+        const uploadedImg = await handleUploadClickAPI(profilePic,setUserDetails);
+
         return uploadedImg;
       }
-      uploadProfileImage()
+      uploadProfileImage();
     }
-  },[profilePic,setUserDetails])
+  }, [profilePic, setUserDetails]);
 
   // Handles the upload Change in Profile Page
-  async function handleChangeClick (event){
-    const selectedFile = event.target.files[0]
-    setProfilePics(selectedFile)
+  async function handleChangeClick(event) {
+    const selectedFile = event.target.files[0];
+    setProfilePics(selectedFile);
     // const uploadedImg =  handleUploadClickAPI(profilePic)
     // setUserDetails(uploadedImg)
-   
-
   }
 
   function handleClick() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userData");
-  }//profilePic
+  } //profilePic
 
   return (
     <>
@@ -61,17 +55,19 @@ export default function Profile() {
           <div>
             {userName}
             <div>
-              <button className="cursor-pointer" onClick={handleClick}>Logout</button>
+              <button className="cursor-pointer" onClick={handleClick}>
+                Logout
+              </button>
             </div>
-            <ProfileField profilePicUrl={profilePicUrl} /> 
+            <ProfileField profilePicUrl={profilePicUrl} />
           </div>
           <div>
-          <input
-          className="inputType"
-          name="image"
-          type="file"
-          onChange={handleChangeClick}
-        />
+            <input
+              className="inputType"
+              name="image"
+              type="file"
+              onChange={handleChangeClick}
+            />
             {/* <button onClick={handleChangeClick}>Upload</button> */}
           </div>
         </div>

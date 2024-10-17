@@ -1,49 +1,39 @@
 // import './App.css';
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./hooks/provider";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MainContext from "..//src/hooks/context";
-import { jwtToken,userData } from ".././src/jwt/jwt";
+import { jwtToken, userData } from ".././src/jwt/jwt";
 
 function App() {
   const navigate = useNavigate();
-  
 
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
-  
 
-  
-
- 
   useEffect(() => {
 
-      // Sending the userId to the backend and getting the userDetail
-
+    // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail
     async function getUser(userId) {
       try {
         const response = await axios.get(
           `http://localhost:5000/user/getUser/${userId}`
         );
         const userData = response.data;
-        console.log("userDetails in app.js :",userData);
-        
-        // SENDING USER DETAILS TO THE CONTEXT
+        console.log("userDetails in app.js :", userData);
+        // UPDATING THE CONTEXT WITH USER DETAILS
         setUserDetails(userData);
-        
       } catch (error) {
         console.log("error during getUser: ", error);
       }
     }
 
-
- // Decoding UserDetails from token and passing it to the function 'getUser',
-  // UseEffect helps from not looping
-
+    // DECODING USER ID FROM TOKEN AND PASSING IT TO getUser
+    // UseEffect HELP FROM NOT LOOPING
     if (Token) {
       try {
         const decodedToken = jwtDecode(Token);
@@ -56,10 +46,9 @@ function App() {
           getUser(userId);
         } else {
           localStorage.removeItem(jwtToken);
-          localStorage.removeItem(userData)
+          localStorage.removeItem(userData);
           console.log("Token expired, navigating to login");
           navigate("/login");
-          
         }
       } catch (error) {
         console.log("Error during decoding token: ", error);
@@ -68,7 +57,7 @@ function App() {
       console.log("no one is logged");
       navigate("/login");
     }
-  }, [Token, navigate, setUserDetails ]);
+  }, [Token, navigate, setUserDetails]);
 
   return <Outlet />;
 }

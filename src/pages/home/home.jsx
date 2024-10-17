@@ -18,7 +18,7 @@ function Home() {
   //   }
   // });
 
-  //Function to open and close the createPostModal
+  //FUNCTION TO OPEN AND CLOSE createPostModal
   function openCreateModal() {
     setPostModal(true);
   }

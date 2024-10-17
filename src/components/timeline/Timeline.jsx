@@ -6,22 +6,19 @@ import axios from "axios";
 import ImageContext from "../../hooks/context";
 
 function Timeline() {
-  const { imgUploaded } = useContext(ImageContext)
+  const { imgUploaded } = useContext(ImageContext);
   const [postImagee, setPostImage] = useState([]);
 
   useEffect(() => {
     async function getImageUrl() {
-      try{
-
-
-      console.log("kinda working");
-      const response = await axios.get("http://localhost:5000/user/getUrl");
-
-      setPostImage(response.data);
-      console.log("all data", response.data);
-      } catch (error){
-        console.log("error duing getImageUrl frontend :",error);
-        
+      try {
+        console.log("working");
+        // GET ALL POST IMAGE AND BASED ID GET ALL USER DATA
+        const response = await axios.get("http://localhost:5000/user/getUrl");
+        setPostImage(response.data);
+        console.log("all data", response.data);
+      } catch (error) {
+        console.log("error duing getImageUrl frontend :", error);
       }
     }
 
@@ -32,15 +29,9 @@ function Timeline() {
     <div className="timeline h-full">
       <div className="left_timeline">
         <div className="timeline_post">
-
           {postImagee.map((post, index) => (
-
-               <Post key={index} post={post} />
-
+            <Post key={index} post={post} />
           ))}
-
-       
-        
         </div>
       </div>
 

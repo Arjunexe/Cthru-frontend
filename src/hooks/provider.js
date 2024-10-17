@@ -4,35 +4,32 @@ import { userData } from "../jwt/jwt";
 
 function MainContextProvider({ children }) {
   const [imgUploaded, setImgUploaded] = useState(false);
-  // Passing a function to useState for a one time use
-  const [userDetails, setUserDetails] = useState(()=>{
-    const storedUser = localStorage.getItem(userData)
+  // PASSING A FUNCTION TO USESTATE FOR A ONE TIME USE
+  const [userDetails, setUserDetails] = useState(() => {
+    const storedUser = localStorage.getItem(userData);
     return storedUser ? JSON.parse(storedUser) : null;
-  })
+  });
 
-  // If useDetails exist pass that to local storage
+  // IF userDetails EXIST PASS THAT TO LOCAL STORAGE
   useEffect(() => {
-    try{
-    if(userDetails){
-      
-      localStorage.setItem(userData, JSON.stringify(userDetails))
-    } else {
-      localStorage.removeItem(userData);
+    try {
+      if (userDetails) {
+        localStorage.setItem(userData, JSON.stringify(userDetails));
+      } else {
+        localStorage.removeItem(userData);
+      }
+    } catch (error) {
+      console.log("error during Provider :", error);
     }
-  } catch (error) {
-    console.log("error during Provider :",error);
-    
-  }
-  },[userDetails])
-
-
+  }, [userDetails]);
 
   return (
-    <MainContext.Provider value={{ imgUploaded, setImgUploaded , userDetails, setUserDetails }}>
+    <MainContext.Provider
+      value={{ imgUploaded, setImgUploaded, userDetails, setUserDetails }}
+    >
       {children}
     </MainContext.Provider>
   );
 }
-
 
 export default MainContextProvider;
