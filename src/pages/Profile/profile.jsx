@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../Profile/profile.css";
-import Siidebar from "../../components/sidebar/Sidebar";
+// import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
 import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
@@ -50,7 +50,7 @@ export default function Profile() {
   return (
     <>
       <div className="flex h-screen w-screen ">
-        <Siidebar />
+        {/* <Siidebar /> */}
         <div>
           <div>
             {userName}

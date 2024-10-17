@@ -3,7 +3,7 @@ import "./Suggestion.css"
 
 function Suggestion() {
   return (
-    <div className="bg-teal-600">
+    <div className="bg-fuchsia-500 h-full w-fit pl-20 ">
       Suggestion
       </div>
   )

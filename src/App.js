@@ -1,5 +1,5 @@
 // import './App.css';
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./hooks/provider";
 import { jwtDecode } from "jwt-decode";
@@ -7,16 +7,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MainContext from "..//src/hooks/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
+import Siidebar from "./components/sidebar/Sidebar";
+import CreatePostModal from "./components/createPostModal/createPostModal";
 
 function App() {
   const navigate = useNavigate();
+  const [postModal, setPostModal] = useState(false);
 
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
 
   useEffect(() => {
-
     // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail
     async function getUser(userId) {
       try {
@@ -59,7 +61,25 @@ function App() {
     }
   }, [Token, navigate, setUserDetails]);
 
-  return <Outlet />;
+  function openCreateModal() {
+    setPostModal(true);
+  }
+
+  function closeCreateModal() {
+    setPostModal(false);
+  }
+
+  return (
+    <>
+    <div className="flex">
+       <Siidebar openCreateModal={openCreateModal} />
+      {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
+      <Outlet />
+    </div>
+
+     
+    </>
+  );
 }
 
 export default App;
