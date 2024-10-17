@@ -20,27 +20,31 @@ function Siidebar({ openCreateModal }) {
 
 
   return (
-    <div className="sidebar"> 
-      <img className="sidebar_logo" src={logo} alt="failed to upload" />
+    <div className="flex flex-col justify-between z-1 bg-amber-300 "> 
+      <img className="w-32 m-4" src={logo} alt="failed to upload" />
 
-      <div className="sidebar_buttons">
-        <button className="sidebutton" onClick={handleHomeClick}>
+      <div className="flex flex-col">
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 bg-red-900" onClick={handleHomeClick}>
           home</button>
-        <button className="sidebutton">Search</button>
-        <button className="sidebutton" onClick={openCreateModal}>
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">Search</button>
+         
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4" onClick={openCreateModal}>
           Create
         </button>
-        <button className="sidebutton" onClick={handleMessageClick}>
+
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4" onClick={handleMessageClick}>
           Messages
           </button>
-        <button className="sidebutton">Notifications</button>
-        <button className="sidebutton" onClick={handleProfileClick}>
+
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">Notifications</button>
+
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4" onClick={handleProfileClick}>
           Profile
         </button>
       </div>
 
-      <div className="sidebar_more">
-        <button className="sidebutton">More</button>
+      <div className="bottom-1">
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">More</button>
       </div>
     </div>
   );

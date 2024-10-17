@@ -6,6 +6,7 @@ import "../home/home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 import CreatePostModal from "../../components/createPostModal/createPostModal";
+import Suggestion from "../../components/suggestion/Suggestion";
 
 function Home() {
   const [postModal, setPostModal] = useState(false);
@@ -28,13 +29,20 @@ function Home() {
   }
 
   return (
-    <div className="home h-screen">
+    <div className="h-screen flex flex-row">
+
       <div className="homepage_sidebar">
         <Sidebar openCreateModal={openCreateModal} />
       </div>
+
       <div className="homepage_timeline">
         <Timeline />
       </div>
+
+      <div>
+        <Suggestion />
+      </div>
+      
       {/* Modal */}
       {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
     </div>

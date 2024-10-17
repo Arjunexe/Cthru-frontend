@@ -3,7 +3,9 @@ import "./Suggestion.css"
 
 function Suggestion() {
   return (
-    <div>Suggestion</div>
+    <div className="bg-teal-600">
+      Suggestion
+      </div>
   )
 }
 

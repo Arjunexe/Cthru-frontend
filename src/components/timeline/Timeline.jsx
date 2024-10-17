@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Timeline.css";
-import Suggestion from "../suggestion/Suggestion";
+// import Suggestion from "../suggestion/Suggestion";
 import Post from "../post/Post";
 import axios from "axios";
 import ImageContext from "../../hooks/context";
@@ -26,7 +26,7 @@ function Timeline() {
   }, [imgUploaded]);
 
   return (
-    <div className="timeline h-full">
+    <div className="h-full flex flex-row overflow-auto no-scrollbar bg-lime-500">
       <div className="left_timeline">
         <div className="timeline_post">
           {postImagee.map((post, index) => (
@@ -35,9 +35,9 @@ function Timeline() {
         </div>
       </div>
 
-      <div className="right_timeline">
+      {/* <div className="right_timeline">
         <Suggestion />
-      </div>
+      </div> */}
     </div>
   );
 }
