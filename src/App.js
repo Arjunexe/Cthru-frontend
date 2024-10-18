@@ -71,13 +71,13 @@ function App() {
 
   return (
     <>
-    <div className="flex">
-       <Siidebar openCreateModal={openCreateModal} />
-      {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
-      <Outlet />
-    </div>
-
-     
+      <div className="flex">
+        <div className="hidden md:block">
+          <Siidebar openCreateModal={openCreateModal} />
+          {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
+        </div>
+        <Outlet />
+      </div>
     </>
   );
 }

@@ -29,7 +29,7 @@ function Home() {
   // }
 
   return (
-    <div className="h-screen flex flex-row w-full  justify-between ">
+    <div className="h-screen flex flex-row w-full  justify-between overflow-auto ">
 
 
 

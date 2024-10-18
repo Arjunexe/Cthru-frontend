@@ -40,8 +40,8 @@ function Post({ post }) {
       </div>
 
      
-        <img className="w-[468px] h-[585px] flex items-center justify-center overflow-hidden object-contain border-4 border-[#17171b]" src={realImg} alt="" />
-     
+        <img className="w-[468px] h-[585px] flex items-center justify-center  object-contain border-4 border-[#17171b]" src={realImg} alt="" />
+        {/* w-[468px] h-[585px] */}
 
       {/* IMAGE */}
       {/* <div className="post_image">
