@@ -1,16 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import { jwtToken } from "../../jwt/jwt";
 import "../home/home.css";
 
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 // import CreatePostModal from "../../components/createPostModal/createPostModal";
 import Suggestion from "../../components/suggestion/Suggestion";
+// import { useEffect } from "react";
 // import MainContext from "../../hooks/context";
 
 function Home() {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 //  const {userDetails} = useContext(MainContext)
 
   // const Token = localStorage.getItem(jwtToken);
@@ -29,6 +30,15 @@ function Home() {
   // function closeCreateModal() {
   //   setPostModal(false);
   // }
+
+
+  
+  // const storedToken = localStorage.getItem("jwtToken");
+  // useEffect(() => {
+  //   if (storedToken) {
+  //     navigate("/");
+  //   }
+  // },[navigate, storedToken]);
 
   return (
     <div className="h-screen flex flex-row w-full  justify-between overflow-auto ">

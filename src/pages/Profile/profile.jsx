@@ -4,6 +4,8 @@ import "../Profile/profile.css";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
 import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
+// import Post from "../../components/post/Post";
+// import Timeline from "../../components/timeline/Timeline";
 // import { jwtToken } from "../../jwt/jwt";
 // import { useNavigate } from "react-router-dom";
 
@@ -70,6 +72,7 @@ export default function Profile() {
             />
             {/* <button onClick={handleChangeClick}>Upload</button> */}
           </div>
+          
         </div>
       </div>
     </>

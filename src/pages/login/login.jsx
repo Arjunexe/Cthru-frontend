@@ -1,25 +1,27 @@
 // import Form from "react-bootstrap/Form";
 import "../login/login.css";
 // import Container from "react-bootstrap/esm/Container";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { isitEmpty } from "../../valid.js/signupValid";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
+import UserSessionContext from "../../hooks/sessionProvider";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useContext(UserSessionContext)
   const [emailOrmobile, seTEmailPassword] = useState("");
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
 
-  const storedToken = localStorage.getItem("jwtToken");
-  useEffect(() => {
-    if (storedToken) {
-      navigate("/");
-    }
-  });
+  // const storedToken = localStorage.getItem("jwtToken");
+  // useEffect(() => {
+  //   if (storedToken) {
+  //     navigate("/");
+  //   }
+  // },[navigate, storedToken]);
 
   async function handleClick(e) {
     try {
@@ -32,6 +34,8 @@ function Login() {
         );
         localStorage.setItem(jwtToken, response.data.token);
         navigate("/");
+        login()
+
       } else {
         console.log("login- didn't go through");
       }

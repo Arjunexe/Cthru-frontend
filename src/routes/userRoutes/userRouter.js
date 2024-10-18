@@ -9,16 +9,13 @@ import Profile from "../../pages/Profile/profile";
 import Xample from "../../pages/egxample/xample";
 import Message from "../../pages/Message/Message";
 import ProfileUpload from "../../pages/Profile/ProfileUpload";
+import ProtectedRoutes from "../../hooks/ProtectedRoutes";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home /> ,
-      },
       {
         path: "login",
         element: <Login />,
@@ -27,6 +24,11 @@ const Router = createBrowserRouter([
         path: "signup",
         element: <Signup />,
       },
+      {
+        path: "/",
+        element:<ProtectedRoutes element={<Home />} /> ,
+      },
+      
       {
         path: "profile",
         element: <Profile />,
