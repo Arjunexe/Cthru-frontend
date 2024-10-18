@@ -7,17 +7,19 @@ import "../home/home.css";
 import Timeline from "../../components/timeline/Timeline";
 // import CreatePostModal from "../../components/createPostModal/createPostModal";
 import Suggestion from "../../components/suggestion/Suggestion";
+// import MainContext from "../../hooks/context";
 
 function Home() {
-  // const [postModal, setPostModal] = useState(false);
+  // const navigate = useNavigate()
+//  const {userDetails} = useContext(MainContext)
 
   // const Token = localStorage.getItem(jwtToken);
 
   // useEffect(()=> {
-  //   if(Token) {
+  //   if(!Token || !userDetails) {
   //     navigate("/login")
   //   }
-  // });
+  // },[Token, navigate, userDetails ]);
 
   //FUNCTION TO OPEN AND CLOSE createPostModal
   // function openCreateModal() {
@@ -30,22 +32,13 @@ function Home() {
 
   return (
     <div className="h-screen flex flex-row w-full  justify-between overflow-auto ">
-
-
-
-   <div className="  ml-48">
+      <div className="  ml-48">
         <Timeline />
       </div>
-    
 
       <div className="">
         <Suggestion />
       </div>
-
-
-   
-      
-
     </div>
   );
 }

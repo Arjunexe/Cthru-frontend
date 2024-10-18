@@ -4,19 +4,22 @@ import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./hooks/provider";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/hooks/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
 import CreatePostModal from "./components/createPostModal/createPostModal";
 
 function App() {
+  const location = useLocation()
   const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
 
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
+  const noSidebar =   [ "/login", "/signup" ]
+  const renderSidebar = !noSidebar.includes(location.pathname)
 
   useEffect(() => {
     // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail
@@ -72,10 +75,11 @@ function App() {
   return (
     <>
       <div className="flex">
+        {renderSidebar && (
         <div className="hidden md:block">
           <Siidebar openCreateModal={openCreateModal} />
           {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
-        </div>
+        </div> )}
         <Outlet />
       </div>
     </>

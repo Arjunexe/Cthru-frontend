@@ -100,8 +100,8 @@ function Signup() {
 
 // Ai
 
-<div className="form">
-  <div className="container mx-auto p-4">
+<div className="flex justify-center w-full ">
+  <div className="container  mx-auto p-4 w-80">
     <p className="text-center">Sign up to see photos and videos from your friends.</p>
     <form className="mt-4">
       <div className="mb-4">

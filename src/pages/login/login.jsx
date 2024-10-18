@@ -88,9 +88,9 @@ function Login() {
     //   </form>
     // </div>
 
-    <div className="flex justify-center   mt-9">
+    <div className="flex justify-center w-full   mt-9">
       <form className="">
-        <div className="bg-white border border-gray-400 rounded-md p-8">
+        <div className="bg-slate-800 border border-gray-400 rounded-md p-8">
           <div className="mb-4">
             <label className="block text-sm font-bold text-gray-500 mb-2">
               Email or Mobile Number
