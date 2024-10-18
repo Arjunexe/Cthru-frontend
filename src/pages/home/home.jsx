@@ -29,22 +29,23 @@ function Home() {
   // }
 
   return (
-    <div className="h-screen flex flex-row">
+    <div className="h-screen flex flex-row w-full  justify-between ">
 
-      {/* <div className="homepage_sidebar">
-        <Sidebar openCreateModal={openCreateModal} />
-      </div> */}
 
-      <div className="homepage_timeline">
+
+   <div className="  ml-48">
         <Timeline />
       </div>
+    
 
-      <div>
+      <div className="">
         <Suggestion />
       </div>
+
+
+   
       
-      {/* Modal */}
-      {/* {postModal && <CreatePostModal PostModalProp={closeCreateModal} />} */}
+
     </div>
   );
 }

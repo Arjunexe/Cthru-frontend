@@ -20,11 +20,11 @@ function Siidebar({ openCreateModal }) {
 
 
   return (
-    <div className="w-72 h-screen flex flex-col justify-between z-1 bg-amber-300 "> 
+    <div className="w-72 h-screen flex flex-col justify-between z-1 "> 
       <img className="w-32 m-4" src={logo} alt="failed to upload" />
 
       <div className="flex flex-col">
-        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 bg-red-900" onClick={handleHomeClick}>
+        <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 " onClick={handleHomeClick}>
           home</button>
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">Search</button>
          
