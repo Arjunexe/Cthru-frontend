@@ -6,18 +6,18 @@ import "./index.css";
 import MainContextProvider from "./hooks/provider";
 /* eslint-disable import/no-webpack-loader-syntax */
 import App from "./App";
-import UserSessionContext from "./hooks/sessionProvider";
+// import UserSessionContext from "./hooks/sessionProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   
-  <UserSessionContext>
+ 
   <MainContextProvider>
     <RouterProvider router={Router}>
       <App />
     </RouterProvider>
   </MainContextProvider>
-  </UserSessionContext>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

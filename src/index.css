@@ -5,15 +5,15 @@
 /* install 'postcss language support' extension to remove the warning */
 
 * {
-    /* background-color: rgb(35, 88, 98); */
+    background-color: rgb(35, 88, 98);
     color: rgb(255, 255, 255);
     margin: 0;
 
     
 }
 
-body {
-    /* background-image: url("/.//../../$RECYCLE.BIN//S-1-5-21-935420559-521651928-1774345956-1001/$I0ME0RS.jpg"); */
+/* body {
+    
     background-image: url('https://pngtree.com/freebackground/japanese-poster-japan-tourism-japanese-zephyr_927763.html');
     background-size: cover;
     background-position: center;
@@ -22,7 +22,7 @@ body {
     margin: 0;
     padding: 0;
 
-}
+} */
 
 @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */

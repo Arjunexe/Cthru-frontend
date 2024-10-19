@@ -5,11 +5,13 @@ import ProfileField from "../../components/profileLayouts/ProfileField";
 import { jwtToken } from "../../jwt/jwt";
 import { jwtDecode } from "jwt-decode";
 import MainContext from "../../hooks/context";
+import SessionContext from "../../hooks/SessionContext";
 
 function ProfileUpload() {
   const [profilePic, setProfilePic] = useState("");
   const [profilePicUrl, setProfilePicUrl] = useState("");
   const { setUserDetails } = useContext(MainContext);
+  const { login } = useContext(SessionContext)
   const navigate = useNavigate();
 
   // Handles the Change
@@ -65,6 +67,7 @@ function ProfileUpload() {
         console.log("backend img url response :", response);
         setUserDetails({userData: {...response.data.ProfilePicData}});
         navigate("/");
+        login()
         //   setImgUploaded(response)
       } catch (error) {
         console.log("error during sendImgUrl :", error);

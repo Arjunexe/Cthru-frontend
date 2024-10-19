@@ -26,12 +26,12 @@ const Router = createBrowserRouter([
       },
       {
         path: "/",
-        element:<ProtectedRoutes element={<Home />} /> ,
+        element:<ProtectedRoutes element={<Home />} />,
       },
       
       {
         path: "profile",
-        element: <Profile />,
+        element:<ProtectedRoutes element={<Profile />} />,
       },
       {
         path:"a",

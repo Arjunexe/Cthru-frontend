@@ -7,11 +7,13 @@ import { isitEmpty } from "../../valid.js/signupValid";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
-import UserSessionContext from "../../hooks/sessionProvider";
+// import UserSessionContext from "../../hooks/sessionProvider";
+// import MainContext from "../../hooks/context";
+import SessionContext from "../../hooks/SessionContext";
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useContext(UserSessionContext)
+  const { login, setIsLoggedIn } = useContext(SessionContext)
   const [emailOrmobile, seTEmailPassword] = useState("");
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
@@ -33,8 +35,10 @@ function Login() {
           userData
         );
         localStorage.setItem(jwtToken, response.data.token);
-        navigate("/");
         login()
+        // setIsLoggedIn(true)
+        navigate("/");
+       
 
       } else {
         console.log("login- didn't go through");

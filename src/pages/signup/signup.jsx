@@ -3,18 +3,17 @@
 // import Form from "react-bootstrap/Form";
 import "../signup/signup.css";
 // import Container from "react-bootstrap/esm/Container";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { isValidate } from "../../valid.js/signupValid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
-import UserSessionContext from "../../hooks/sessionProvider";
 
 // import { UserLoggedIn } from "../../valid.js/userCheck";
 
 function Signup() {
   const navigate = useNavigate();
-  const { login } = useContext(UserSessionContext)
+ 
   const [Fullname, setFullName] = useState("");
   const [Username, setUsername] = useState("");
   const [EmailOrMobile, setEmailOrMobile] = useState("");
@@ -82,7 +81,7 @@ function Signup() {
         console.log("hiiiiiiiii");
         // UserLoggedIn(userData)
         navigate("/ProfileUpload");
-        login()
+        
 
         setFullName("");
         setUsername("");
