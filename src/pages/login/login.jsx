@@ -18,12 +18,12 @@ function Login() {
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
 
-  // const storedToken = localStorage.getItem("jwtToken");
-  // useEffect(() => {
-  //   if (storedToken) {
-  //     navigate("/");
-  //   }
-  // },[navigate, storedToken]);
+  const storedToken = localStorage.getItem("jwtToken");
+  useEffect(() => {
+    if (storedToken) {
+      navigate("/");
+    }
+  },[navigate, storedToken]);
 
   async function handleClick(e) {
     try {
@@ -35,7 +35,7 @@ function Login() {
           userData
         );
         localStorage.setItem(jwtToken, response.data.token);
-        login()
+        
         // setIsLoggedIn(true)
         navigate("/");
        

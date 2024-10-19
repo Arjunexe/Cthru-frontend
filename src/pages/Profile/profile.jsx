@@ -28,7 +28,10 @@ export default function Profile() {
   useEffect(() => {
     if (profilePic) {
       async function uploadProfileImage() {
-        const uploadedImg = await handleUploadClickAPI(profilePic,setUserDetails);
+        const uploadedImg = await handleUploadClickAPI(
+          profilePic,
+          setUserDetails
+        );
 
         return uploadedImg;
       }
@@ -54,15 +57,16 @@ export default function Profile() {
       <div className="flex h-screen w-screen ">
         {/* <Siidebar /> */}
         <div>
-          <div>
-            {userName}
-            <div>
-              <button className="cursor-pointer" onClick={handleClick}>
-                Logout
-              </button>
+          <div className="w-96 h-96 bg-yellow-500 flex ml-10">
+            <div className="ml-10 flex h-0 ">
+              <ProfileField profilePicUrl={profilePicUrl} />
+              <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
+                {userName}
+
+              </div>
             </div>
-            <ProfileField profilePicUrl={profilePicUrl} />
           </div>
+
           <div>
             <input
               className="inputType"
@@ -72,7 +76,12 @@ export default function Profile() {
             />
             {/* <button onClick={handleChangeClick}>Upload</button> */}
           </div>
-          
+
+          <div>
+            <button className="cursor-pointer" onClick={handleClick}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ import MainContext from "..//src/hooks/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
 import CreatePostModal from "./components/createPostModal/createPostModal";
-import UserSessionContext from "./hooks/sessionProvider";
+// import UserSessionContext from "./hooks/sessionProvider";
 
 function App() {
   const location = useLocation()
@@ -81,9 +81,9 @@ function App() {
           <Siidebar openCreateModal={openCreateModal} />
           {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
         </div> )}
-        <UserSessionContext>
+        {/* <UserSessionContext> */}
            <Outlet />
-        </UserSessionContext>
+        {/* </UserSessionContext> */}
        
       </div>
     </>

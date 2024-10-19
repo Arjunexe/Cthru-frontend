@@ -3,19 +3,18 @@ import SessionContext from "./SessionContext";
 import { jwtToken } from "../jwt/jwt";
 
 import React, { useEffect, useState } from 'react'
+import { json } from "react-router-dom";
 
 function UserSessionContext({ children }) {
-    const [isLoggedIn, setIsLoggedIn] = useState(() => {
-        const Token = localStorage.getItem(jwtToken)
-        return Token? true : false
-    })
+    const [isLoggedIn, setIsLoggedIn] = useState(null)
+    
 
     useEffect(() => {
         const token = localStorage.getItem(jwtToken)
         if(token){
             setIsLoggedIn(true)
         }
-    },[ isLoggedIn])
+    },[ isLoggedIn ])
 
     const login = () => setIsLoggedIn(true);
     const logout = () => setIsLoggedIn(false)
