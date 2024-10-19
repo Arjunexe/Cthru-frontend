@@ -1,12 +1,11 @@
 import { useContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-// import MainContext from "./context";
 import SessionContext from "./SessionContext";
 
 function ProtectedRoutes({ element }) {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(SessionContext);
+  const { isLoggedIn } = useContext (SessionContext );
 
   useEffect(() => {
      if (!isLoggedIn) {
@@ -14,11 +13,12 @@ function ProtectedRoutes({ element }) {
     
   }
 
-  },[])
+  },[isLoggedIn, navigate])
 
+ console.log("I was here at protectedRoutes", isLoggedIn);
  
 
-  return isLoggedIn? element : null;
+  return isLoggedIn?  element : null;
 }
 
 export default ProtectedRoutes;

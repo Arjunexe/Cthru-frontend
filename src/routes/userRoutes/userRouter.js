@@ -9,6 +9,8 @@ import Profile from "../../pages/Profile/profile";
 import Xample from "../../pages/egxample/xample";
 import Message from "../../pages/Message/Message";
 import ProfileUpload from "../../pages/Profile/ProfileUpload";
+import ProtectedRoutes from "../../hooks/ProtectedRoutes";
+import NonProtectedRoutes from "../../hooks/nonProtectedRoutes";
 // import ProtectedRoutes from "../../hooks/ProtectedRoutes";
 
 const Router = createBrowserRouter([
@@ -18,11 +20,11 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
+        element:<NonProtectedRoutes element={<Login />}/> ,
       },
       {
         path: "signup",
-        element: <Signup />,
+        element:<NonProtectedRoutes element={<Signup />}/> ,
       },
       {
         path: "/",
@@ -31,7 +33,7 @@ const Router = createBrowserRouter([
       
       {
         path: "profile",
-        element:<Profile />,
+        element:<ProtectedRoutes element={<Profile />} />,
       },
       {
         path:"a",

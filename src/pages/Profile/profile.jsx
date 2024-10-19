@@ -4,6 +4,7 @@ import "../Profile/profile.css";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
 import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
+import SessionContext from "../../hooks/SessionContext";
 // import Post from "../../components/post/Post";
 // import Timeline from "../../components/timeline/Timeline";
 // import { jwtToken } from "../../jwt/jwt";
@@ -11,6 +12,7 @@ import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
 
 export default function Profile() {
   // const navigate = useNavigate()
+  const { logout } = useContext(SessionContext)
   const [profilePicUrl, setProfilePic] = useState("");
   const [profilePic, setProfilePics] = useState("");
   const { userDetails, setUserDetails } = useContext(MainContext);
@@ -50,6 +52,7 @@ export default function Profile() {
   function handleClick() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userData");
+    logout()
   } //profilePic
 
   return (

@@ -7,7 +7,7 @@ import { isitEmpty } from "../../valid.js/signupValid";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
-// import UserSessionContext from "../../hooks/sessionProvider";
+import UserSessionContext from "../../hooks/sessionProvider";
 // import MainContext from "../../hooks/context";
 import SessionContext from "../../hooks/SessionContext";
 
@@ -18,13 +18,14 @@ function Login() {
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
 
-  const storedToken = localStorage.getItem("jwtToken");
-  useEffect(() => {
-    if (storedToken) {
-      navigate("/");
-    }
-  },[navigate, storedToken]);
-
+  // const storedToken = localStorage.getItem("jwtToken");
+  // useEffect(() => {
+  //   if (storedToken) {
+  //     navigate("/");
+  //   }
+  // },[navigate, storedToken]);
+ 
+ 
   async function handleClick(e) {
     try {
       e.preventDefault();
@@ -37,6 +38,7 @@ function Login() {
         localStorage.setItem(jwtToken, response.data.token);
         
         // setIsLoggedIn(true)
+        login()
         navigate("/");
        
 

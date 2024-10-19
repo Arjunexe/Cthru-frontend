@@ -3,17 +3,18 @@
 // import Form from "react-bootstrap/Form";
 import "../signup/signup.css";
 // import Container from "react-bootstrap/esm/Container";
-import {  useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { isValidate } from "../../valid.js/signupValid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
+import SessionContext from "../../hooks/SessionContext";
 
 // import { UserLoggedIn } from "../../valid.js/userCheck";
 
 function Signup() {
   const navigate = useNavigate();
- 
+  const { login } = useContext(SessionContext)
   const [Fullname, setFullName] = useState("");
   const [Username, setUsername] = useState("");
   const [EmailOrMobile, setEmailOrMobile] = useState("");
@@ -80,15 +81,16 @@ function Signup() {
         localStorage.setItem(jwtToken, response.data.token);
         console.log("hiiiiiiiii");
         // UserLoggedIn(userData)
+        login()
         navigate("/ProfileUpload");
         
-
-        setFullName("");
-        setUsername("");
-        setEmailOrMobile("");
-        setPassword("");
-        setError("");
-        setPassError("");
+        
+        // setFullName("");
+        // setUsername("");
+        // setEmailOrMobile("");
+        // setPassword("");
+        // setError("");
+        // setPassError("");
       } else {
         console.log("didn't go through Axios");
       }
