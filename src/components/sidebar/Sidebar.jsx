@@ -34,43 +34,44 @@ function Siidebar({ openCreateModal }) {
   }
 
   return (
-    <div className="w-72 h-screen flex flex-col justify-between z-1 ">
-      <img className="w-32 m-4" src={logo} alt="failed to upload" />
+    <div className=" mt-10 md:w-36  flex flex-col justify-between z-1 bg-orange-500 ">
+      {/* <img className="w-32 m-4" src={logo} alt="failed to upload" /> */}
 
       <div className="flex flex-col">
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 "
           onClick={handleHomeClick}
         >
-          <GoHomeFill /> home
+          <GoHomeFill /> <span className=" hidden xl:block">Home</span> 
         </button>
+
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
-         <FaSearch /> Search
+         <FaSearch /> <span className=" hidden xl:block">Search</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={openCreateModal}
         >
-         <BsPlusSquareFill /> Create
+         <BsPlusSquareFill /> <span className=" hidden xl:block">Create</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={handleMessageClick}
         >
-         <BiSolidMessageDots /> Messages
+         <BiSolidMessageDots /><span className=" hidden xl:block">Messages</span> 
         </button>
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
-        <IoIosNotifications />  Notifications
+        <IoIosNotifications />  <span className=" hidden xl:block">Notifications</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={handleProfileClick}
         >
-        <ProfileField profilePicUrl={profilePicUrl} />  Profile
+        <ProfileField profilePicUrl={profilePicUrl} />  <span className=" hidden xl:block">Profile</span> 
         </button>
       </div>
 

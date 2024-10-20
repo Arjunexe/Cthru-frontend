@@ -26,18 +26,14 @@ function Timeline() {
   }, [imgUploaded]);
 
   return (
-    <div className="h-full flex flex-row ">
-      <div className="left_timeline">
-        <div className="timeline_post">
+    <div className=" md:h-full flex flex-row ">
+      
+        <div className="">
           {postImagee.map((post, index) => (
             <Post key={index} post={post} />
           ))}
         </div>
-      </div>
-
-      {/* <div className="right_timeline">
-        <Suggestion />
-      </div> */}
+  
     </div>
   );
 }

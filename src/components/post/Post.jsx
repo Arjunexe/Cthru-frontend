@@ -24,7 +24,7 @@ function Post({ post }) {
   }
 
   return (
-    <div className="mt-10 bg-amber-900n">
+    <div className="mt-5 bg-amber-900">
 
       <div className="flex bg-orange-700">
         <div className="post_author">
@@ -36,7 +36,7 @@ function Post({ post }) {
       </div>
 
       <img
-        className="w-[468px] h-[585px] flex items-center justify-center  object-contain border-4 border-[#17171b]"
+        className="w-full max-w-[468px] h-auto flex items-center justify-center  object-contain border-4 border-[#17171b] transition-transform "
         src={realImg}
         alt=""
       />

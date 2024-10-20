@@ -77,7 +77,7 @@ function App() {
     <>
       <div className="flex">
         {renderSidebar && (
-        <div className="hidden md:block">
+        <div className="hidden sm:block">
           <Siidebar openCreateModal={openCreateModal} />
           {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
         </div> )}
