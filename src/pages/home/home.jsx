@@ -41,12 +41,12 @@ function Home() {
   // },[navigate, storedToken]);
 
   return (
-    <div className=" *{sm:mr-11*} md:h-screen md:flex flex-row md:w-full justify-between overflow-auto {*bg-lime-700*} ">
+    <div className=" *{sm:mr-11*} md:h-screen md:flex flex-row md:w-full justify-between overflow-auto {*bg-lime-700*} bg-slate-800 ">
       <div className=" lg:ml-44 xl:ml-64  ">
         <Timeline />
       </div>
 
-      <div className="hidden xl:block">
+      <div className="hidden xl:block bg-slate-800">
         <Suggestion />  
       </div>
     </div>

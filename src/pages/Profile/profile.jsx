@@ -56,11 +56,11 @@ export default function Profile() {
   } //profilePic
 
   return (
-    <>
+    
       <div className="flex h-screen w-screen ">
         {/* <Siidebar /> */}
         <div>
-          <div className="w-96 h-96 bg-yellow-500 flex ml-10">
+          <div className="w-96 h-96 bg-slate-700 flex ml-10">
             <div className="ml-10 flex h-0 ">
               <ProfileField profilePicUrl={profilePicUrl} />
               <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
@@ -87,6 +87,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
-    </>
+
+
   );
 }

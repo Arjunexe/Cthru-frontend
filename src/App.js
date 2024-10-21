@@ -9,13 +9,14 @@ import MainContext from "..//src/hooks/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
 import CreatePostModal from "./components/createPostModal/createPostModal";
+import SessionContext from "./hooks/SessionContext";
 // import UserSessionContext from "./hooks/sessionProvider";
 
 function App() {
   const location = useLocation()
   const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
-
+  const { logout } = useContext(SessionContext)
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
@@ -53,6 +54,7 @@ function App() {
         } else {
           localStorage.removeItem(jwtToken);
           localStorage.removeItem(userData);
+          logout()
           console.log("Token expired, navigating to login");
           navigate("/login");
         }
@@ -77,7 +79,7 @@ function App() {
     <>
       <div className="flex">
         {renderSidebar && (
-        <div className="hidden sm:block">
+        <div className="hidden sm:block bg-neutral-700">
           <Siidebar openCreateModal={openCreateModal} />
           {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
         </div> )}

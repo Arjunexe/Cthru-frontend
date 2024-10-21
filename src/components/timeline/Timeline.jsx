@@ -26,7 +26,7 @@ function Timeline() {
   }, [imgUploaded]);
 
   return (
-    <div className=" md:h-full flex flex-row ">
+    <div className=" md:h-full flex flex-row  ">
       
         <div className="">
           {postImagee.map((post, index) => (

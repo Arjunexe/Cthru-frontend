@@ -30,12 +30,12 @@ function Post({ post }) {
   return (
     <div className="mt-5 ">
 
-      <div className="flex {*bg-orange-700*}">
-        <div className="post_author">
+      <div className="flex {*bg-orange-700*} ">
+        <div className="">
           <div className="">
             <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
           </div>
-          {username} • <span>12 h</span>
+          {username} • <span className="">12 h</span>
         </div>
       </div>
 
