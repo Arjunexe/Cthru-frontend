@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../post/Post.css";
 // import MainContext from "../../hooks/context";
 import ProfileField from "../profileLayouts/ProfileField";
+import { FaRegHeart } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa6";
+
+
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -24,25 +28,27 @@ function Post({ post }) {
   }
 
   return (
-    <div className="mt-5 bg-amber-900">
+    <div className="mt-5 ">
 
-      <div className="flex bg-orange-700">
+      <div className="flex {*bg-orange-700*}">
         <div className="post_author">
           <div className="">
-            <ProfileField profilePicUrl={profilePicUrl} />
+            <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
           </div>
           {username} • <span>12 h</span>
         </div>
       </div>
 
       <img
-        className="w-full max-w-[468px] h-auto flex items-center justify-center  object-contain border-4 border-[#17171b] transition-transform "
+        className="w-full max-w-[468px] max-h-[585px] h-auto flex items-center justify-center  object-contain border-2 border-[#969696] transition-transform "
         src={realImg}
         alt=""
       />
       {/* FOOTER */}
-      <div className="footer">
-        comment
+      <div className="flex mt-2">
+        <div><FaRegHeart size={26} /></div>
+        <div className="ml-3"> <FaRegComment size={26} /></div>
+      
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ function Siidebar({ openCreateModal }) {
   }
 
   return (
-    <div className=" mt-10 md:w-36  flex flex-col justify-between z-1 bg-orange-500 ">
+    <div className=" mt-10 md:w-36 xl:w-56  flex flex-col justify-between z-1  ">
       {/* <img className="w-32 m-4" src={logo} alt="failed to upload" /> */}
 
       <div className="flex flex-col">
@@ -42,36 +42,36 @@ function Siidebar({ openCreateModal }) {
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 "
           onClick={handleHomeClick}
         >
-          <GoHomeFill /> <span className=" hidden xl:block">Home</span> 
+          <GoHomeFill size={29}/> <span className="ml-4 hidden xl:block">Home</span> 
         </button>
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
-         <FaSearch /> <span className=" hidden xl:block">Search</span> 
+         <FaSearch size={29} /> <span className="ml-4 hidden xl:block">Search</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={openCreateModal}
         >
-         <BsPlusSquareFill /> <span className=" hidden xl:block">Create</span> 
+         <BsPlusSquareFill size={24}/> <span className="ml-4 hidden xl:block">Create</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={handleMessageClick}
         >
-         <BiSolidMessageDots /><span className=" hidden xl:block">Messages</span> 
+         <BiSolidMessageDots size={29} /><span className="ml-3 hidden xl:block">Messages</span> 
         </button>
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
-        <IoIosNotifications />  <span className=" hidden xl:block">Notifications</span> 
+        <IoIosNotifications size={29} />  <span className=" ml-3 hidden xl:block">Notifications</span> 
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={handleProfileClick}
         >
-        <ProfileField profilePicUrl={profilePicUrl} />  <span className=" hidden xl:block">Profile</span> 
+        <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />  <span className="ml-2 hidden xl:block">Profile</span> 
         </button>
       </div>
 

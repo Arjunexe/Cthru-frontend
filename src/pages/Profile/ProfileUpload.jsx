@@ -79,9 +79,11 @@ function ProfileUpload() {
     navigate("/");
   }
   return (
-    <div>
-      <ProfileField profilePicUrl={profilePicUrl} />
-      <div>
+    <div className=" w-96 h-96 mx-auto items-center justify-center">
+     <div className=" h-96 items-center justify-center flex mx-auto ">
+            <ProfileField width="16" height="16" profilePicUrl={profilePicUrl} />
+     </div>
+      <div className="bg-gray-400 items-center justify-center flex mx-auto ">
         <input
           className="inputType"
           name="image"
@@ -89,12 +91,13 @@ function ProfileUpload() {
           onChange={handleChangeClick}
         />
       </div>
-      <div>
+      <div className="bg-yellow-300 items-center justify-center flex mx-auto ">
         <button onClick={handleUploadClick}>Upload</button>
       </div>
-      <div>
+      <div className="items-center justify-center flex mx-auto ">
         <button onClick={handleSkipClick}>Skip</button>
       </div>
+     
     </div>
   );
 }

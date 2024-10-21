@@ -41,13 +41,13 @@ function Home() {
   // },[navigate, storedToken]);
 
   return (
-    <div className=" sm:mr-11 md:h-screen md:flex flex-row md:w-full justify-between overflow-auto bg-lime-700">
-      <div className=" lg:ml-44 xl:ml-80  ">
+    <div className=" *{sm:mr-11*} md:h-screen md:flex flex-row md:w-full justify-between overflow-auto {*bg-lime-700*} ">
+      <div className=" lg:ml-44 xl:ml-64  ">
         <Timeline />
       </div>
 
       <div className="hidden xl:block">
-        <Suggestion />
+        <Suggestion />  
       </div>
     </div>
   );

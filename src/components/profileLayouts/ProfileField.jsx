@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function ProfileField({ profilePicUrl }) {
+export default function ProfileField({width = '3', height = '3', profilePicUrl }) {
   const [Dp, setDp] = useState("");
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function ProfileField({ profilePicUrl }) {
   return (
     <>
       <div className="">
-        <img className="w-12 h-12 rounded-full object-cover" src={Dp} alt="" />
+        <img className="rounded-full object-cover" style={{width: `${width}rem`, height: `${height}rem`}} src={Dp} alt="" />
         <div className=""></div>
       </div>
     </>
