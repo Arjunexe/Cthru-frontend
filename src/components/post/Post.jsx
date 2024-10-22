@@ -32,7 +32,7 @@ function Post({ post }) {
     return <div>Loading...</div>;
   }
   function handleFollow (){
-    console.log("hi");
+   
     handleFollowAPI(following)
     
   }

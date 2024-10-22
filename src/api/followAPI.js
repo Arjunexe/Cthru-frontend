@@ -7,15 +7,17 @@ export async function handleFollowAPI(following) {
 
   if (Token) {
     const decode = jwtDecode(Token);
-    const follower = decode.userId;
-    console.log("follower :", follower);
-    console.log("following :", following);
-    if (follower === following) {
+    const userFollower = decode.userId;
+    console.log("follower :", userFollower);
+    
+    if (userFollower === following) {
       console.log("You cannot follow yourself");
 
     } else {
         try{
-            const response = await axios.post("http://localhost:5000/user/follow",{follower,following})
+            const response = await axios.post("http://localhost:5000/user/followUser",{userFollower,following})
+            
+            
         } catch (error) {
             console.log("error during handleFollowAPI :", error);
             
