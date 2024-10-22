@@ -5,13 +5,8 @@ import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
 import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
-// import Post from "../../components/post/Post";
-// import Timeline from "../../components/timeline/Timeline";
-// import { jwtToken } from "../../jwt/jwt";
-// import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  // const navigate = useNavigate()
   const { logout } = useContext(SessionContext)
   const [profilePicUrl, setProfilePic] = useState("");
   const [profilePic, setProfilePics] = useState("");
@@ -26,7 +21,7 @@ export default function Profile() {
     console.log("The Dp is here :", DP);
   }, [DP, userDetails]);
 
-  //
+  // Send profilePic to uploadFunction
   useEffect(() => {
     if (profilePic) {
       async function uploadProfileImage() {
@@ -57,17 +52,16 @@ export default function Profile() {
 
   return (
     
-      <div className="flex h-screen w-screen ">
+      <div className="flex h-screen w-screen bg-slate-700">
         {/* <Siidebar /> */}
         <div>
-          <div className="w-96 h-96 bg-slate-700 flex ml-10">
-            <div className="ml-10 flex h-0 ">
-              <ProfileField profilePicUrl={profilePicUrl} />
+          <div className="w-96  bg-gray-400 flex ml-10">
+            
+              <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
               <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
                 {userName}
-
               </div>
-            </div>
+          
           </div>
 
           <div>

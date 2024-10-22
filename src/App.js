@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/hooks/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
-import CreatePostModal from "./components/createPostModal/createPostModal";
+import CreatePostModal from "./components/modals/createPostModal";
 import SessionContext from "./hooks/SessionContext";
 // import UserSessionContext from "./hooks/sessionProvider";
 
@@ -24,7 +24,7 @@ function App() {
   const renderSidebar = !noSidebar.includes(location.pathname)
 
   useEffect(() => {
-    // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail
+    // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
     async function getUser(userId) {
       try {
         const response = await axios.get(
@@ -66,7 +66,7 @@ function App() {
       navigate("/login");
     }
   }, [Token, navigate, setUserDetails]);
-
+// Open and Close Modal
   function openCreateModal() {
     setPostModal(true);
   }

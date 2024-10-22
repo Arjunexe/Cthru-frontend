@@ -1,4 +1,4 @@
-import "../createPostModal/createPostModal.css";
+import "./createPostModal.css";
 import axios from "axios"
 import ImageContext from "../../hooks/context";
 import { useContext } from "react";
