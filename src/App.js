@@ -65,7 +65,7 @@ function App() {
       console.log("no one is logged");
       navigate("/login");
     }
-  }, [Token, navigate, setUserDetails]);
+  }, [Token, navigate, setUserDetails, logout]);
 // Open and Close Modal
   function openCreateModal() {
     setPostModal(true);

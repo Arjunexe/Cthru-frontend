@@ -16,7 +16,7 @@ function Timeline() {
         // GET ALL POST IMAGE AND BASED ID GET ALL USER DATA
         const response = await axios.get("http://localhost:5000/user/getUrl");
         setPostImage(response.data);
-        console.log("all data", response.data);
+        console.log("all dataa", response.data);
       } catch (error) {
         console.log("error duing getImageUrl frontend :", error);
       }
