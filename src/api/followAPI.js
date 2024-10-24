@@ -18,6 +18,7 @@ export async function handleFollowAPI(following) {
             const response = await axios.post("http://localhost:5000/user/followUser",{userFollower,following})
             
             
+            
         } catch (error) {
             console.log("error during handleFollowAPI :", error);
             

@@ -1,32 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../post/Post.css";
 // import MainContext from "../../hooks/context";
 import ProfileField from "../profileLayouts/ProfileField";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
 import { handleFollowAPI } from "../../api/followAPI";
+import MainContext from "../../hooks/context";
 
 
 
 function Post({ post }) {
-  const [realImg, setrealImg] = useState("");
-  const [username, setUsername] = useState("");
-  const [profilePicUrl, setDp] = useState("");
-  const [following, setFollowing ] = useState("")
+  const [ realImg, setrealImg] = useState("");
+  const [ username, setUsername] = useState("");
+  const [ profilePicUrl, setDp] = useState("");
+  const [ following, setFollowing ] = useState("")
+  const [ flowstate, setflowState ] = useState(false)
+  const { userDetails } = useContext(MainContext)
+  const followInfo = userDetails?.userFollowData?.following || []
+
+  console.log("there we go00000 :", followInfo);
+ 
+
 
   useEffect(() => {
     let imagee = post.postImage;
     let username = post.userId.Username;
     let profilepic = post.userId.ProfilePic;
     let userID = post.userId._id
-    console.log("userName in POST Component: ", userID);
+
+   if(followInfo.includes(following)){
+    setflowState(true)
+   } else {
+    setflowState(false)
+   }
+    console.log("userName in POST Component: ", followInfo);
   
     setFollowing(userID)
     setrealImg(imagee); // Update state with the fetched image URL
     setUsername(username);
     setDp(profilepic);
 
-  }, [post.postImage, post.userId.ProfilePic, post.userId.Username, post.userId._id]);
+  }, [post.postImage, post.userId.ProfilePic, post.userId.Username, post.userId._id, setflowState]);
 
   if (!post || post.length === 0) {
     return <div>Loading...</div>;
@@ -47,7 +61,11 @@ function Post({ post }) {
           </div>
           {username} • 
 {/* -------------------------------------------------------- */}
-          <span className="bg-white ml-3 cursor-pointer" onClick={handleFollow}>Follow</span>
+            {flowstate ?(
+              <span className="bg-white ml-3 cursor-pointer" >Unfollow</span>
+            ) : (
+              <span className="bg-white ml-3 cursor-pointer" onClick={handleFollow}>Follow</span>
+            )}        
 
         </div>
       </div>
