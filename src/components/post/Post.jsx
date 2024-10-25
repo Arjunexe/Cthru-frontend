@@ -14,13 +14,17 @@ function Post({ post }) {
   const [ username, setUsername] = useState("");
   const [ profilePicUrl, setDp] = useState("");
   const [ following, setFollowing ] = useState("")
-  const [ flowstate, setflowState ] = useState(false)
-  const { userDetails } = useContext(MainContext)
+  const [ flowstate, setflowState ] = useState("")
+  const { userDetails, setUserDetails } = useContext(MainContext)
   const followInfo = userDetails?.userFollowData?.following || []
 
   console.log("there we go00000 :", followInfo);
  
-
+  // if(followInfo.includes(following)){
+  //   setflowState(followInfo)
+  //  } else {
+  //   setflowState("")
+  //  }
 
   useEffect(() => {
     let imagee = post.postImage;
@@ -28,11 +32,7 @@ function Post({ post }) {
     let profilepic = post.userId.ProfilePic;
     let userID = post.userId._id
 
-   if(followInfo.includes(following)){
-    setflowState(true)
-   } else {
-    setflowState(false)
-   }
+   
     console.log("userName in POST Component: ", followInfo);
   
     setFollowing(userID)
@@ -40,14 +40,20 @@ function Post({ post }) {
     setUsername(username);
     setDp(profilepic);
 
-  }, [post.postImage, post.userId.ProfilePic, post.userId.Username, post.userId._id, setflowState]);
+    if (followInfo.includes(following)) {
+      setflowState(true);
+    } else {
+      setflowState(false);
+    }
+
+  }, [post.postImage, post.userId.ProfilePic, post.userId.Username, post.userId._id,  followInfo, following  ]);
 
   if (!post || post.length === 0) {
     return <div>Loading...</div>;
   }
   function handleFollow (){
    
-    handleFollowAPI(following)
+    handleFollowAPI(following, setUserDetails)
     
   }
 
@@ -61,7 +67,7 @@ function Post({ post }) {
           </div>
           {username} • 
 {/* -------------------------------------------------------- */}
-            {flowstate ?(
+            {flowstate ?( 
               <span className="bg-white ml-3 cursor-pointer" >Unfollow</span>
             ) : (
               <span className="bg-white ml-3 cursor-pointer" onClick={handleFollow}>Follow</span>

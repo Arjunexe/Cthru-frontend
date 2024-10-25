@@ -30,8 +30,9 @@ function App() {
         const response = await axios.get(
           `http://localhost:5000/user/getUser/${userId}`
         );
+        const stuff = response.data.userFollowData
         const userData = response.data;
-        console.log("userDetails in app.js :", userData);
+        console.log("userDetails in app.js :", stuff);
         // UPDATING THE CONTEXT WITH USER DETAILS
         setUserDetails(userData);
       } catch (error) {
