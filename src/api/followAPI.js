@@ -34,3 +34,30 @@ export async function handleFollowAPI(following, setUserDetails) {
 
   }
 }
+
+
+export async function handleUnfollowApi ( following, setUserDetails ) {
+
+  const Token = localStorage.getItem(jwtToken);
+  if (Token) {
+    const decode = jwtDecode(Token);
+    const userFollower = decode.userId;
+    console.log("followerssssssssssss :", following);
+
+    try {
+
+      const response = await axios.post("http://localhost:5000/user/unFollowUser", {userFollower, following})
+      // console.log(response.data.unFollowData);
+      
+      setUserDetails((prevDetails) =>({
+        ...prevDetails, userFollowData: { ...response.data.unFollowData }
+      }))
+      
+    } catch (error) {
+      console.log("error during handleUnfollowApi :", error);
+      
+    }
+}
+  
+
+}

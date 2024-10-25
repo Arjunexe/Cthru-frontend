@@ -4,7 +4,7 @@ import "../post/Post.css";
 import ProfileField from "../profileLayouts/ProfileField";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
-import { handleFollowAPI } from "../../api/followAPI";
+import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
 import MainContext from "../../hooks/context";
 
 
@@ -51,11 +51,16 @@ function Post({ post }) {
   if (!post || post.length === 0) {
     return <div>Loading...</div>;
   }
+  
   function handleFollow (){
-   
     handleFollowAPI(following, setUserDetails)
-    
   }
+
+  function handleUnfollow () {
+    handleUnfollowApi( following, setUserDetails )
+  }
+
+
 
   return (
     <div className="mt-5 ">
@@ -68,7 +73,7 @@ function Post({ post }) {
           {username} • 
 {/* -------------------------------------------------------- */}
             {flowstate ?( 
-              <span className="bg-white ml-3 cursor-pointer" >Unfollow</span>
+              <span className="bg-white ml-3 cursor-pointer" onClick={handleUnfollow} >Unfollow</span>
             ) : (
               <span className="bg-white ml-3 cursor-pointer" onClick={handleFollow}>Follow</span>
             )}        
