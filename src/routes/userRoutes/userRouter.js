@@ -11,12 +11,15 @@ import Message from "../../pages/Message/Message";
 import ProfileUpload from "../../pages/Profile/ProfileUpload";
 import ProtectedRoutes from "../../hooks/ProtectedRoutes";
 import NonProtectedRoutes from "../../hooks/nonProtectedRoutes";
+import Error from "../../pages/error/Error";
+import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../hooks/ProtectedRoutes";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "login",
@@ -49,6 +52,7 @@ const Router = createBrowserRouter([
       }
     ],
   },
+  adminRouter
 ]);
 
 export default Router;
