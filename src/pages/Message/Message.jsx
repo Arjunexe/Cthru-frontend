@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import UserChatList from '../../components/chat/UserChatList'
+import MainContext from '../../hooks/context'
 
 function Message() {
+
+  const { userDetails } = useContext(MainContext)
+
+  const followingData = userDetails?.userFollowData?.following || []
+
+  console.log("followind DAtatat  :", followingData);
+  
+
   return (
     
     <>
