@@ -4,12 +4,9 @@ import MainContext from '../../hooks/context'
 
 function Message() {
 
-  const { userDetails } = useContext(MainContext)
-
-  const followingData = userDetails?.userFollowData?.following || []
-
-  console.log("followind DAtatat  :", followingData);
-  
+  // const { userDetails } = useContext(MainContext)
+  // const followingData = userDetails?.userFollowData?.following || []
+  // console.log("followind DAtatat  :", followingData);
 
   return (
     

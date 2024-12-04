@@ -1,38 +1,40 @@
-import React, { useContext, useState } from 'react'
-import UserChatBox from './UserChatBox'
-import MainContext from '../../hooks/context'
-import axios from 'axios'
+import React, { useContext, useEffect, useState } from "react";
+import UserChatBox from "./UserChatBox";
+import MainContext from "../../hooks/context";
+import axios from "axios";
+import { getFollowing } from "../../api/followAPI";
 
 function UserChatList() {
-const { userDetails } = useContext (MainContext)
-const [ following, setFollowing ] = useState([])
+  const { userDetails } = useContext(MainContext);
+  const [following, setFollowing] = useState([]);
 
-const followInfo = userDetails?.userFollowData?.following || []
-console.log("sssssssssssssssssss", followInfo);
+  const followInfo = userDetails?.userFollowData?.following || [];
 
-async function getFollowing () {
-  try {
-    const response = await axios.post('http://localhost:5000/messages/getFollowing',{ followingId : following})
+
+  useEffect(() => {
+   async function fetchData () {
+    const data = await getFollowing(followInfo)
+    setFollowing(data)
+    console.log(followInfo);
     
-  } catch (error) {
-    console.log("error during getFollowing: ", error);
+   }
+  fetchData(followInfo).catch((error) => {
+    console.error("error during fetchData :", error);
     
-  }
-}
-
+  })
+  }, []);
 
 
   return (
-    <div className='bg-gray-600 h-screen w-80  '>
-        <div className=' font-bold bg-yellow-200 justify-center flex'>
-          <h1>Messages</h1>
-          </div>
-          <div className=' pt-4 bg-red-800 w-auto '>
-             <UserChatBox />
-          </div>   
-    
-  </div>
-  )
+    <div className="bg-gray-600 h-screen w-80  ">
+      <div className=" font-bold bg-yellow-200 justify-center flex">
+        <h1>Messages</h1>
+      </div>
+      <div className=" pt-4 bg-red-800 w-auto ">
+        <UserChatBox />
+      </div>
+    </div>
+  );
 }
 
-export default UserChatList
+export default UserChatList;
