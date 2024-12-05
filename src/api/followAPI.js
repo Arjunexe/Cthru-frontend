@@ -63,12 +63,11 @@ export async function handleUnfollowApi ( following, setUserDetails ) {
 
 // Get following user list
 
-export async function getFollowing(followInfo) {
+export async function getFollowing(userId) {
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/messages/getFollowing",
-      { followInfo: followInfo }
+    const response = await axios.get(
+      `http://localhost:5000/user/getFollowing/${userId}`
     );
   } catch (error) {
     console.log("error during getFollowing: ", error);

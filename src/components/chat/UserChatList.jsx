@@ -8,17 +8,20 @@ function UserChatList() {
   const { userDetails } = useContext(MainContext);
   const [following, setFollowing] = useState([]);
 
-  const followInfo = userDetails?.userFollowData?.following || [];
+  const userId = userDetails?.userFollowData?.userId || "";
+
+
+  // GET ALL THE FOLLOWING LIST, DON’T NEED TO MATCH ANYTHING !!!!!!!!!!!!!!!!!
 
 
   useEffect(() => {
-   async function fetchData () {
-    const data = await getFollowing(followInfo)
+   async function fetchData (userId) {
+    const data = await getFollowing(userId)
     setFollowing(data)
-    console.log(followInfo);
+    // console.log(followInfo);
     
    }
-  fetchData(followInfo).catch((error) => {
+  fetchData(userId).catch((error) => {
     console.error("error during fetchData :", error);
     
   })
