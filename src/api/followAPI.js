@@ -69,6 +69,9 @@ export async function getFollowing(userId) {
     const response = await axios.get(
       `http://localhost:5000/user/getFollowing/${userId}`
     );
+    const followingUserData = response.data.followingData
+    return followingUserData;
+
   } catch (error) {
     console.log("error during getFollowing: ", error);
   }

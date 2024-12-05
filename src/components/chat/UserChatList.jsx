@@ -19,13 +19,13 @@ function UserChatList() {
     const data = await getFollowing(userId)
     setFollowing(data)
     // console.log(followInfo);
-    
    }
   fetchData(userId).catch((error) => {
     console.error("error during fetchData :", error);
     
   })
   }, []);
+  console.log("hopefully it the details :", following);
 
 
   return (
