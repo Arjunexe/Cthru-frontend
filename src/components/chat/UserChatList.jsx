@@ -22,9 +22,9 @@ function UserChatList() {
    }
   fetchData(userId).catch((error) => {
     console.error("error during fetchData :", error);
-    
   })
   }, []);
+
   console.log("hopefully it the details :", following);
 
 
@@ -34,7 +34,10 @@ function UserChatList() {
         <h1>Messages</h1>
       </div>
       <div className=" pt-4 bg-red-800 w-auto ">
-        <UserChatBox />
+    { following.map((user, index) => (
+                <UserChatBox key={index} user= {user} />
+    ))}
+
       </div>
     </div>
   );
