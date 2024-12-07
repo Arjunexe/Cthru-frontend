@@ -5,6 +5,7 @@ import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
 import { handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
+import ProfileGrid from "../../components/profileLayouts/profileGrid";
 
 export default function Profile() {
   const { logout } = useContext(SessionContext);
@@ -51,12 +52,10 @@ export default function Profile() {
   } //profilePic
 
   return (
-    <div className="flex h-screen w-screen bg-slate-700">
-     
+    <div className=" h-screen w-screen bg-slate-700">
+      <div className="w-96  bg-gray-400 flex ml-10">
 
-        <div className="w-96  bg-gray-400 flex ml-10">
-
-          <div className=" relative inline-block bg-red-500">
+        <div className=" relative inline-block bg-red-500">
           <input
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             accept="image/jpeg, image/png, image/webp, image/jpg"
@@ -64,64 +63,52 @@ export default function Profile() {
             type="file"
             onChange={handleChangeClick}
           />
-          <div>
-          <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
+          <div >
+            <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
           </div>
-          </div>
-          
+        </div>
 
-          <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
-            {userName}
-          </div>
-
-       
-
-        {/* <div className="bg-red-500 relative">        */}
-          {/* <input
-            className="cursor-pointer"
-            accept="image/jpeg, image/png, image/webp, image/jpg "
-            name="image"
-            type="file"
-            onChange={handleChangeClick}
-          /> */}
-          {/* <button onClick={handleChangeClick}>Upload</button> */}
-        {/* </div> */}
+        <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
+          {userName}
+        </div>
 
         <div>
           <button className="cursor-pointer" onClick={handleClick}>
             Logout
           </button>
         </div>
-       </div>
 
+      </div>
+
+        <div className="h-fit bg-cyan-600">
+          <ProfileGrid />
+        </div>
     </div>
-
   );
 }
 
-
 ////////
-    // <div className="flex h-screen w-screen bg-slate-700">
-    //   <div>
-        // <div className="w-96 bg-gray-400 flex ml-10">
-        //   <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
-        //   <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
-        //     {userName}
-        //   </div>
-        // </div>
+// <div className="flex h-screen w-screen bg-slate-700">
+//   <div>
+// <div className="w-96 bg-gray-400 flex ml-10">
+//   <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
+//   <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
+//     {userName}
+//   </div>
+// </div>
 
-      /* Profile Picture Upload Section */
-        // <div className="bg-red-500 relative inline-block">
-        //   {/* Invisible file input */}
-        //   <input
-        //     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-        //     accept="image/jpeg, image/png, image/webp, image/jpg"
-        //     name="image"
-        //     type="file"
-        //     onChange={handleChangeClick}
-          
-          /* Display profile picture as a button */
-          /* <div className="flex justify-center items-center rounded-full overflow-hidden border-2 border-gray-200">
+/* Profile Picture Upload Section */
+// <div className="bg-red-500 relative inline-block">
+//   {/* Invisible file input */}
+//   <input
+//     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+//     accept="image/jpeg, image/png, image/webp, image/jpg"
+//     name="image"
+//     type="file"
+//     onChange={handleChangeClick}
+
+/* Display profile picture as a button */
+/* <div className="flex justify-center items-center rounded-full overflow-hidden border-2 border-gray-200">
             <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
           </div>
         </div>
@@ -131,5 +118,5 @@ export default function Profile() {
             Logout
           </button>
         </div> */
-      /* </div>
+/* </div>
     </div> */

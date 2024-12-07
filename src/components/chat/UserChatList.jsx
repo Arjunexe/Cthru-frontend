@@ -34,9 +34,12 @@ function UserChatList() {
         <h1>Messages</h1>
       </div>
       <div className=" pt-4 bg-red-800 w-auto ">
-    { following.map((user, index) => (
+
+    {following?   following.map((user, index) => (
                 <UserChatBox key={index} user= {user} />
-    ))}
+    ))  : <UserChatBox /> }
+
+   
 
       </div>
     </div>

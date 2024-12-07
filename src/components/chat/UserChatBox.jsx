@@ -5,9 +5,16 @@ function UserChatBox({user}) {
   const [ userName, setUsername ] = useState("")
 
   useEffect (() => {
-    const username = user.Username
 
-    setUsername(username)
+    if(user){
+      const username = user.Username
+      setUsername(username)
+    } else {
+      const username = "Start following to stay connected!"
+      setUsername(username)
+    }
+
+
 
   })
   
