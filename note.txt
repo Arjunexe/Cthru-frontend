@@ -1,4 +1,4 @@
-//LOGIN FORM
+! LOGIN FORM
 import React, { useState } from 'react';
 
 function LoginForm() {
@@ -11,14 +11,14 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the form submission (e.g., send data to the server)
+    ! Handle the form submission (e.g., send data to the server)
     console.log('Form submitted:', formData);
   };
 
   const renderErrorMessage = (fieldName) => {
-    // Implement your error message rendering logic based on the field name
-    // This function should return the JSX for the error message
-    // For simplicity, let's assume it returns a placeholder
+    ! Implement your error message rendering logic based on the field name
+    ! This function should return the JSX for the error message
+    ! For simplicity, let's assume it returns a placeholder
     return <span>Error for {fieldName}</span>;
   };
 
@@ -41,6 +41,6 @@ function LoginForm() {
       </form>
     </div>
   );
-}
+}   
 
 export default LoginForm;

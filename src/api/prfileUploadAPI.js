@@ -1,6 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
+import { useId } from "react";
 
 // TO HANDLE CHANGE IN PROFILE FIELD
 export async function handleChangeClickAPI(
@@ -51,7 +52,7 @@ export async function handleUploadClickAPI(profilePic, setUserDetails) {
   }
 }
 
-// SENDING PROFILE PIC AND USER ID TO BACKEND THEN UPDATES THE CONTEXT
+// SENDING PROFILE PIC AND USER ID TO BACKEND THEN UPDATES THE CONTEXT | NOT USING EXPORT CAUSE ITS IN THE SAME PAGE!
 async function sendProfileImgUrl(url, setUserDetails) {
   const Token = localStorage.getItem(jwtToken);
   if (Token) {
@@ -68,5 +69,15 @@ async function sendProfileImgUrl(url, setUserDetails) {
     } catch (error) {
       console.log("error during sendImgUrl :", error);
     }
+  }
+}
+
+
+// PROFILE PAGE GET POST 
+export async function getPostData (userId){
+  try{
+    
+  } catch(error) {
+
   }
 }
