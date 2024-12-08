@@ -18,7 +18,7 @@ function Post({ post }) {
   const { userDetails, setUserDetails } = useContext(MainContext)
   const followInfo = userDetails?.userFollowData?.following || []
 
-  console.log("there we go00000 :", followInfo);
+  // console.log("there we go00000 :", followInfo);
  
   // if(followInfo.includes(following)){
   //   setflowState(followInfo)
@@ -33,7 +33,7 @@ function Post({ post }) {
     let userID = post.userId._id
 
    
-    console.log("userName in POST Component: ", followInfo);
+    // console.log("userName in POST Component: ", followInfo);
   
     setFollowing(userID)
     setrealImg(imagee); // Update state with the fetched image URL

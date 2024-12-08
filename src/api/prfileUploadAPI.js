@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
-import { useId } from "react";
+// import { useId } from "react";
 
 // TO HANDLE CHANGE IN PROFILE FIELD
 export async function handleChangeClickAPI(
@@ -37,16 +37,6 @@ export async function handleUploadClickAPI(profilePic, setUserDetails) {
       setUserDetails
     );
     return sendImgResult;
-
-    // axios
-    //   .post("https://api.cloudinary.com/v1_1/da05006gl/image/upload", formData)
-    //   .then((response) => {
-    //     console.log("Your profile picture:", response);
-    //     console.log("and the url of profilePicture:", response.data.secure_url);
-    //     // setUserDetails(response.data.secure_url)
-    //     sendProfileImgUrl(response.data.secure_url, setUserDetails);
-    //     //   navigate("/");
-    //   });
   } catch (error) {
     console.log("error during handleUploadClickAPI :", error);
   }
@@ -72,12 +62,14 @@ async function sendProfileImgUrl(url, setUserDetails) {
   }
 }
 
+// HOME PAGE AND PROFILE PAGE GET POST AND USER DATA
+export async function getPostData(userId) {
+  try {
+    const url = userId ? `http://localhost:5000/user/getUser/${userId}` : "http://localhost:5000/user/getUrl";
 
-// PROFILE PAGE GET POST 
-export async function getPostData (userId){
-  try{
+    const response = await axios.get(url);
+    console.log("bruh I don't know :", response);
     
-  } catch(error) {
-
-  }
+    return response;
+  } catch (error) {}
 }

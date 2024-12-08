@@ -16,7 +16,6 @@ export default function Profile() {
   const DP = userDetails?.userData?.ProfilePic || "Guest";
   const userId = userDetails?.userData?._id || "Guest"
 
-  console.log("the data : ", userId);
 
   useEffect(() => {
     setProfilePic(DP);
@@ -40,6 +39,8 @@ export default function Profile() {
   useEffect (() => {
     async function getPost (userId){
       const Data = await getPostData(userId)
+      console.log("ttttttttttttttttttttttttt", Data);
+      
     }
 
     getPost(userId).catch(err => console.error("error during getPost:", err))
