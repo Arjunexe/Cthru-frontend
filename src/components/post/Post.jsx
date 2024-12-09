@@ -17,8 +17,6 @@ function Post({ post }) {
   const [ flowstate, setflowState ] = useState("")
   const { userDetails, setUserDetails } = useContext(MainContext)
   const followInfo = userDetails?.userFollowData?.following || []
-
-  // console.log("there we go00000 :", followInfo);
  
   // if(followInfo.includes(following)){
   //   setflowState(followInfo)
@@ -26,18 +24,17 @@ function Post({ post }) {
   //   setflowState("")
   //  }
 
-  useEffect(() => {
     let imagee = post.postImage;
-    let username = post.userId.Username;
+    let usernamee = post.userId.Username;
     let profilepic = post.userId.ProfilePic;
     let userID = post.userId._id
-
-   
-    // console.log("userName in POST Component: ", followInfo);
-  
+  useEffect(() => {
+ 
+    //Accessing from prop was here
+ 
     setFollowing(userID)
     setrealImg(imagee); // Update state with the fetched image URL
-    setUsername(username);
+    setUsername(usernamee);
     setDp(profilepic);
 
     if (followInfo.includes(following)) {

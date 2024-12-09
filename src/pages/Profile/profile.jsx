@@ -11,11 +11,11 @@ export default function Profile() {
   const { logout } = useContext(SessionContext);
   const [profilePicUrl, setProfilePic] = useState("");
   const [profilePic, setProfilePics] = useState("");
+  const [post, setPost] = useState([]);
   const { userDetails, setUserDetails } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
-  const userId = userDetails?.userData?._id || "Guest"
-
+  const userId = userDetails?.userData?._id || "Guest";
 
   useEffect(() => {
     setProfilePic(DP);
@@ -36,17 +36,15 @@ export default function Profile() {
     }
   }, [profilePic, setUserDetails]);
 
-  useEffect (() => {
-    async function getPost (userId){
-      const Data = await getPostData(userId)
-      console.log("ttttttttttttttttttttttttt", Data);
-      
+  useEffect(() => {
+    async function getPost(userId) {
+      const Data = await getPostData(userId);
+      setPost(Data.data.userPost);
+      console.log("ttttttttttttttttttttttttt", Data.data.userPost);
     }
 
-    getPost(userId).catch(err => console.error("error during getPost:", err))
-  }, [])
-
-
+    getPost(userId).catch((err) => console.error("error during getPost:", err));
+  }, []);
 
   // Handles the upload Change in Profile Page
   async function handleChangeClick(event) {
@@ -65,7 +63,6 @@ export default function Profile() {
   return (
     <div className=" h-screen w-screen bg-slate-700">
       <div className="w-96  bg-gray-400 flex ml-10">
-
         <div className=" relative inline-block bg-red-500">
           <input
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
@@ -74,7 +71,7 @@ export default function Profile() {
             type="file"
             onChange={handleChangeClick}
           />
-          <div >
+          <div>
             <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
           </div>
         </div>
@@ -88,14 +85,13 @@ export default function Profile() {
             Logout
           </button>
         </div>
-
       </div>
 
-        <div className="grid grid-cols-3 bg-cyan-600">
-          <ProfileGrid />
-        </div>
+      <div className="bg-cyan-600 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
+        {post.map((Post, index) => (
+          <ProfileGrid key={index} Post={Post} />
+        ))}
+      </div>
     </div>
   );
 }
-
-
