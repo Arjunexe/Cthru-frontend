@@ -48,7 +48,13 @@ function Post({ post }) {
   if (!post || post.length === 0) {
     return <div>Loading...</div>;
   }
+
+  function handleProfileClick(){
+    console.log("random profile Id", userID);
+    
+  }
   
+  // Handle follow $ unfollow
   function handleFollow (){
     handleFollowAPI(following, setUserDetails)
   }
@@ -62,21 +68,23 @@ function Post({ post }) {
   return (
     <div className="mt-5 ">
 
-      <div className="flex {*bg-orange-700*} ">
-        <div className="">
-          <div className="">
+      {/* <div className="flex {*bg-orange-700*} "> */}
+        <div className=" flex items-center space-x-2">
+          {/* profile pic & userName */}
+          <div className=" flex items-center space-x-2 cursor-pointer" onClick={handleProfileClick}>
             <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
+            <span className="text-white">{username} •</span>
           </div>
-          {username} • 
+          
 {/* -------------------------------------------------------- */}
             {flowstate ?( 
-              <span className="bg-white ml-3 cursor-pointer" onClick={handleUnfollow} >Unfollow</span>
+              <span className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded" onClick={handleUnfollow} >Unfollow</span>
             ) : (
-              <span className="bg-white ml-3 cursor-pointer" onClick={handleFollow}>Follow</span>
+              <span className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded" onClick={handleFollow}>Follow</span>
             )}        
 
         </div>
-      </div>
+      {/* </div> */} 
 
       <img
         className="w-full max-w-[468px] max-h-[585px] h-auto flex items-center justify-center  object-contain border-2 border-[#969696] transition-transform "

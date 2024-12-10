@@ -6,13 +6,15 @@ import MainContext from "../../hooks/context";
 import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { logout } = useContext(SessionContext);
   const [profilePicUrl, setProfilePic] = useState("");
   const [profilePic, setProfilePics] = useState("");
   const [post, setPost] = useState([]);
-  const { userDetails, setUserDetails } = useContext(MainContext);
+  const navigate = useNavigate()
+  const { userDetails, setUserDetails, imgUploaded } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
   const userId = userDetails?.userData?._id || "Guest";
@@ -29,29 +31,25 @@ export default function Profile() {
           profilePic,
           setUserDetails
         );
-
         return uploadedImg;
       }
       uploadProfileImage();
     }
   }, [profilePic, setUserDetails]);
 
+  // Post image
   useEffect(() => {
     async function getPost(userId) {
       const Data = await getPostData(userId);
       setPost(Data.data.userPost);
-      console.log("ttttttttttttttttttttttttt", Data.data.userPost);
     }
-
     getPost(userId).catch((err) => console.error("error during getPost:", err));
-  }, []);
+  }, [imgUploaded]);
 
   // Handles the upload Change in Profile Page
   async function handleChangeClick(event) {
     const selectedFile = event.target.files[0];
     setProfilePics(selectedFile);
-    // const uploadedImg =  handleUploadClickAPI(profilePic)
-    // setUserDetails(uploadedImg)
   }
 
   function handleClick() {

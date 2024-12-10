@@ -9,12 +9,16 @@ export async function handleChangeClickAPI(
   setProfilePic,
   setProfilePicUrl
 ) {
-  const selectedFile = event.target.files[0];
-  setProfilePic(selectedFile);
+  try {
+    const selectedFile = event.target.files[0];
+    setProfilePic(selectedFile);
 
-  const fileURL = URL.createObjectURL(selectedFile);
+    const fileURL = URL.createObjectURL(selectedFile);
 
-  setProfilePicUrl(fileURL);
+    setProfilePicUrl(fileURL);
+  } catch (error) {
+    console.log("error during handleChangeClickAPI", error);
+  }
 }
 
 // HANDLE UPLOAD CLICK
@@ -65,12 +69,12 @@ async function sendProfileImgUrl(url, setUserDetails) {
 // HOME PAGE AND PROFILE PAGE GET POST AND USER DATA
 export async function getPostData(userId) {
   try {
-    
-    const url = userId ? `http://localhost:5000/user/getUser/${userId}` : "http://localhost:5000/user/getUrl";
+    const url = userId
+      ? `http://localhost:5000/user/getUser/${userId}`
+      : "http://localhost:5000/user/getUrl";
 
     const response = await axios.get(url);
-    console.log("bruh I don't know :", response);
-    
+
     return response;
   } catch (error) {}
 }
