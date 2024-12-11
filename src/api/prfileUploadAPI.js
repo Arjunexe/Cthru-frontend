@@ -68,7 +68,10 @@ async function sendProfileImgUrl(url, setUserDetails) {
 
 // HOME PAGE AND PROFILE PAGE GET POST AND USER DATA
 export async function getPostData(userId) {
+  console.log("dddddddddddddddddd", userId);
+  
   try {
+  
     const url = userId
       ? `http://localhost:5000/user/getUser/${userId}`
       : "http://localhost:5000/user/getUrl";
@@ -78,3 +81,20 @@ export async function getPostData(userId) {
     return response;
   } catch (error) {}
 }
+
+// GET USER DATA BASED ON USER NAME
+// export async function getUsernameData(urlUsername) {
+//   try {
+    // const response = await axios.get(
+    //   `http://localhost:5000/user/getUserNameData/${urlUsername}`
+    // );
+
+//     if(typeof urlUsername === "string" ){
+//       console.log(" this is a string ", urlUsername);
+//     }
+
+//     console.log("datassss: ", urlUsername);
+//   } catch (error) {
+//     console.log("error during ");
+//   }
+// }

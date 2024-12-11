@@ -3,7 +3,7 @@ import "../Profile/profile.css";
 // import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
-import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
+import { getPostData, getUsernameData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,12 +22,21 @@ export default function Profile() {
 
   useEffect(() => {
     async function getProfile (){
-      console.log("tttttttttttttt", urlUsername);
-      
+
+      const response = await getPostData(urlUsername)
+      // console.log("tttttttttttttt", response);
+
+
+      if(urlUsername !== "rjun"){
+        navigate('/message')
+      }
     }
 
     getProfile()
   }, [])
+
+ 
+
 
   useEffect(() => {
     setProfilePic(DP);

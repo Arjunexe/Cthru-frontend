@@ -29,7 +29,6 @@ function Siidebar({ openCreateModal }) {
   }
 
   function handleProfileClick() {
-    console.log("profieleeeeeeeeeeee", UserName);
     const urlUsername = UserName;
     if (urlUsername) {
       navigate(`/${urlUsername}`);
