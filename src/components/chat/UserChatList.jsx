@@ -15,12 +15,12 @@ function UserChatList() {
 
 
   useEffect(() => {
-   async function fetchData (userId) {
+   async function fetchData () {
     const data = await getFollowing(userId)
     setFollowing(data)
     // console.log(followInfo);
    }
-  fetchData(userId).catch(err => console.error("error during fetchData :", err))
+  fetchData().catch(err => console.error("error during fetchData :", err))
   }, []);
 
   console.log("hopefully it the details :", following);

@@ -6,18 +6,28 @@ import MainContext from "../../hooks/context";
 import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Profile() {
   const { logout } = useContext(SessionContext);
   const [profilePicUrl, setProfilePic] = useState("");
   const [profilePic, setProfilePics] = useState("");
   const [post, setPost] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { urlUsername } = useParams();
   const { userDetails, setUserDetails, imgUploaded } = useContext(MainContext);
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
   const userId = userDetails?.userData?._id || "Guest";
+
+  useEffect(() => {
+    async function getProfile (){
+      console.log("tttttttttttttt", urlUsername);
+      
+    }
+
+    getProfile()
+  }, [])
 
   useEffect(() => {
     setProfilePic(DP);
@@ -39,11 +49,11 @@ export default function Profile() {
 
   // Post image
   useEffect(() => {
-    async function getPost(userId) {
+    async function getPost() {
       const Data = await getPostData(userId);
       setPost(Data.data.userPost);
     }
-    getPost(userId).catch((err) => console.error("error during getPost:", err));
+    getPost().catch((err) => console.error("error during getPost:", err));
   }, [imgUploaded]);
 
   // Handles the upload Change in Profile Page
