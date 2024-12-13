@@ -6,6 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
 import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
 import MainContext from "../../hooks/context";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,7 @@ function Post({ post }) {
   const [ profilePicUrl, setDp] = useState("");
   const [ following, setFollowing ] = useState("")
   const [ flowstate, setflowState ] = useState("")
+  const navigate = useNavigate()
   const { userDetails, setUserDetails } = useContext(MainContext)
   const followInfo = userDetails?.userFollowData?.following || []
  
@@ -51,7 +53,9 @@ function Post({ post }) {
 
   function handleProfileClick(){
     console.log("random profile Id", userID);
-    
+    // it doesn't work when its 671fad17ad017a8d3070fbe7
+    const urlUsername = userID
+    navigate(`/${urlUsername}`)
   }
   
   // Handle follow $ unfollow
@@ -71,7 +75,7 @@ function Post({ post }) {
       {/* <div className="flex {*bg-orange-700*} "> */}
         <div className=" flex items-center space-x-2">
           {/* profile pic & userName */}
-          <div className=" flex items-center space-x-2 cursor-pointer" onClick={handleProfileClick}>
+          <div className=" flex items-center space-x-2 cursor-pointer bg-red-600" onClick={handleProfileClick}>
             <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
             <span className="text-white">{username} •</span>
           </div>

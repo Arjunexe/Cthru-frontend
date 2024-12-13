@@ -31,10 +31,13 @@ function App() {
           `http://localhost:5000/user/getUser/${userId}`
         );
         const stuff = response.data.userFollowData
+
         const userData = response.data;
-        console.log("userDetails in app.js :", userData);
+        const { userPost, ...filteredUserData } = userData;
+
+        console.log("userDetails in app.js :", filteredUserData);
         // UPDATING THE CONTEXT WITH USER DETAILS
-        setUserDetails(userData);
+        setUserDetails(filteredUserData);
       } catch (error) {
         console.log("error during getUser: ", error);
       }
@@ -86,7 +89,7 @@ function App() {
         </div> )}
         {/* <UserSessionContext> */}
            <Outlet />
-        {/* </UserSessionContext> */}
+        {/* </UserSessionContext> */} 
        
       </div>
     </>

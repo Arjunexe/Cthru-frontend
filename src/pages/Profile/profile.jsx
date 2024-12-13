@@ -22,9 +22,9 @@ export default function Profile() {
 
   useEffect(() => {
     async function getProfile (){
+      console.log("tttttttttttttt", urlUsername);
 
       const response = await getPostData(urlUsername)
-      // console.log("tttttttttttttt", response);
 
 
       if(urlUsername !== "rjun"){
@@ -36,8 +36,6 @@ export default function Profile() {
   }, [])
 
  
-
-
   useEffect(() => {
     setProfilePic(DP);
   }, [DP, userDetails]);
@@ -56,7 +54,7 @@ export default function Profile() {
     }
   }, [profilePic, setUserDetails]);
 
-  // Post image
+  // GET POSTS
   useEffect(() => {
     async function getPost() {
       const Data = await getPostData(userId);

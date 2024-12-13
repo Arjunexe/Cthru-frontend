@@ -15,7 +15,7 @@ function Timeline() {
         // GET ALL POST IMAGE AND BASED ID GET ALL USER DATA
         const response = await getPostData();
         setPostImage(response.data);
-        console.log("all dataa", response.data);
+        // console.log("all dataa", response.data);
       } catch (error) {
         console.log("error duing getImageUrl frontend :", error);
       }

@@ -68,7 +68,7 @@ async function sendProfileImgUrl(url, setUserDetails) {
 
 // HOME PAGE AND PROFILE PAGE GET POST AND USER DATA
 export async function getPostData(userId) {
-  console.log("dddddddddddddddddd", userId);
+  console.log("optional id: ", userId);
   
   try {
   

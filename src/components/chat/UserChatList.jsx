@@ -23,7 +23,7 @@ function UserChatList() {
   fetchData().catch(err => console.error("error during fetchData :", err))
   }, []);
 
-  console.log("hopefully it the details :", following);
+  console.log("userNames: ", following);
 
 
   return (
