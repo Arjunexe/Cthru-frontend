@@ -20,7 +20,7 @@ function UserChatList() {
     setFollowing(data)
     // console.log(followInfo);
    }
-  fetchData().catch(err => console.error("error during fetchData :", err))
+  fetchData().catch(err => console.error("error during fetchData: ", err))
   }, []);
 
   console.log("userNames: ", following);

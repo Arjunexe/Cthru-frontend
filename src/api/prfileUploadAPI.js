@@ -66,14 +66,14 @@ async function sendProfileImgUrl(url, setUserDetails) {
   }
 }
 
-// HOME PAGE AND PROFILE PAGE GET POST AND USER DATA
+// HOME PAGE FOR USER DATA AND PROFILE PAGE FOR POST
 export async function getPostData(userId) {
   console.log("optional id: ", userId);
   
   try {
   
     const url = userId
-      ? `http://localhost:5000/user/getUser/${userId}`
+      ? `http://localhost:5000/user/getUser/${userId}` 
       : "http://localhost:5000/user/getUrl";
 
     const response = await axios.get(url);

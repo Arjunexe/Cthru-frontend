@@ -52,9 +52,9 @@ function Post({ post }) {
   }
 
   function handleProfileClick(){
-    console.log("random profile Id", userID);
+    console.log("random profile Id: ", usernamee);
     // it doesn't work when its 671fad17ad017a8d3070fbe7
-    const urlUsername = userID
+    const urlUsername = usernamee
     navigate(`/${urlUsername}`)
   }
   
