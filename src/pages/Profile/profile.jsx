@@ -3,11 +3,7 @@ import "../Profile/profile.css";
 // import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../hooks/context";
-import {
-  getPostData,
-  getUsernameData,
-  handleUploadClickAPI,
-} from "../../api/prfileUploadAPI";
+import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../hooks/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,7 +14,7 @@ export default function Profile() {
   const [profilePic, setProfilePics] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [post, setPost] = useState([]);
-  const [profileData, setProfileData] = useState({})
+  const [profileData, setProfileData] = useState({});
   const navigate = useNavigate();
   const { urlUsername } = useParams();
   const { userDetails, setUserDetails, imgUploaded } = useContext(MainContext);
@@ -41,31 +37,30 @@ export default function Profile() {
 
   useEffect(() => {
     async function getProfile() {
-      if(loggedIn){
+      if (loggedIn) {
         return;
       }
 
       console.log("tttttttttttttt", urlUsername);
       const response = await getPostData(urlUsername);
       console.log("jjjjjjjjjjjjjjjjjjjjjj ", response.data);
-      setProfileData(response.data)
+      setProfileData(response.data);
 
       // if(urlUsername !== "rjun"){
       //   navigate('/message')
       // }
     }
     getProfile().catch((err) => console.log("error during getProfile: ", err));
-  }, []);
+  }, [loggedIn, urlUsername]);
 
   useEffect(() => {
-    if(loggedIn){
-          setProfilePic(DP);
-    } else {
-      
-      console.log("mannnnnnnnnnnnnnnnnnnnn: ",profileData.userData);
-      
+    if (loggedIn) {
+      setProfilePic(DP);
+    } else if (profileData?.userData?.ProfilePic) {
+      console.log("mannnnnnnnnnnnnnnnnnnnn: ", profileData.userData.ProfilePic);
+      setProfilePic(profileData.userData.ProfilePic);
     }
-  }, [DP, userDetails]);
+  }, [DP, userDetails, profileData, urlUsername, loggedIn]);
 
   // Send profilePic to uploadFunction
   useEffect(() => {
@@ -84,15 +79,16 @@ export default function Profile() {
   // GET POSTS
   useEffect(() => {
     async function getPost() {
-      let userInfo = userId
-      if(!loggedIn){
-        userInfo = urlUsername
-      }
+      // let userInfo = userId
+      // if(!loggedIn){
+      //   userInfo = urlUsername
+      // }
+      let userInfo = loggedIn ? userId : urlUsername;
       const Data = await getPostData(userInfo);
       setPost(Data.data.userPost);
     }
     getPost().catch((err) => console.error("error during getPost:", err));
-  }, [imgUploaded]);
+  }, [imgUploaded, loggedIn, urlUsername]);
 
   // Handles the upload Change in Profile Page
   async function handleChangeClick(event) {
