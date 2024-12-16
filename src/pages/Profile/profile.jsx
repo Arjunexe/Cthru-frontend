@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function Profile() {
   const { logout } = useContext(SessionContext);
   const [profilePicUrl, setProfilePic] = useState("");
+  const [UserName, setUserName] = useState("");
   const [profilePic, setProfilePics] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [post, setPost] = useState([]);
@@ -35,34 +36,41 @@ export default function Profile() {
     checkLoggedIn();
   }, [userName, urlUsername]);
 
+  // FETCH PUBLIC USER DATA
   useEffect(() => {
     async function getProfile() {
       if (loggedIn) {
         return;
       }
-
       console.log("tttttttttttttt", urlUsername);
       const response = await getPostData(urlUsername);
       console.log("jjjjjjjjjjjjjjjjjjjjjj ", response.data);
       setProfileData(response.data);
-
-      // if(urlUsername !== "rjun"){
-      //   navigate('/message')
-      // }
     }
     getProfile().catch((err) => console.log("error during getProfile: ", err));
   }, [loggedIn, urlUsername]);
 
+  // SET DP
   useEffect(() => {
     if (loggedIn) {
       setProfilePic(DP);
     } else if (profileData?.userData?.ProfilePic) {
-      console.log("mannnnnnnnnnnnnnnnnnnnn: ", profileData.userData.ProfilePic);
       setProfilePic(profileData.userData.ProfilePic);
     }
   }, [DP, userDetails, profileData, urlUsername, loggedIn]);
 
-  // Send profilePic to uploadFunction
+  // SET USERNAME
+  useEffect(() => {
+    if (loggedIn) {
+      setUserName(userName);
+    } else if (profileData?.userData?.Username) {
+      console.log("mannnnnnnnnnnnnnnnnnnnn: ", profileData?.userData?.Username);
+
+      setUserName(profileData?.userData?.Username);
+    }
+  }, []);
+
+  // SEND PROFILEPIC TO UPLOAD FUNCTION
   useEffect(() => {
     if (profilePic) {
       async function uploadProfileImage() {
@@ -79,10 +87,6 @@ export default function Profile() {
   // GET POSTS
   useEffect(() => {
     async function getPost() {
-      // let userInfo = userId
-      // if(!loggedIn){
-      //   userInfo = urlUsername
-      // }
       let userInfo = loggedIn ? userId : urlUsername;
       const Data = await getPostData(userInfo);
       setPost(Data.data.userPost);
@@ -90,17 +94,18 @@ export default function Profile() {
     getPost().catch((err) => console.error("error during getPost:", err));
   }, [imgUploaded, loggedIn, urlUsername]);
 
-  // Handles the upload Change in Profile Page
+  // HANDLES THE PROFILE PIC UPLOAD CHANGE
   async function handleChangeClick(event) {
     const selectedFile = event.target.files[0];
     setProfilePics(selectedFile);
   }
 
+  // REMOVES LOGGEDIN USER DATA UPON LOGGING OUT
   function handleClick() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userData");
     logout();
-  } //profilePic
+  }
 
   return (
     <div className=" h-screen w-screen bg-slate-700">
@@ -121,7 +126,7 @@ export default function Profile() {
         </div>
 
         <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
-          {userName}
+          {UserName}
         </div>
 
         <div>
