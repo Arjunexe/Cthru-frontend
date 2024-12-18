@@ -10,6 +10,7 @@ import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
 import CreatePostModal from "./components/modals/createPostModal";
 import SessionContext from "./hooks/SessionContext";
+import { getPostData } from "./api/prfileUploadAPI";
 // import UserSessionContext from "./hooks/sessionProvider";
 
 function App() {
@@ -27,15 +28,18 @@ function App() {
     // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
     async function getUser(userId) {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/user/getUser/${userId}`
-        );
-        const stuff = response.data.userFollowData
 
+        const response = await getPostData(userId)
+
+        // const response = await axios.get(
+        //   `http://localhost:5000/user/getUser/${userId}`
+        // );
+
+        const stuff = response.data.userFollowData
         const userData = response.data;
         const { userPost, ...filteredUserData } = userData;
-
         console.log("userDetails in app.js :", filteredUserData);
+
         // UPDATING THE CONTEXT WITH USER DETAILS
         setUserDetails(filteredUserData);
       } catch (error) {

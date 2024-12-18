@@ -30,6 +30,8 @@ export default function Profile() {
         console.log("its the logged user");
         setLoggedIn(true);
       } else {
+        console.log("its NOT the logged user");
+
         setLoggedIn(false);
       }
     }
@@ -62,13 +64,14 @@ export default function Profile() {
   // SET USERNAME
   useEffect(() => {
     if (loggedIn) {
+      console.log("yyyyyyyyyyyyyyyyyyyyy: ", userName);
       setUserName(userName);
     } else if (profileData?.userData?.Username) {
       console.log("mannnnnnnnnnnnnnnnnnnnn: ", profileData?.userData?.Username);
 
       setUserName(profileData?.userData?.Username);
     }
-  }, []);
+  }, [loggedIn,profileData?.userData?.Username, userName]);
 
   // SEND PROFILEPIC TO UPLOAD FUNCTION
   useEffect(() => {
@@ -108,7 +111,7 @@ export default function Profile() {
   }
 
   return (
-    <div className=" h-screen w-screen bg-slate-700">
+    <div className=" h-screen w-screen bg-slate-700 overflow-auto">
       <div className="w-96  bg-gray-400 flex ml-10">
         <div className=" relative inline-block bg-red-500">
           {/* CONDITIONAL RENDERING */}
@@ -138,8 +141,8 @@ export default function Profile() {
 
       <div className="bg-cyan-600 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
         {/* MAYBE ProfileGrid NEEDS AN STABLE KEY */}
-        {post.map((Post, index) => (
-          <ProfileGrid key={index} Post={Post} />
+        {post.map((post, index) => (
+          <ProfileGrid key={index} post={post} />
         ))}
       </div>
     </div>
