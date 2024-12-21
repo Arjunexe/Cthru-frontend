@@ -17,7 +17,7 @@ function ProfileUpload() {
   // Handles the Change
   function handleChangeClick(event) {
     const selectedFile = event.target.files[0];
-    setProfilePic(selectedFile);
+    setProfilePic(selectedFile);        // Doubt
     const fileURL = URL.createObjectURL(selectedFile);
     console.log("temp file :", fileURL);
     setProfilePicUrl(fileURL);

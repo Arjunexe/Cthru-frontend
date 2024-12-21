@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import '../profileLayouts/profileModal.css'
 import Post from "../post/Post";
 
 function ProfileGrid({ post }) {
@@ -27,11 +28,13 @@ function ProfileGrid({ post }) {
       {postExpand && (
         //  Modal Body
         <div
-          className="bg-red-600 w-full h-full fixed top-0 left-0 bg-opacity-50 flex justify-center items-center z-50"
+          className=" w-full h-full fixed top-0 left-0 flex justify-center items-center z-50 custom-modal"
           onClick={handleProfilePost}
-        >
+        >   
+         {/* CHANGE THE BLUR THING LATER */}
+         
           {/* Modal Content */}
-          <div className="bg-white rounded shadow-lg relative  h-modal w-1/2 flex items-center justify-center object-contain " onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded shadow-lg relative  h-modal w-1/2 items-center justify-center object-contain flex " onClick={(e) => e.stopPropagation()}>
             <Post post={post} />
           </div>
         </div>
