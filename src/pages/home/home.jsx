@@ -8,7 +8,7 @@ import Timeline from "../../components/timeline/Timeline";
 // import CreatePostModal from "../../components/createPostModal/createPostModal";
 import Suggestion from "../../components/suggestion/Suggestion";
 // import { useEffect } from "react";
-// import MainContext from "../../hooks/context";
+// import MainContext from "../../context/context";
 
 function Home() {
   const navigate = useNavigate()

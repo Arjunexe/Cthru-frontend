@@ -9,11 +9,11 @@ import Profile from "../../pages/Profile/profile";
 import Xample from "../../pages/egxample/xample";
 import Message from "../../pages/Message/Message";
 import ProfileUpload from "../../pages/Profile/ProfileUpload";
-import ProtectedRoutes from "../../hooks/ProtectedRoutes";
-import NonProtectedRoutes from "../../hooks/nonProtectedRoutes";
+import ProtectedRoutes from "../../context/ProtectedRoutes";
+import NonProtectedRoutes from "../../context/nonProtectedRoutes";
 import Error from "../../pages/error/Error";
 import { adminRouter } from "../adminRoutes/adminRouter";
-// import ProtectedRoutes from "../../hooks/ProtectedRoutes";
+// import ProtectedRoutes from "../../context/ProtectedRoutes";
 
 const Router = createBrowserRouter([
   {

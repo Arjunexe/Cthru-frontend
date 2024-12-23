@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import Router from "./routes/userRoutes/userRouter";
 import "./index.css";
-import MainContextProvider from "./hooks/provider";
+import MainContextProvider from "./context/provider";
 /* eslint-disable import/no-webpack-loader-syntax */
 import App from "./App";
-import UserSessionContext from "./hooks/sessionProvider";
+import UserSessionContext from "./context/sessionProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

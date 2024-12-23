@@ -5,7 +5,7 @@ import ProfileField from "../profileLayouts/ProfileField";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
 import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
-import MainContext from "../../hooks/context";
+import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 
 

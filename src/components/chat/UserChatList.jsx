@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserChatBox from "./UserChatBox";
-import MainContext from "../../hooks/context";
+import MainContext from "../../context/context";
 import axios from "axios";
 import { getFollowing } from "../../api/followAPI";
 

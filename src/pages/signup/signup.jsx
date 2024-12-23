@@ -8,7 +8,7 @@ import { isValidate } from "../../valid.js/signupValid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
-import SessionContext from "../../hooks/SessionContext";
+import SessionContext from "../../context/SessionContext";
 
 // import { UserLoggedIn } from "../../valid.js/userCheck";
 

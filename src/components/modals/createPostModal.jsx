@@ -1,6 +1,6 @@
 import "./createPostModal.css";
 import axios from "axios";
-import ImageContext from "../../hooks/context";
+import ImageContext from "../../context/context";
 import { useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../../jwt/jwt";
@@ -70,18 +70,20 @@ function CreatePostModal({ PostModalProp }) {
   return (
     <div className="modal" onClick={PostModalProp}>
       <div className="modalBody" onClick={(e) => e.stopPropagation()}>
-        <div className="bg-red-700 z-20 flex">
+        <div className="bg-blue-700 flex">
           <input
             className="inputType"
             name="image"
             type="file"
             onChange={handleCreateClick}
           />
+
+          
         </div>
         {/* Hi this is Modal */}
 
-        {/* {img &&( */}
-        <div className=" bg-red-600">
+        {img &&(
+        <div className="crop-container">
           <Cropper
             image={img}
             crop={crop}
@@ -91,7 +93,7 @@ function CreatePostModal({ PostModalProp }) {
             onZoomChange={setZoom}
           />
         </div>
-        {/* )} */}
+        )}
       </div>
     </div>
   );

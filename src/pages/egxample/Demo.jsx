@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 import CreatePostModal from "../../components/createPostModal/createPostModal";
-import ImageContext from "../../hooks/context";
+import ImageContext from "../../context/context";
 
 function Home() {
   const navigate = useNavigate();

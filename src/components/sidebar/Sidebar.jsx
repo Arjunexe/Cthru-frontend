@@ -8,7 +8,7 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { BiSolidMessageDots } from "react-icons/bi";
 import { IoIosNotifications } from "react-icons/io";
 import ProfileField from "../profileLayouts/ProfileField";
-import MainContext from "../../hooks/context";
+import MainContext from "../../context/context";
 
 function Siidebar({ openCreateModal }) {
   const [profilePicUrl, setDp] = useState("");

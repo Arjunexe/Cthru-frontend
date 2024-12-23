@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Timeline.css";
 // import Suggestion from "../suggestion/Suggestion";
 import Post from "../post/Post";
-import ImageContext from "../../hooks/context";
+import ImageContext from "../../context/context";
 import { getPostData } from "../../api/prfileUploadAPI";
 
 function Timeline() {

@@ -7,9 +7,9 @@ import { isitEmpty } from "../../valid.js/signupValid";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
-// import UserSessionContext from "../../hooks/sessionProvider";
-// import MainContext from "../../hooks/context";
-import SessionContext from "../../hooks/SessionContext";
+// import UserSessionContext from "../../context/sessionProvider";
+// import MainContext from "../../context/context";
+import SessionContext from "../../context/SessionContext";
 
 function Login() {
   const navigate = useNavigate();

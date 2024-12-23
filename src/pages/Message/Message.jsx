@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import UserChatList from '../../components/chat/UserChatList'
-import MainContext from '../../hooks/context'
+import MainContext from '../../context/context'
 
 function Message() {
 

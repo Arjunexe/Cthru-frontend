@@ -4,8 +4,8 @@ import axios from "axios";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import { jwtToken } from "../../jwt/jwt";
 import { jwtDecode } from "jwt-decode";
-import MainContext from "../../hooks/context";
-import SessionContext from "../../hooks/SessionContext";
+import MainContext from "../../context/context";
+import SessionContext from "../../context/SessionContext";
 
 function ProfileUpload() {
   const [profilePic, setProfilePic] = useState("");
