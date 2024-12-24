@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../../jwt/jwt";
 import Cropper from "react-easy-crop";
+import getCroppedImg from "../../utils/imageCropper";
 
 function CreatePostModal({ PostModalProp }) {
   const [img, setImg] = useState(null);
@@ -70,30 +71,36 @@ function CreatePostModal({ PostModalProp }) {
   return (
     <div className="modal" onClick={PostModalProp}>
       <div className="modalBody" onClick={(e) => e.stopPropagation()}>
-        <div className="bg-blue-700 flex">
+        {/* <div className="bg-blue-700 flex"> */}
           <input
             className="inputType"
             name="image"
             type="file"
             onChange={handleCreateClick}
           />
+        {/* </div> */}
+        {/* Cropper Starts */}
 
-          
-        </div>
-        {/* Hi this is Modal */}
-
-        {img &&(
-        <div className="crop-container">
-          <Cropper
-            image={img}
-            crop={crop}
-            zoom={zoom}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-          />
-        </div>
+        {img && (
+          <div className="cropper-wrapper">
+            <div>
+              <button className="croper-button">upload</button>
+            </div>
+            <div className="crop-container">
+              <Cropper
+                image={img}
+                crop={crop}
+                zoom={zoom}
+                aspect={4/5}
+                onCropChange={setCrop}
+                onCropComplete={onCropComplete}
+                onZoomChange={setZoom}
+              />
+            </div>
+          </div>
         )}
+
+        {/* Cropper Ends */}
       </div>
     </div>
   );
