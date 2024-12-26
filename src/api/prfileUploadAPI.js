@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
 // import { useId } from "react";
 
+//------------ PROFILE AND POST ----------------
+
 // TO HANDLE CHANGE IN PROFILE FIELD
 export async function handleChangeClickAPI(
   event,
@@ -21,7 +23,7 @@ export async function handleChangeClickAPI(
   }
 }
 
-// HANDLE UPLOAD CLICK
+// HANDLE UPLOAD CLICK PROFILE PICTURE
 export async function handleUploadClickAPI(profilePic, setUserDetails) {
   if (!profilePic) {
     alert("no image detected");
@@ -69,25 +71,26 @@ async function sendProfileImgUrl(url, setUserDetails) {
 // HOME PAGE FOR USER DATA AND PROFILE PAGE FOR POST
 export async function getPostData(userId) {
   console.log("optional id: ", userId);
-  
+
   try {
-  
     const url = userId
-      ? `http://localhost:5000/user/getUser/${userId}` 
+      ? `http://localhost:5000/user/getUser/${userId}`
       : "http://localhost:5000/user/getUrl";
 
     const response = await axios.get(url);
 
     return response;
-  } catch (error) {}
+  } catch (error) {
+    console.log("error during getPostData: ", error);
+  }
 }
 
 // GET USER DATA BASED ON USER NAME
 // export async function getUsernameData(urlUsername) {
 //   try {
-    // const response = await axios.get(
-    //   `http://localhost:5000/user/getUserNameData/${urlUsername}`
-    // );
+// const response = await axios.get(
+//   `http://localhost:5000/user/getUserNameData/${urlUsername}`
+// );
 
 //     if(typeof urlUsername === "string" ){
 //       console.log(" this is a string ", urlUsername);
@@ -98,3 +101,17 @@ export async function getPostData(userId) {
 //     console.log("error during ");
 //   }
 // }
+
+
+// DELETE POST BY SENDING PUBLIC ID AND POST LINK
+export async function deletePost(publicId,postImg){
+  try {
+   
+    const deleted = await axios.post("http://localhost:5000/user/deletePost",{publicId, postImg})
+
+    
+  } catch (error) {
+    console.log("error during deletePost: ", error);
+    
+  }
+}

@@ -13,6 +13,7 @@
     "assert": "^2.1.0",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
+    "cloudinary-build-url": "^0.2.4",
     "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",
     "jsonwebtoken": "^9.0.2",

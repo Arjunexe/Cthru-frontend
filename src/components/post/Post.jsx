@@ -8,6 +8,8 @@ import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
 import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
+import { extractPublicId } from "cloudinary-build-url";
+import { deletePost } from "../../api/prfileUploadAPI";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -67,9 +69,14 @@ function Post({ post }) {
   function handleFollow() {
     handleFollowAPI(following, setUserDetails);
   }
-
   function handleUnfollow() {
     handleUnfollowApi(following, setUserDetails);
+  }
+
+  // Move this to OptionsModal component later!
+  function handleOptions() {
+    const publicId = extractPublicId(realImg);
+    deletePost(publicId,realImg)
   }
 
   return (
@@ -105,8 +112,7 @@ function Post({ post }) {
           </div>
         </div>
 
-        <div className="bg-orange-500 cursor-pointer" >
-         
+        <div className="bg-orange-500 cursor-pointer" onClick={handleOptions}>
           <SlOptionsVertical />
         </div>
       </div>
