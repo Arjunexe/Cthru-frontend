@@ -11,7 +11,8 @@ function CreatePostModal({ PostModalProp }) {
   const [img, setImg] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+ const [croppedImg, setCroppedImg] = useState(null)
   const { setImgUploaded } = useContext(ImageContext);
 
   // Replace the function name witht handleClick | crop the image then pass it to handleClick
@@ -25,12 +26,23 @@ function CreatePostModal({ PostModalProp }) {
   }
 
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels);
+    // console.log(croppedArea, croppedAreaPixels);
+    setCroppedAreaPixels(croppedAreaPixels)
   };
 
+  //Passing image crop data to getCroppedImg
+  async function handleUpload (){
+    const croppedImage = await getCroppedImg(img, croppedAreaPixels)
+    console.log("finalImage: ",croppedImage);
+    handleClick(croppedImage)
+    setCroppedImg(croppedImage)
+    
+  }
+
   // UPLOADING IMAGE TO CLOUDINARY
-  function handleClick(event) {
-    let image = event.target.files[0];
+  function handleClick(image) {
+    // let image = event.target.files[0];
+
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "E-commerceee");
@@ -84,7 +96,7 @@ function CreatePostModal({ PostModalProp }) {
         {img && (
           <div className="cropper-wrapper">
             <div>
-              <button className="croper-button">upload</button>
+              <button className="croper-button" onClick={handleUpload}>upload</button>
             </div>
             <div className="crop-container">
               <Cropper

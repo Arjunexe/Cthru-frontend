@@ -33,7 +33,7 @@ function Post({ post }) {
   useEffect(() => {
  
     //Accessing from prop was here
-    console.log("mainDATASSSSSSSSSS: ",post);
+    // console.log("mainDATASSSSSSSSSS: ",post);
  
     setFollowing(userID)
     setrealImg(imagee); // Update state with the fetched image URL
