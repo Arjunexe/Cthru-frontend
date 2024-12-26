@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import '../profileLayouts/profileModal.css'
+import "../profileLayouts/profileModal.css";
 import Post from "../post/Post";
+import { SlOptionsVertical } from "react-icons/sl";
 
 function ProfileGrid({ post }) {
   const [img, setImage] = useState("");
@@ -30,11 +31,14 @@ function ProfileGrid({ post }) {
         <div
           className=" w-full h-full fixed top-0 left-0 flex justify-center items-center z-50 custom-modal"
           onClick={handleProfilePost}
-        >   
-         {/* CHANGE THE BLUR THING LATER */}
-         
+        >
+          {/* CHANGE THE BLUR THING LATER */}
+
           {/* Modal Content */}
-          <div className="bg-white rounded shadow-lg relative  h-modal w-1/2 items-center justify-center object-contain flex " onClick={(e) => e.stopPropagation()}>
+          <div
+            className="bg-blue-400 rounded shadow-lg relative  w-2/5 items-center justify-center object-fill flex "
+            onClick={(e) => e.stopPropagation()}
+          >
             <Post post={post} />
           </div>
         </div>

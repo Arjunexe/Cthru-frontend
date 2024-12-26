@@ -12,7 +12,7 @@ function CreatePostModal({ PostModalProp }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
- const [croppedImg, setCroppedImg] = useState(null)
+//  const [croppedImg, setCroppedImg] = useState(null)
   const { setImgUploaded } = useContext(ImageContext);
 
   // Replace the function name witht handleClick | crop the image then pass it to handleClick
@@ -34,9 +34,11 @@ function CreatePostModal({ PostModalProp }) {
   async function handleUpload (){
     const croppedImage = await getCroppedImg(img, croppedAreaPixels)
     console.log("finalImage: ",croppedImage);
+    // setCroppedImg(croppedImage)
     handleClick(croppedImage)
-    setCroppedImg(croppedImage)
     
+
+
   }
 
   // UPLOADING IMAGE TO CLOUDINARY
