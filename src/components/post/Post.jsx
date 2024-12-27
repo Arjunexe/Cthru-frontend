@@ -18,7 +18,7 @@ function Post({ post }) {
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
   const navigate = useNavigate();
-  const { userDetails, setUserDetails } = useContext(MainContext);
+  const { setImgUploaded, userDetails, setUserDetails } = useContext(MainContext);
   const followInfo = userDetails?.userFollowData?.following || [];
 
   // if(followInfo.includes(following)){
@@ -76,7 +76,7 @@ function Post({ post }) {
   // Move this to OptionsModal component later!
   function handleOptions() {
     const publicId = extractPublicId(realImg);
-    deletePost(publicId,realImg)
+    deletePost(publicId,realImg, setImgUploaded)
   }
 
   return (

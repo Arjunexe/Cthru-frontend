@@ -104,11 +104,14 @@ export async function getPostData(userId) {
 
 
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
-export async function deletePost(publicId,postImg){
+export async function deletePost(publicId,postImg, setImgUploaded){
   try {
    
     const deleted = await axios.post("http://localhost:5000/user/deletePost",{publicId, postImg})
+    console.log("its hereeeeeee: ", deleted.data.success);
+    setImgUploaded(deleted.data.success)
 
+    
     
   } catch (error) {
     console.log("error during deletePost: ", error);

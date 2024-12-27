@@ -11,8 +11,8 @@ function CreatePostModal({ PostModalProp }) {
   const [img, setImg] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
-//  const [croppedImg, setCroppedImg] = useState(null)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  //  const [croppedImg, setCroppedImg] = useState(null)
   const { setImgUploaded } = useContext(ImageContext);
 
   // Replace the function name witht handleClick | crop the image then pass it to handleClick
@@ -27,18 +27,15 @@ function CreatePostModal({ PostModalProp }) {
 
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
     // console.log(croppedArea, croppedAreaPixels);
-    setCroppedAreaPixels(croppedAreaPixels)
+    setCroppedAreaPixels(croppedAreaPixels);
   };
 
   //Passing image crop data to getCroppedImg
-  async function handleUpload (){
-    const croppedImage = await getCroppedImg(img, croppedAreaPixels)
-    console.log("finalImage: ",croppedImage);
+  async function handleUpload() {
+    const croppedImage = await getCroppedImg(img, croppedAreaPixels);
+    console.log("finalImage: ", croppedImage);
     // setCroppedImg(croppedImage)
-    handleClick(croppedImage)
-    
-
-
+    handleClick(croppedImage);
   }
 
   // UPLOADING IMAGE TO CLOUDINARY
@@ -86,26 +83,28 @@ function CreatePostModal({ PostModalProp }) {
     <div className="modal" onClick={PostModalProp}>
       <div className="modalBody" onClick={(e) => e.stopPropagation()}>
         {/* <div className="bg-blue-700 flex"> */}
-          <input
-            className="inputType"
-            name="image"
-            type="file"
-            onChange={handleCreateClick}
-          />
+        <input
+          className="inputType"
+          name="image"
+          type="file"
+          onChange={handleCreateClick}
+        />
         {/* </div> */}
         {/* Cropper Starts */}
 
         {img && (
           <div className="cropper-wrapper">
             <div>
-              <button className="croper-button" onClick={handleUpload}>upload</button>
+              <button className="croper-button" onClick={handleUpload}>
+                upload
+              </button>
             </div>
             <div className="crop-container">
               <Cropper
                 image={img}
                 crop={crop}
                 zoom={zoom}
-                aspect={4/5}
+                aspect={4 / 5}
                 onCropChange={setCrop}
                 onCropComplete={onCropComplete}
                 onZoomChange={setZoom}
