@@ -21,7 +21,7 @@ function App() {
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
-  const noSidebar =   [ "/login", "/signup", "/ProfileUpload" ]
+  const noSidebar =   [ "/login", "/signup", "/ProfileUpload", "/error" ]
   const renderSidebar = !noSidebar.includes(location.pathname)
 
   useEffect(() => {

@@ -44,12 +44,20 @@ export default function Profile() {
       if (loggedIn) {
         return;
       }
-      console.log("tttttttttttttt", urlUsername);
-      const response = await getPostData(urlUsername);
-      console.log("jjjjjjjjjjjjjjjjjjjjjj ", response.data);
-      setProfileData(response.data);
+      try {
+        const response = await getPostData(urlUsername);
+        if (response.status === 200) {
+          console.log("jjjjjjjjjjjjjjjjjjjjjj ", response);
+          setProfileData(response.data);
+        } else {
+          navigate("/error");
+        }
+      } catch (error) {
+        console.log("error during getProfile: ", error);
+        navigate("/error");
+      }
     }
-    getProfile().catch((err) => console.log("error during getProfile: ", err));
+    getProfile();
   }, [loggedIn, urlUsername]);
 
   // SET DP
@@ -71,7 +79,7 @@ export default function Profile() {
 
       setUserName(profileData?.userData?.Username);
     }
-  }, [loggedIn,profileData?.userData?.Username, userName]);
+  }, [loggedIn, profileData?.userData?.Username, userName]);
 
   // SEND PROFILEPIC TO UPLOAD FUNCTION
   useEffect(() => {

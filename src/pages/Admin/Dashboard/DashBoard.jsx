@@ -81,7 +81,7 @@ const GalleryImage = styled("img")(({ theme }) => ({
 const InstagramProfile = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [name, setName] = useState("John Doe");
+  const [name, setName] = useState("Bruhhh");
   const [bio, setBio] = useState("Passionate photographer and traveler");
   const [website, setWebsite] = useState("www.johndoe.com");
   const [followersCount, setFollowersCount] = useState(1000);

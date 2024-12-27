@@ -78,10 +78,17 @@ export async function getPostData(userId) {
       : "http://localhost:5000/user/getUrl";
 
     const response = await axios.get(url);
-
-    return response;
+    console.log("responseeeeee: ", response);
+    
+      return response;
+    
   } catch (error) {
-    console.log("error during getPostData: ", error);
+    // if (error.response.status === 404) {
+    //   setError("user not found");
+    // } else {
+      console.log("error during getPostData: ", error);
+      return(error)
+    // }
   }
 }
 
@@ -102,19 +109,16 @@ export async function getPostData(userId) {
 //   }
 // }
 
-
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
-export async function deletePost(publicId,postImg, setImgUploaded){
+export async function deletePost(publicId, postImg, setImgUploaded) {
   try {
-   
-    const deleted = await axios.post("http://localhost:5000/user/deletePost",{publicId, postImg})
+    const deleted = await axios.post("http://localhost:5000/user/deletePost", {
+      publicId,
+      postImg,
+    });
     console.log("its hereeeeeee: ", deleted.data.success);
-    setImgUploaded(deleted.data.success)
-
-    
-    
+    setImgUploaded(deleted.data.success);
   } catch (error) {
     console.log("error during deletePost: ", error);
-    
   }
 }

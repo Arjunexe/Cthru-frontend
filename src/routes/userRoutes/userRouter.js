@@ -12,7 +12,8 @@ import ProfileUpload from "../../pages/Profile/ProfileUpload";
 import ProtectedRoutes from "../../context/ProtectedRoutes";
 import NonProtectedRoutes from "../../context/nonProtectedRoutes";
 import Error from "../../pages/error/Error";
-import { adminRouter } from "../adminRoutes/adminRouter";
+import adminRouter from "../adminRoutes/adminRouter";
+// import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
 const Router = createBrowserRouter([
@@ -49,6 +50,10 @@ const Router = createBrowserRouter([
       {
         path:"profileUpload",
         element: <ProfileUpload />
+      },
+      {
+        path:"error",
+        element: <Error />
       }
     ],
   },
