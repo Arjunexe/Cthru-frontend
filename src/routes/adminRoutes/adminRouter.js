@@ -3,17 +3,13 @@ import AdminApp from "../../pages/Admin/AdminApp/AdminApp";
 import DashBoard from "../../pages/Admin/Dashboard/DashBoard";
 import UsersAdmin from "../../pages/Admin/usersAdmin/UsersAdmin";
 import Error from "../../pages/error/Error";
-import ZigFile from "../../pages/Admin/zIgfile/ZigFile"
+import ZigFile from "../../pages/Admin/zIgfile/ZigFile";
 
 export const adminRouter = {
   path: "/admin",
   element: <AdminApp />,
   errorElement: <Error />,
   children: [
-    {
-      path: "/admin",
-      element:  <AdminApp />,
-    },
     {
       path: "/admin/dashboard",
       element: <DashBoard />,
@@ -29,4 +25,4 @@ export const adminRouter = {
   ],
 };
 
-export default adminRouter
+export default adminRouter;

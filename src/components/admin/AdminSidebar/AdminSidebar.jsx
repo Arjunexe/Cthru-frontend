@@ -11,7 +11,7 @@ function AdminSidebar() {
     <div className="w-64  h-screen bg-yellow-800 text-white">
       <h1 className="text-xl font-bold p-4 bg-amber-300">Admin Panel</h1>
       <nav>
-        {links.map((link) => (
+        {links.map((link) => (    
           <NavLink
             key={link.name}
             to={link.path}
