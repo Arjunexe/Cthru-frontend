@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-function UserListBox({user}) {
-    const [ userName, setUsername ] = useState("")
-    
-useEffect(() => {
-  if(user) {
-    const username = user
-    setUsername(username)
-  } else {
-    const username = "Nothing to show"
-    setUsername(username)
-  }
+function UserListBox({ alluser }) {
+  const username = alluser.Username || "Nothing to show";
 
-},[])
-
-
-  return (
-    <div className='border bg-red-600 cursor-pointer'>{userName}</div>
-  )
+  return <div className="border bg-red-600 cursor-pointer">{username}</div>;
 }
 
-export default UserListBox
+export default UserListBox;
