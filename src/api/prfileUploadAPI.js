@@ -128,7 +128,7 @@ export async function handleLikeApi(loggedUserId, postId){
   // console.log("like data is hereeee: ", loggedUserId, postId);
   
 
-}
+} 
 
 // Handle Unlike post
 export async function handleUnlikeApi(){
