@@ -23,15 +23,10 @@ export async function handleFollowAPI(following, setUserDetails) {
               userFollowData: { ...response.data.followData } // Updates userFollowData only
             }));
             
-            
-            
         } catch (error) {
             console.log("error during handleFollowAPI :", error);
-            
         }
-        
     }
-
   }
 }
 
@@ -62,7 +57,6 @@ export async function handleUnfollowApi ( following, setUserDetails ) {
 
 
 // Get following user list
-
 export async function getFollowing(userId) {
 
   try {

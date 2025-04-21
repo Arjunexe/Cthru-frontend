@@ -9,7 +9,8 @@ import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
 import { extractPublicId } from "cloudinary-build-url";
-import { deletePost } from "../../api/prfileUploadAPI";
+import { deletePost, handleLikeApi, handleUnlikeApi } from "../../api/prfileUploadAPI";
+import { FcLike } from "react-icons/fc";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -17,9 +18,12 @@ function Post({ post }) {
   const [profilePicUrl, setDp] = useState("");
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
+  const [likeState, setLikeState] = useState("");
   const navigate = useNavigate();
-  const { setImgUploaded, userDetails, setUserDetails } = useContext(MainContext);
+  const { setImgUploaded, userDetails, setUserDetails } =
+    useContext(MainContext);
   const followInfo = userDetails?.userFollowData?.following || [];
+  const loggedUserId = userDetails?.userFollowData?.userId || "";
 
   // if(followInfo.includes(following)){
   //   setflowState(followInfo)
@@ -30,7 +34,9 @@ function Post({ post }) {
   let imagee = post.postImage;
   let usernamee = post.userId.Username;
   let profilepic = post.userId.ProfilePic;
-  let userID = post.userId._id;
+  let userID = post.userId._id; // Id of the post
+  let likesId = post.like;
+
   useEffect(() => {
     //Accessing from prop was here
     // console.log("mainDATASSSSSSSSSS: ",post);
@@ -44,6 +50,12 @@ function Post({ post }) {
       setflowState(true);
     } else {
       setflowState(false);
+    }
+
+    if (likesId.includes(loggedUserId)) {
+      setLikeState(true);
+    } else {
+      setLikeState(false);
     }
   }, [
     post.postImage,
@@ -73,10 +85,18 @@ function Post({ post }) {
     handleUnfollowApi(following, setUserDetails);
   }
 
+  // Handle Like $ unlike
+  function handleLike(){
+    handleLikeApi(loggedUserId, userID)
+  }
+  function handleUnlike(){
+    handleUnlikeApi()
+  }
+
   // Move this to OptionsModal component later!
   function handleOptions() {
     const publicId = extractPublicId(realImg);
-    deletePost(publicId,realImg, setImgUploaded)
+    deletePost(publicId, realImg, setImgUploaded);
   }
 
   return (
@@ -126,12 +146,19 @@ function Post({ post }) {
       />
       {/* FOOTER */}
       <div className="flex mt-2">
-        <div>
-          <FaRegHeart size={26} />
-        </div>
+
+        {likeState ? (
+          <div className="cursor-pointer" onClick={handleUnlike}>
+            <FcLike size={25} />
+          </div>
+        ) : (
+          <div className="cursor-pointer" onClick={handleLike}>
+            <FaRegHeart size={25} />
+          </div>
+        )}
+
         <div className="ml-3">
-          {" "}
-          <FaRegComment size={26} />
+          <FaRegComment size={25} />
         </div>
       </div>
     </div>

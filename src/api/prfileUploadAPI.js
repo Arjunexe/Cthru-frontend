@@ -122,3 +122,15 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
     console.log("error during deletePost: ", error);
   }
 }
+
+// Handle Like post
+export async function handleLikeApi(loggedUserId, postId){
+  // console.log("like data is hereeee: ", loggedUserId, postId);
+  
+
+}
+
+// Handle Unlike post
+export async function handleUnlikeApi(){
+
+}
