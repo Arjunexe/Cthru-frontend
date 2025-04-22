@@ -18,7 +18,7 @@ function Post({ post }) {
   const [profilePicUrl, setDp] = useState("");
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
-  const [likeState, setLikeState] = useState("");
+  const [likeState, setLikeState] = useState(false);
   const navigate = useNavigate();
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
@@ -34,12 +34,15 @@ function Post({ post }) {
   let imagee = post.postImage;
   let usernamee = post.userId.Username;
   let profilepic = post.userId.ProfilePic;
-  let userID = post.userId._id; // Id of the post
+  let userID = post.userId._id; // User Id of the post
+  let postId = post._id; // Id of the post
   let likesId = post.like;
 
   useEffect(() => {
     //Accessing from prop was here
     // console.log("mainDATASSSSSSSSSS: ",post);
+    // console.log("post Id :", postId);
+    
 
     setFollowing(userID);
     setrealImg(imagee); // Update state with the fetched image URL
@@ -63,7 +66,7 @@ function Post({ post }) {
     post.userId.Username,
     post.userId._id,
     followInfo,
-    following,
+    following
   ]);
 
   if (!post || post.length === 0) {
@@ -87,7 +90,7 @@ function Post({ post }) {
 
   // Handle Like $ unlike
   function handleLike(){
-    handleLikeApi(loggedUserId, userID)
+    handleLikeApi(loggedUserId, postId, setLikeState)
   }
   function handleUnlike(){
     handleUnlikeApi()
@@ -156,6 +159,7 @@ function Post({ post }) {
             <FaRegHeart size={25} />
           </div>
         )}
+
 
         <div className="ml-3">
           <FaRegComment size={25} />

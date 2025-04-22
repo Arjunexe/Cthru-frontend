@@ -79,15 +79,14 @@ export async function getPostData(userId) {
 
     const response = await axios.get(url);
     console.log("responseeeeee: ", response);
-    
-      return response;
-    
+
+    return response;
   } catch (error) {
     // if (error.response.status === 404) {
     //   setError("user not found");
     // } else {
-      console.log("error during getPostData: ", error);
-      return(error)
+    console.log("error during getPostData: ", error);
+    return error;
     // }
   }
 }
@@ -124,13 +123,19 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
 }
 
 // Handle Like post
-export async function handleLikeApi(loggedUserId, postId){
+export async function handleLikeApi(loggedUserId, postId, setLikeState) {
   // console.log("like data is hereeee: ", loggedUserId, postId);
-  
-
-} 
+  try {
+    const postLiked = await axios.post("http://localhost:5000/user/likePost", {
+      loggedUserId,
+      postId,
+    });
+    console.log("its arrived :", postLiked);
+    setLikeState(true);
+  } catch (error) {
+    console.log("error during handleLikeApi", error);
+  }
+}
 
 // Handle Unlike post
-export async function handleUnlikeApi(){
-
-}
+export async function handleUnlikeApi() {}
