@@ -9,7 +9,11 @@ import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
 import { extractPublicId } from "cloudinary-build-url";
-import { deletePost, handleLikeApi, handleUnlikeApi } from "../../api/prfileUploadAPI";
+import {
+  deletePost,
+  handleLikeApi,
+  handleUnlikeApi,
+} from "../../api/prfileUploadAPI";
 import { FcLike } from "react-icons/fc";
 
 function Post({ post }) {
@@ -42,7 +46,6 @@ function Post({ post }) {
     //Accessing from prop was here
     // console.log("mainDATASSSSSSSSSS: ",post);
     // console.log("post Id :", postId);
-    
 
     setFollowing(userID);
     setrealImg(imagee); // Update state with the fetched image URL
@@ -54,7 +57,7 @@ function Post({ post }) {
     } else {
       setflowState(false);
     }
-
+    // Like and Unlike ting---------------------
     if (likesId.includes(loggedUserId)) {
       setLikeState(true);
     } else {
@@ -66,7 +69,7 @@ function Post({ post }) {
     post.userId.Username,
     post.userId._id,
     followInfo,
-    following
+    following,
   ]);
 
   if (!post || post.length === 0) {
@@ -89,11 +92,11 @@ function Post({ post }) {
   }
 
   // Handle Like $ unlike
-  function handleLike(){
-    handleLikeApi(loggedUserId, postId, setLikeState)
+  function handleLike() {
+    handleLikeApi(loggedUserId, postId, likeState, setLikeState);
   }
-  function handleUnlike(){
-    handleUnlikeApi()
+  function handleUnlike() {
+    handleUnlikeApi();
   }
 
   // Move this to OptionsModal component later!
@@ -149,8 +152,7 @@ function Post({ post }) {
       />
       {/* FOOTER */}
       <div className="flex mt-2">
-
-        {likeState ? (
+        {/* {likeState ? (
           <div className="cursor-pointer" onClick={handleUnlike}>
             <FcLike size={25} />
           </div>
@@ -158,8 +160,13 @@ function Post({ post }) {
           <div className="cursor-pointer" onClick={handleLike}>
             <FaRegHeart size={25} />
           </div>
-        )}
+        )} */}
 
+        {/* ------------ */}
+        <div className="cursor-pointer" onClick={handleLike}>
+          {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
+        </div>
+        {/* ------------ */}
 
         <div className="ml-3">
           <FaRegComment size={25} />

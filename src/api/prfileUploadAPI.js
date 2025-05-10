@@ -123,15 +123,26 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
 }
 
 // Handle Like post
-export async function handleLikeApi(loggedUserId, postId, setLikeState) {
+export async function handleLikeApi(
+  loggedUserId,
+  postId,
+  likeState,
+  setLikeState
+) {
   // console.log("like data is hereeee: ", loggedUserId, postId);
   try {
-    const postLiked = await axios.post("http://localhost:5000/user/likePost", {
+    const postLikedOrUnliked = await axios.post("http://localhost:5000/user/likePost", {
       loggedUserId,
       postId,
+      likeState,
     });
-    console.log("its arrived :", postLiked);
-    setLikeState(true);
+
+    if(postLikedOrUnliked.data.liked){
+      setLikeState(true);
+    } else {
+      setLikeState(false);
+    }
+
   } catch (error) {
     console.log("error during handleLikeApi", error);
   }
