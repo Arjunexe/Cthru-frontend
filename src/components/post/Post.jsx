@@ -92,11 +92,8 @@ function Post({ post }) {
   }
 
   // Handle Like $ unlike
-  function handleLike() {
+  function handleLikeOrUnlike() {
     handleLikeApi(loggedUserId, postId, likeState, setLikeState);
-  }
-  function handleUnlike() {
-    handleUnlikeApi();
   }
 
   // Move this to OptionsModal component later!
@@ -150,23 +147,12 @@ function Post({ post }) {
         src={realImg}
         alt=""
       />
-      {/* FOOTER */}
+      {/* ----------Like and Comment------------ */}
       <div className="flex mt-2">
-        {/* {likeState ? (
-          <div className="cursor-pointer" onClick={handleUnlike}>
-            <FcLike size={25} />
-          </div>
-        ) : (
-          <div className="cursor-pointer" onClick={handleLike}>
-            <FaRegHeart size={25} />
-          </div>
-        )} */}
 
-        {/* ------------ */}
-        <div className="cursor-pointer" onClick={handleLike}>
+        <div className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </div>
-        {/* ------------ */}
 
         <div className="ml-3">
           <FaRegComment size={25} />

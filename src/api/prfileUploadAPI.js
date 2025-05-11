@@ -131,13 +131,13 @@ export async function handleLikeApi(
 ) {
   // console.log("like data is hereeee: ", loggedUserId, postId);
   try {
-    const postLikedOrUnliked = await axios.post("http://localhost:5000/user/likePost", {
+    const postLiked = await axios.post("http://localhost:5000/user/likePost", {
       loggedUserId,
       postId,
       likeState,
     });
 
-    if(postLikedOrUnliked.data.liked){
+    if(postLiked.data.liked){
       setLikeState(true);
     } else {
       setLikeState(false);
