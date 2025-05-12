@@ -1,11 +1,11 @@
 import "./createPostModal.css";
 import axios from "axios";
-import ImageContext from "../../context/context";
+import ImageContext from "../../../context/context";
 import { useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { jwtToken } from "../../jwt/jwt";
+import { jwtToken } from "../../../jwt/jwt";
 import Cropper from "react-easy-crop";
-import getCroppedImg from "../../utils/imageCropper";
+import getCroppedImg from "../../../utils/imageCropper";
 
 function CreatePostModal({ PostModalProp }) {
   const [img, setImg] = useState(null);

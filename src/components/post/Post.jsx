@@ -91,15 +91,20 @@ function Post({ post }) {
     handleUnfollowApi(following, setUserDetails);
   }
 
+  // Move this to OptionsModal component later!
+  // To delete post
+  function handleOptions() {
+    const publicId = extractPublicId(realImg);
+    deletePost(publicId, realImg, setImgUploaded);
+  }
+
   // Handle Like $ unlike
   function handleLikeOrUnlike() {
     handleLikeApi(loggedUserId, postId, likeState, setLikeState);
   }
 
-  // Move this to OptionsModal component later!
-  function handleOptions() {
-    const publicId = extractPublicId(realImg);
-    deletePost(publicId, realImg, setImgUploaded);
+  function handleComment() {
+    
   }
 
   return (
@@ -149,12 +154,11 @@ function Post({ post }) {
       />
       {/* ----------Like and Comment------------ */}
       <div className="flex mt-2">
-
         <div className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </div>
 
-        <div className="ml-3">
+        <div className="ml-3" onClick={handleComment}>
           <FaRegComment size={25} />
         </div>
       </div>

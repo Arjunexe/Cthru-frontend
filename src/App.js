@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/context/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
-import CreatePostModal from "./components/modals/createPostModal";
+import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
 // import UserSessionContext from "./context/sessionProvider";
