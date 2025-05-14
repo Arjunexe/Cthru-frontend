@@ -12,6 +12,9 @@ module.exports = {
       boxShadow:{
         'morph-shadow': 'inset -1px 1px 2px rgba(0, 0, 0, 0.2)'
       },
+      screens:{
+        '3xl': '1600px',
+      }
 
     },
   },

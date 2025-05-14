@@ -8,34 +8,35 @@ import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/context/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
+import CommentModal from "./components/modals/commentModal/CommentModal";
 import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
-  const { logout } = useContext(SessionContext)
+  const [commentModal, setCommentModal] = useState(false);
+  const { logout } = useContext(SessionContext);
   const { setUserDetails } = useContext(MainContext);
 
   const Token = localStorage.getItem(jwtToken);
-  const noSidebar =   [ "/login", "/signup", "/ProfileUpload", "/error" ]
-  const renderSidebar = !noSidebar.includes(location.pathname)
+  const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
+  const renderSidebar = !noSidebar.includes(location.pathname);
 
   useEffect(() => {
-    // SENDING THE useId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
+    // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
     async function getUser(userId) {
       try {
-
-        const response = await getPostData(userId)
+        const response = await getPostData(userId);
 
         // const response = await axios.get(
         //   `http://localhost:5000/user/getUser/${userId}`
         // );
 
-        const stuff = response.data.userFollowData
+        const stuff = response.data.userFollowData;
         const userData = response.data;
         const { userPost, ...filteredUserData } = userData;
         console.log("userDetails in app.js :", filteredUserData);
@@ -62,7 +63,7 @@ function App() {
         } else {
           localStorage.removeItem(jwtToken);
           localStorage.removeItem(userData);
-          logout()
+          logout();
           console.log("Token expired, navigating to login");
           navigate("/login");
         }
@@ -74,27 +75,34 @@ function App() {
       navigate("/login");
     }
   }, [Token, navigate, setUserDetails, logout]);
-// Open and Close Modal
-  function openCreateModal() {
-    setPostModal(true);
+
+  // TOGGLE CREATE MODAL
+  function toggleCreateModal() {
+    setPostModal((prev) => !prev);
   }
 
-  function closeCreateModal() {
-    setPostModal(false);
+  // TOGGLE COMMENT MODAL
+  function toggleCommentModal() {
+    setCommentModal((prev) => !prev);
   }
 
   return (
     <>
       <div className="flex">
         {renderSidebar && (
-        <div className="hidden sm:block bg-neutral-700">
-          <Siidebar openCreateModal={openCreateModal} />
-          {postModal && <CreatePostModal PostModalProp={closeCreateModal} />}
-        </div> )}
-        {/* <UserSessionContext> */}
-           <Outlet />
-        {/* </UserSessionContext> */} 
-       
+          <div className="hidden sm:block bg-neutral-700">
+            <Siidebar openCreateModal={toggleCreateModal} />
+            {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
+          </div>
+        )}
+
+        {commentModal && (
+          <div>
+            <CommentModal closeCommentModal={toggleCommentModal}/>
+          </div>
+        )}
+
+        <Outlet context={{toggleCommentModal}}/>
       </div>
     </>
   );

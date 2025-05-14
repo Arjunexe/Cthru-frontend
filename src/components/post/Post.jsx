@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../post/Post.css";
 // import MainContext from "../../hooks/context";
+import { useOutletContext } from "react-router-dom";
 import ProfileField from "../profileLayouts/ProfileField";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
@@ -9,12 +10,9 @@ import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
 import { extractPublicId } from "cloudinary-build-url";
-import {
-  deletePost,
-  handleLikeApi,
-  handleUnlikeApi,
-} from "../../api/prfileUploadAPI";
+import { deletePost, handleLikeApi } from "../../api/prfileUploadAPI";
 import { FcLike } from "react-icons/fc";
+import CommentModal from "../modals/commentModal/CommentModal";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -24,6 +22,7 @@ function Post({ post }) {
   const [flowstate, setflowState] = useState("");
   const [likeState, setLikeState] = useState(false);
   const navigate = useNavigate();
+  const { toggleCommentModal } = useOutletContext()
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
   const followInfo = userDetails?.userFollowData?.following || [];
@@ -103,12 +102,10 @@ function Post({ post }) {
     handleLikeApi(loggedUserId, postId, likeState, setLikeState);
   }
 
-  function handleComment() {
-    
-  }
+  function handleComment() {}
 
   return (
-    <div className="mt-5 ">
+    <div className="mt-5 bg-yellow-300">
       {/* <div className="flex {*bg-orange-700*} "> */}
       <div className=" flex items-center space-x-2 justify-between">
         {/* profile pic & userName */}
@@ -158,8 +155,9 @@ function Post({ post }) {
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </div>
 
-        <div className="ml-3" onClick={handleComment}>
+        <div className="ml-3" onClick={toggleCommentModal}>
           <FaRegComment size={25} />
+          {/* <CommentModal /> */}
         </div>
       </div>
     </div>
