@@ -157,7 +157,6 @@ function Post({ post }) {
 
         <div className="ml-3" onClick={toggleCommentModal}>
           <FaRegComment size={25} />
-          {/* <CommentModal /> */}
         </div>
       </div>
     </div>

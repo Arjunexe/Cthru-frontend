@@ -7,6 +7,8 @@ import { jwtDecode } from "jwt-decode";
 import MainContext from "../../context/context";
 import SessionContext from "../../context/SessionContext";
 
+
+// THE PAGE AFTER THE SIGNUP
 function ProfileUpload() {
   const [profilePic, setProfilePic] = useState("");
   const [profilePicUrl, setProfilePicUrl] = useState("");
