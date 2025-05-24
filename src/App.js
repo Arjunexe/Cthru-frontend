@@ -15,13 +15,13 @@ import { getPostData } from "./api/prfileUploadAPI";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [postModal, setPostModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
+  const [commentId, setCommentId] = useState(null)
   const { logout } = useContext(SessionContext);
   const { setUserDetails } = useContext(MainContext);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
   const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
   const renderSidebar = !noSidebar.includes(location.pathname);
@@ -82,9 +82,12 @@ function App() {
   }
 
   // TOGGLE COMMENT MODAL
-  function toggleCommentModal() {
+  function toggleCommentModal(data) {
     setCommentModal((prev) => !prev);
+    setCommentId(data)
+    
   }
+
 
   return (
     <>
@@ -98,11 +101,11 @@ function App() {
 
         {commentModal && (
           <div>
-            <CommentModal closeCommentModal={toggleCommentModal}/>
+            <CommentModal closeCommentModal={toggleCommentModal} commentId={commentId} />
           </div>
         )}
 
-        <Outlet context={{toggleCommentModal}}/>
+        <Outlet context={{ toggleCommentModal }} />
       </div>
     </>
   );

@@ -131,13 +131,14 @@ export async function handleLikeApi(
 }
 
 // HANDLE COMMENT POST
-export async function handleComment(comment) {
+export async function handleComment(comment, commentId) {
   try {
     
     const commented = await axios.post(
       "http://localhost:5000/user/commentPost",
       {
         comment,
+        commentId
       }
     );
   } catch (error) {

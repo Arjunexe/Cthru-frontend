@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import Comment from "../../comment/Comment";
 import { handleComment } from "../../../api/prfileUploadAPI";
 
-function CommentModal({ closeCommentModal }) {
+function CommentModal({ closeCommentModal, commentId }) {
   const [comment, setComment] = useState("");
 
   function handlePostClick() {
     if (comment === "") {
       return;
     } else {
-      handleComment(comment)
+      handleComment(comment, commentId)
+      
+      
       setComment("");
     }
   }

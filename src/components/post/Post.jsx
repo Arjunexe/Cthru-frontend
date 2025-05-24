@@ -22,7 +22,8 @@ function Post({ post }) {
   const [flowstate, setflowState] = useState("");
   const [likeState, setLikeState] = useState(false);
   const navigate = useNavigate();
-  const { toggleCommentModal } = useOutletContext()
+  const { toggleCommentModal } = useOutletContext();
+
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
   const followInfo = userDetails?.userFollowData?.following || [];
@@ -155,7 +156,15 @@ function Post({ post }) {
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </div>
 
-        <div className="ml-3" onClick={toggleCommentModal}>
+        <div
+          className="ml-3"
+          onClick={() =>
+            toggleCommentModal({
+              postId,
+              loggedUserId,
+            })
+          }
+        >
           <FaRegComment size={25} />
         </div>
       </div>
