@@ -91,23 +91,6 @@ export async function getPostData(userId) {
   }
 }
 
-// GET USER DATA BASED ON USER NAME
-// export async function getUsernameData(urlUsername) {
-//   try {
-// const response = await axios.get(
-//   `http://localhost:5000/user/getUserNameData/${urlUsername}`
-// );
-
-//     if(typeof urlUsername === "string" ){
-//       console.log(" this is a string ", urlUsername);
-//     }
-
-//     console.log("datassss: ", urlUsername);
-//   } catch (error) {
-//     console.log("error during ");
-//   }
-// }
-
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
 export async function deletePost(publicId, postImg, setImgUploaded) {
   try {
@@ -137,16 +120,27 @@ export async function handleLikeApi(
       likeState,
     });
 
-    if(postLiked.data.liked){
+    if (postLiked.data.liked) {
       setLikeState(true);
     } else {
       setLikeState(false);
     }
-
   } catch (error) {
-    console.log("error during handleLikeApi", error);
+    console.log("error during handleLikeApi: ", error);
   }
 }
 
-// Handle Unlike post
-export async function handleUnlikeApi() {}
+// HANDLE COMMENT POST
+export async function handleComment(comment) {
+  try {
+    
+    const commented = await axios.post(
+      "http://localhost:5000/user/commentPost",
+      {
+        comment,
+      }
+    );
+  } catch (error) {
+    console.log("error during handlComment: ", error);
+  }
+}

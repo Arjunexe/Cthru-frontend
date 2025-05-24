@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Comment from "../../comment/Comment";
+import { handleComment } from "../../../api/prfileUploadAPI";
 
 function CommentModal({ closeCommentModal }) {
   const [comment, setComment] = useState("");
 
-  function handleComment() {
+  function handlePostClick() {
     if (comment === "") {
       return;
     } else {
-      console.log(comment);
-      
+      handleComment(comment)
       setComment("");
     }
   }
@@ -39,7 +39,7 @@ function CommentModal({ closeCommentModal }) {
             placeholder="Write a comment..."
           ></textarea>
           <button
-            onClick={handleComment}
+            onClick={handlePostClick}
             className="absolute bottom-2 right-2 bg-blue-500 text-white px-4 py-2 rounded font-medium hover:bg-red-600"
           >
             Post
