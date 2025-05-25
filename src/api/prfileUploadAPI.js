@@ -133,15 +133,34 @@ export async function handleLikeApi(
 // HANDLE COMMENT POST
 export async function handleComment(comment, commentId) {
   try {
-    
     const commented = await axios.post(
       "http://localhost:5000/user/commentPost",
       {
         comment,
-        commentId
+        commentId,
       }
     );
   } catch (error) {
     console.log("error during handlComment: ", error);
+  }
+}
+
+// GET COMMENT LIST
+export async function getCommentList(commentId, setCommentList) {
+  try {
+    const { postId } = commentId;
+
+    const commentList = await axios.get(
+      "http://localhost:5000/user/getCommentList",
+      {
+        params: {
+          postId: postId,
+        },
+      }
+    );
+    setCommentList(commentList.data.commentList)
+    // console.log("finally: ", commentList.data.commentList);
+  } catch (error) {
+    console.log("error during getCommentList: ", error);
   }
 }

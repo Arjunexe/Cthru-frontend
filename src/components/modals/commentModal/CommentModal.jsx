@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Comment from "../../comment/Comment";
-import { handleComment } from "../../../api/prfileUploadAPI";
+import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
 
 function CommentModal({ closeCommentModal, commentId }) {
   const [comment, setComment] = useState("");
+  const [commentList, setCommentList] = useState([]);
 
-  function handlePostClick() {
-    if (comment === "") {
-      return;
-    } else {
-      handleComment(comment, commentId)
-      
-      
+  // FETCH COMMENT LIST
+  useEffect(() => {
+    async function handleCommentList() {
+      try {
+        await getCommentList(commentId, setCommentList);
+      } catch (error) {
+        console.log("error during handleCommentList: ", error);
+      }
+    }
+
+    handleCommentList();
+  }, [commentId]);
+
+  // SAVE COMMENT TO DB
+  async function handlePostClick() {
+    if (comment === "") return;
+    try {
+      await handleComment(comment, commentId);
       setComment("");
+    } catch (error) {
+      console.log("error during handlePostClick: ", error);
     }
   }
 
@@ -27,7 +41,10 @@ function CommentModal({ closeCommentModal, commentId }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div>
-          <Comment />
+          {commentList.map((comment, index) =>(
+             <Comment key={index} comment={comment} />
+          ))}
+         
         </div>
 
         <div className="bg-orange-400">
