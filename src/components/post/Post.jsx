@@ -12,7 +12,6 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { extractPublicId } from "cloudinary-build-url";
 import { deletePost, handleLikeApi } from "../../api/prfileUploadAPI";
 import { FcLike } from "react-icons/fc";
-import CommentModal from "../modals/commentModal/CommentModal";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -77,7 +76,7 @@ function Post({ post }) {
   }
 
   function handleProfileClick() {
-    console.log("random profile Id: ", usernamee);
+    // console.log("random profile Id: ", usernamee);
     // it doesn't work when its 671fad17ad017a8d3070fbe7
     const urlUsername = usernamee;
     navigate(`/${urlUsername}`);

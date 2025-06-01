@@ -8,23 +8,32 @@ function CommentModal({ closeCommentModal, commentId }) {
 
   // FETCH COMMENT LIST
   useEffect(() => {
+    console.log(commentId);
+
     async function handleCommentList() {
       try {
-        await getCommentList(commentId, setCommentList);
+        await getCommentList(commentId.postId, setCommentList);
       } catch (error) {
         console.log("error during handleCommentList: ", error);
       }
     }
-
     handleCommentList();
+
+    // return () => {
+    //   setCommentList([]);
+    // };
   }, [commentId]);
 
   // SAVE COMMENT TO DB
   async function handlePostClick() {
     if (comment === "") return;
+
     try {
       await handleComment(comment, commentId);
+      console.log("its not here mate");
+      
       setComment("");
+      await getCommentList(commentId, setCommentList);
     } catch (error) {
       console.log("error during handlePostClick: ", error);
     }
@@ -41,10 +50,9 @@ function CommentModal({ closeCommentModal, commentId }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div>
-          {commentList.map((comment, index) =>(
-             <Comment key={index} comment={comment} />
+          {commentList.map((comment) => (
+            <Comment key={comment._id} comment={comment} />
           ))}
-         
         </div>
 
         <div className="bg-orange-400">

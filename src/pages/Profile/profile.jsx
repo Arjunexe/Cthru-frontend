@@ -47,7 +47,6 @@ export default function Profile() {
       try {
         const response = await getPostData(urlUsername);
         if (response.status === 200) {
-          console.log("jjjjjjjjjjjjjjjjjjjjjj ", response);
           setProfileData(response.data);
         } else {
           navigate("/error");

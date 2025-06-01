@@ -140,25 +140,27 @@ export async function handleComment(comment, commentId) {
         commentId,
       }
     );
+    return true;
   } catch (error) {
     console.log("error during handlComment: ", error);
   }
 }
 
 // GET COMMENT LIST
-export async function getCommentList(commentId, setCommentList) {
+export async function getCommentList(postId, setCommentList) {
   try {
-    const { postId } = commentId;
+    // const { postId } = commentId;
 
     const commentList = await axios.get(
       "http://localhost:5000/user/getCommentList",
       {
         params: {
-          postId: postId,
+          postId,
         },
       }
     );
-    setCommentList(commentList.data.commentList)
+    setCommentList(commentList.data.commentList);
+  
     // console.log("finally: ", commentList.data.commentList);
   } catch (error) {
     console.log("error during getCommentList: ", error);
