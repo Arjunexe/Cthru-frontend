@@ -2,38 +2,42 @@ import React, { useEffect, useState } from "react";
 import Comment from "../../comment/Comment";
 import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
 
-function CommentModal({ closeCommentModal, commentId }) {
+function CommentModal({ onClose, postId, loggedUserId }) {
+  // commentId
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
 
   // FETCH COMMENT LIST
   useEffect(() => {
-    console.log(commentId);
+    // console.log(commentId);
 
-    async function handleCommentList() {
+    async function fetchCommentList() {
       try {
-        await getCommentList(commentId.postId, setCommentList);
+        const list = await getCommentList(postId);
+        console.log("fffffffffff", list);
+
+        setCommentList(list);
       } catch (error) {
         console.log("error during handleCommentList: ", error);
       }
     }
-    handleCommentList();
+    fetchCommentList();
 
     // return () => {
     //   setCommentList([]);
     // };
-  }, [commentId]);
+  }, [postId]);
 
   // SAVE COMMENT TO DB
   async function handlePostClick() {
     if (comment === "") return;
 
     try {
-      await handleComment(comment, commentId);
-      console.log("its not here mate");
-      
+      await handleComment(comment, { postId, loggedUserId });
       setComment("");
-      await getCommentList(commentId, setCommentList);
+      const updatedList = await getCommentList(postId);
+      setCommentList(updatedList);
+      // await getCommentList(commentId, setCommentList);
     } catch (error) {
       console.log("error during handlePostClick: ", error);
     }
@@ -42,7 +46,7 @@ function CommentModal({ closeCommentModal, commentId }) {
   return (
     <div
       className="w-full h-full fixed top-0 left-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
-      onClick={closeCommentModal}
+      onClick={onClose}
     >
       {/* MODAL BODY */}
       <div

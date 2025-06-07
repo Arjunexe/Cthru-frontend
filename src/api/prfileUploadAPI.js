@@ -130,24 +130,8 @@ export async function handleLikeApi(
   }
 }
 
-// HANDLE COMMENT POST
-export async function handleComment(comment, commentId) {
-  try {
-    const commented = await axios.post(
-      "http://localhost:5000/user/commentPost",
-      {
-        comment,
-        commentId,
-      }
-    );
-    return true;
-  } catch (error) {
-    console.log("error during handlComment: ", error);
-  }
-}
-
 // GET COMMENT LIST
-export async function getCommentList(postId, setCommentList) {
+export async function getCommentList(postId) {
   try {
     // const { postId } = commentId;
 
@@ -159,10 +143,34 @@ export async function getCommentList(postId, setCommentList) {
         },
       }
     );
-    setCommentList(commentList.data.commentList);
+    return commentList.data.commentList;
+    // setCommentList(commentList.data.commentList);
   
     // console.log("finally: ", commentList.data.commentList);
   } catch (error) {
     console.log("error during getCommentList: ", error);
   }
 }
+
+
+// POST A COMMENT
+export async function handleComment(comment, commentId) {
+  try {
+    
+    const commented = await axios.post(
+      "http://localhost:5000/user/commentPost",
+      {
+        comment,
+        commentId,
+      }
+    );
+        console.log("I am here");
+
+    return true;
+  } catch (error) {
+    console.log("error during handlComment: ", error);
+    throw error;
+  }
+}
+
+

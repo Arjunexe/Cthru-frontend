@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/context/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
 import Siidebar from "./components/sidebar/Sidebar";
-import CommentModal from "./components/modals/commentModal/CommentModal";
+// import CommentModal from "./components/modals/commentModal/CommentModal";
 import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
@@ -16,8 +16,8 @@ import { getPostData } from "./api/prfileUploadAPI";
 
 function App() {
   const [postModal, setPostModal] = useState(false);
-  const [commentModal, setCommentModal] = useState(false);
-  const [commentId, setCommentId] = useState(null)
+  // const [commentModal, setCommentModal] = useState(false);
+  // const [commentId, setCommentId] = useState(null)
   const { logout } = useContext(SessionContext);
   const { setUserDetails } = useContext(MainContext);
   const location = useLocation();
@@ -82,11 +82,11 @@ function App() {
   }
 
   // TOGGLE COMMENT MODAL
-  function toggleCommentModal(data) {
-    setCommentModal((prev) => !prev);
-    setCommentId(data)
+  // function toggleCommentModal(data) {
+  //   setCommentModal((prev) => !prev);
+  //   setCommentId(data)
     
-  }
+  // }
 
 
   return (
@@ -99,13 +99,14 @@ function App() {
           </div>
         )}
 
-        {commentModal && (
+        {/* {commentModal && (
           <div>
             <CommentModal closeCommentModal={toggleCommentModal} commentId={commentId} />
           </div>
-        )}
+        )} */}
 
-        <Outlet context={{ toggleCommentModal }} />
+        {/* <Outlet context={{ toggleCommentModal }} /> */}
+        <Outlet />
       </div>
     </>
   );

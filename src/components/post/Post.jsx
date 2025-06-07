@@ -12,6 +12,9 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { extractPublicId } from "cloudinary-build-url";
 import { deletePost, handleLikeApi } from "../../api/prfileUploadAPI";
 import { FcLike } from "react-icons/fc";
+import PortalModal from "../modals/commentModal/PortalModal";
+import Exampl from "../modals/commentModal/exampl";
+import CommentModal from "../modals/commentModal/CommentModal";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -20,8 +23,10 @@ function Post({ post }) {
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
   const [likeState, setLikeState] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [commentModal, setCommentModal] = useState(false);
   const navigate = useNavigate();
-  const { toggleCommentModal } = useOutletContext();
+  // const { toggleCommentModal } = useOutletContext();
 
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
@@ -154,18 +159,36 @@ function Post({ post }) {
         <div className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </div>
-
+        {/* -----------Comment--------- */}
         <div
           className="ml-3"
-          onClick={() =>
-            toggleCommentModal({
-              postId,
-              loggedUserId,
-            })
-          }
+          // onClick={() =>
+          //   toggleCommentModal({
+          //     postId,
+          //     loggedUserId,
+          //   })
+          // }
+          onClick={() => setCommentModal(true)}
         >
           <FaRegComment size={25} />
         </div>
+
+        {commentModal && (
+          <CommentModal
+            onClose={() => setCommentModal(false)}
+            postId={postId}
+            loggedUserId={loggedUserId}
+          />
+        )}
+        {/* 
+        <button className="bg-blue-600" onClick={() => setCommentModal(true)}>
+          Close
+        </button>
+
+        <button className="bg-red-600" onClick={() => setModal(true)}>
+          Close
+        </button>
+        {modal && <Exampl onClose={() => setModal(false)} />} */}
       </div>
     </div>
   );
