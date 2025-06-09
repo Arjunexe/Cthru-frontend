@@ -30,7 +30,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
 
   // SAVE COMMENT TO DB
   async function handlePostClick() {
-    if (comment === "") return;
+    if (comment.trim() === "") return;
 
     try {
       await handleComment(comment, { postId, loggedUserId });

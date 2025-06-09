@@ -139,24 +139,22 @@ export async function getCommentList(postId) {
       "http://localhost:5000/user/getCommentList",
       {
         params: {
-          postId,
+          postId
         },
       }
     );
     return commentList.data.commentList;
     // setCommentList(commentList.data.commentList);
-  
+
     // console.log("finally: ", commentList.data.commentList);
   } catch (error) {
     console.log("error during getCommentList: ", error);
   }
 }
 
-
 // POST A COMMENT
 export async function handleComment(comment, commentId) {
   try {
-    
     const commented = await axios.post(
       "http://localhost:5000/user/commentPost",
       {
@@ -164,7 +162,7 @@ export async function handleComment(comment, commentId) {
         commentId,
       }
     );
-        console.log("I am here");
+    console.log("I am here");
 
     return true;
   } catch (error) {
@@ -172,5 +170,3 @@ export async function handleComment(comment, commentId) {
     throw error;
   }
 }
-
-
