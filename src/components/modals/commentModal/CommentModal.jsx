@@ -50,16 +50,16 @@ function CommentModal({ onClose, postId, loggedUserId }) {
     >
       {/* MODAL BODY */}
       <div
-        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-[10px] bg-[rgba(255,255,255,0.25)] shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.18)]"
+        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-[10px] bg-[rgba(255,255,255,0.25)] shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.18)] "
         onClick={(e) => e.stopPropagation()}
       >
-        <div>
+        <div className="overflow-auto "> 
           {commentList.map((comment) => (
             <Comment key={comment._id} comment={comment} />
           ))}
         </div>
 
-        <div className="bg-orange-400">
+        <div className="bg-orange-400 ">
           <textarea
             className="bg-[rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none text-black font-medium absolute bottom-2 right-20 left-2 rounded-md"
             name="cSection"

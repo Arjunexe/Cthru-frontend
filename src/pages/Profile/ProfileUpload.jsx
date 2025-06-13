@@ -63,7 +63,7 @@ function ProfileUpload() {
         const userId = decode.userId;
         // SENDING IMAGE TO BACKEND ACCORDING TO THE USER ID
         const response = await axios.post(
-          "http://localhost:5000/user/profileImgUrl",
+          "/user/profileImgUrl",
           { ProfilePic: url, userId: userId }
         );
         console.log("backend img url response :", response);

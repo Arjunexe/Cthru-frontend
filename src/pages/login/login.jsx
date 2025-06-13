@@ -13,7 +13,7 @@ import SessionContext from "../../context/SessionContext";
 
 function Login() {
   const navigate = useNavigate();
-  const { login, setIsLoggedIn } = useContext(SessionContext)
+  const { login, setIsLoggedIn } = useContext(SessionContext);
   const [emailOrmobile, seTEmailPassword] = useState("");
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
@@ -24,24 +24,18 @@ function Login() {
   //     navigate("/");
   //   }
   // },[navigate, storedToken]);
- 
- 
+
   async function handleClick(e) {
     try {
       e.preventDefault();
       const userData = { emailOrmobile, password };
       if (isitEmpty({ ...userData, setError })) {
-        const response = await axios.post(
-          "http://localhost:5000/user/login",
-          userData
-        );
+        const response = await axios.post("/user/login", userData);
         localStorage.setItem(jwtToken, response.data.token);
-        
-        // setIsLoggedIn(true)
-        login()
-        navigate("/");
-       
 
+        // setIsLoggedIn(true)
+        login();
+        navigate("/");
       } else {
         console.log("login- didn't go through");
       }

@@ -68,7 +68,7 @@ function CreatePostModal({ PostModalProp }) {
         const decode = jwtDecode(Token);
         const userId = decode.userId;
         // SENDING IMAGE LINK AND USER ID
-        const response = await axios.post("http://localhost:5000/user/imgUrl", {
+        const response = await axios.post("/user/imgUrl", {
           imgUrl: url,
           userId: userId,
         });

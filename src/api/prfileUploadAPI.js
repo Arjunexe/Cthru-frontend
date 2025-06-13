@@ -55,10 +55,10 @@ async function sendProfileImgUrl(url, setUserDetails) {
     try {
       const decode = jwtDecode(Token);
       const userId = decode.userId;
-      const response = await axios.post(
-        "http://localhost:5000/user/profileImgUrl",
-        { ProfilePic: url, userId: userId }
-      );
+      const response = await axios.post("/user/profileImgUrl", {
+        ProfilePic: url,
+        userId: userId,
+      });
       // COPIES response.data.ProfilePicData INTO userData OBJECT( ALSO INSIDE ANOTHER OBJECT )
       setUserDetails({ userData: { ...response.data.ProfilePicData } });
       return response;
@@ -73,9 +73,7 @@ export async function getPostData(userId) {
   console.log("optional id: ", userId);
 
   try {
-    const url = userId
-      ? `http://localhost:5000/user/getUser/${userId}`
-      : "http://localhost:5000/user/getUrl";
+    const url = userId ? `/user/getUser/${userId}` : "/user/getUrl";
 
     const response = await axios.get(url);
     console.log("responseeeeee: ", response);
@@ -94,7 +92,7 @@ export async function getPostData(userId) {
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
 export async function deletePost(publicId, postImg, setImgUploaded) {
   try {
-    const deleted = await axios.post("http://localhost:5000/user/deletePost", {
+    const deleted = await axios.post("/user/deletePost", {
       publicId,
       postImg,
     });
@@ -114,7 +112,7 @@ export async function handleLikeApi(
 ) {
   // console.log("like data is hereeee: ", loggedUserId, postId);
   try {
-    const postLiked = await axios.post("http://localhost:5000/user/likePost", {
+    const postLiked = await axios.post("/user/likePost", {
       loggedUserId,
       postId,
       likeState,
@@ -135,14 +133,11 @@ export async function getCommentList(postId) {
   try {
     // const { postId } = commentId;
 
-    const commentList = await axios.get(
-      "http://localhost:5000/user/getCommentList",
-      {
-        params: {
-          postId
-        },
-      }
-    );
+    const commentList = await axios.get("/user/getCommentList", {
+      params: {
+        postId,
+      },
+    });
     return commentList.data.commentList;
     // setCommentList(commentList.data.commentList);
 
@@ -155,13 +150,10 @@ export async function getCommentList(postId) {
 // POST A COMMENT
 export async function handleComment(comment, commentId) {
   try {
-    const commented = await axios.post(
-      "http://localhost:5000/user/commentPost",
-      {
-        comment,
-        commentId,
-      }
-    );
+    const commented = await axios.post("/user/commentPost", {
+      comment,
+      commentId,
+    });
     console.log("I am here");
 
     return true;
