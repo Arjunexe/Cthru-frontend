@@ -3,14 +3,11 @@ import Comment from "../../comment/Comment";
 import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
 
 function CommentModal({ onClose, postId, loggedUserId }) {
-  // commentId
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
 
   // FETCH COMMENT LIST
   useEffect(() => {
-    // console.log(commentId);
-
     async function fetchCommentList() {
       try {
         const list = await getCommentList(postId);
@@ -22,13 +19,9 @@ function CommentModal({ onClose, postId, loggedUserId }) {
       }
     }
     fetchCommentList();
-
-    // return () => {
-    //   setCommentList([]);
-    // };
   }, [postId]);
 
-  // SAVE COMMENT TO DB
+  // POST COMMENT | SAVE COMMENT TO DB
   async function handlePostClick() {
     if (comment.trim() === "") return;
 
@@ -37,7 +30,6 @@ function CommentModal({ onClose, postId, loggedUserId }) {
       setComment("");
       const updatedList = await getCommentList(postId);
       setCommentList(updatedList);
-      // await getCommentList(commentId, setCommentList);
     } catch (error) {
       console.log("error during handlePostClick: ", error);
     }
@@ -53,7 +45,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
         className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-[10px] bg-[rgba(255,255,255,0.25)] shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.18)] "
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="overflow-auto "> 
+        <div className="overflow-auto ">
           {commentList.map((comment) => (
             <Comment key={comment._id} comment={comment} />
           ))}
