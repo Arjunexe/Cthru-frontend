@@ -129,13 +129,16 @@ export async function handleLikeApi(
 }
 
 // GET COMMENT LIST
-export async function getCommentList(postId) {
+export async function getCommentList(postId, pageNum) {
   try {
     const commentList = await axios.get("/user/getCommentList", {
       params: {
-        postId,
+        postId: postId,
+        pageNum: pageNum,
       },
     });
+    console.log("somehow :", commentList);
+
     return commentList.data.commentList;
   } catch (error) {
     console.log("error during getCommentList: ", error);
