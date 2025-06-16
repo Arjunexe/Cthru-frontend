@@ -131,17 +131,12 @@ export async function handleLikeApi(
 // GET COMMENT LIST
 export async function getCommentList(postId) {
   try {
-    // const { postId } = commentId;
-
     const commentList = await axios.get("/user/getCommentList", {
       params: {
         postId,
       },
     });
     return commentList.data.commentList;
-    // setCommentList(commentList.data.commentList);
-
-    // console.log("finally: ", commentList.data.commentList);
   } catch (error) {
     console.log("error during getCommentList: ", error);
   }

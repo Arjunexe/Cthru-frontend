@@ -1,36 +1,21 @@
-// import React, { useEffect, useState } from "react";
-// import "../egxample/xample.css";
-
-// export default function Xample() {
-//   const [count, setCount] = useState(false);
-//   const [hi, setHi] = useState("");
-
-//   useEffect(() => {
-//     if (!count) {
-//       setHi("hello");
-//     } else {
-//       setHi("myello");
-//     }
-//   },[count]);
-
-//   function handleClick() {
-//     setCount((prevcount) => !prevcount);
-//   }
-
-//   return (
-//     <div>
-//       <button className={hi}>hello</button>
-//       <button onClick={handleClick}>Press</button>
-//     </div>
-//   );
-// }
-
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 
 function Xample() {
   const [display, setDisplay] = useState(false);
+  const count = useRef(0);
+
+  useEffect(() => {
+    count.current+=1
+  
+  console.log("xampleeee: ", count.current);
+  
+  })
+  
+
+   
+ 
   function handlClick() {
     setDisplay(true);
   }
@@ -41,12 +26,14 @@ function Xample() {
 
   return (
     <div
-      className="my-cardBody"
+      className=" h-screen w-screen p-44 bg-stone-600 "
       style={{ overflow: display ? "hidden" : "auto" }}
     >
-      <button onClick={handlClick}>CLick me</button>
+      <button className="bg-amber-400 rounded p-1" onClick={handlClick}>
+        CLick me
+      </button>
       <Card showModal={display} close={closeModal} />
-      <h1 className=" bg-primary">
+      <h1 className="">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam ab
         fuga quaerat quo voluptas labore voluptatem, dolor officiis blanditiis
         reiciendis excepturi nobis hic amet beatae iste facere porro, et aut!
@@ -57,7 +44,7 @@ function Xample() {
         iure odit impedit delectus. Eius !
       </h1>
       <br />
-      <div className="bg-primary">hi</div>
+      <div className="">hi</div>
 
       <div>
         <ProfileField />
