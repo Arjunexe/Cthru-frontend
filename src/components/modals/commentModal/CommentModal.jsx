@@ -14,6 +14,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
   async function fetchCommentList(pageNum) {
     try {
       const list = await getCommentList(postId, pageNum);
+      console.log("comment List :", list);
 
       setPage(pageNum + 1);
       setCommentList((prev) => [...prev, ...list]);
@@ -35,11 +36,19 @@ function CommentModal({ onClose, postId, loggedUserId }) {
     if (comment.trim() === "") return;
 
     try {
-      await handleComment(comment, { postId, loggedUserId });
+      const commentPosted = await handleComment(comment, {
+        postId,
+        loggedUserId,
+      });
       setComment("");
-      
-      // const updatedList = await fetchCommentList(postId, 1);
-      // setCommentList(updatedList);
+      if (commentPosted) {
+        const updatedList = await getCommentList(postId, 1);
+        if (updatedList) {
+          setCommentList(updatedList);
+          setPage(2);
+          setHasmore(true);
+        }
+      }
     } catch (error) {
       console.log("error during handlePostClick: ", error);
     }
@@ -56,7 +65,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/*---------- Infinite scroll -----------*/}
-        <div id="parentScroll" className="overflow-auto mb-8">
+        <div id="parentScroll" className="overflow-auto no-scrollbar mb-8">
           <InfiniteScroll
             dataLength={commentList.length}
             next={() => fetchCommentList(page)}

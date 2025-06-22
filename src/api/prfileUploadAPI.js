@@ -137,7 +137,7 @@ export async function getCommentList(postId, pageNum) {
         pageNum: pageNum,
       },
     });
-    console.log("somehow :", commentList);
+    console.log("somehow :", commentList.data.commentList);
 
     return commentList.data.commentList;
   } catch (error) {
@@ -152,7 +152,7 @@ export async function handleComment(comment, commentId) {
       comment,
       commentId,
     });
-    console.log("I am here");
+    console.log("I am here :", commented.data);
 
     return true;
   } catch (error) {
