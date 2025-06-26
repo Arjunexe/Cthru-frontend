@@ -15,6 +15,7 @@ import { FcLike } from "react-icons/fc";
 import PortalModal from "../modals/commentModal/PortalModal";
 import Exampl from "../modals/commentModal/exampl";
 import CommentModal from "../modals/commentModal/CommentModal";
+import OptionsModal from "../modals/optionsModal/OptionsModal";
 
 function Post({ post }) {
   const [realImg, setrealImg] = useState("");
@@ -25,6 +26,7 @@ function Post({ post }) {
   const [likeState, setLikeState] = useState(false);
   const [modal, setModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
+  const [optionsModal, setOptionsModal] = useState(false);
   const navigate = useNavigate();
   // const { toggleCommentModal } = useOutletContext();
 
@@ -48,9 +50,6 @@ function Post({ post }) {
 
   useEffect(() => {
     //Accessing from prop was here
-    // console.log("mainDATASSSSSSSSSS: ",post);
-    // console.log("post Id :", postId);
-
     setFollowing(userID);
     setrealImg(imagee); // Update state with the fetched image URL
     setUsername(usernamee);
@@ -61,7 +60,7 @@ function Post({ post }) {
     } else {
       setflowState(false);
     }
-    // Like and Unlike ting---------------------
+    // --------Like and Unlike ting---------
     if (likesId.includes(loggedUserId)) {
       setLikeState(true);
     } else {
@@ -142,7 +141,12 @@ function Post({ post }) {
           </div>
         </div>
 
-        <div className="bg-orange-500 cursor-pointer" onClick={handleOptions}>
+        <div
+          className="bg-lime-700 cursor-pointer"
+          onClick={() => {
+            setOptionsModal(true);
+          }}
+        >
           <SlOptionsVertical />
         </div>
       </div>
@@ -190,6 +194,8 @@ function Post({ post }) {
         </button>
         {modal && <Exampl onClose={() => setModal(false)} />} */}
       </div>
+
+      {optionsModal && <OptionsModal realImg={realImg} onClose={()=> setOptionsModal(false)} setImgUploaded={setImgUploaded} />}
     </div>
   );
 }

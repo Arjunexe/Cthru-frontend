@@ -98,6 +98,7 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
     });
     console.log("its hereeeeeee: ", deleted.data.success);
     setImgUploaded(deleted.data.success);
+    if(deleted.data.success) return deleted.data.success;
   } catch (error) {
     console.log("error during deletePost: ", error);
   }

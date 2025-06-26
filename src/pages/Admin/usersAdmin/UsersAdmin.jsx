@@ -11,7 +11,6 @@ function UsersAdmin() {
         const allUser = await getAllUser();
         setAllUsers(allUser);
         console.log("allUser in user: ", allUser);
-        
       } catch (error) {
         console.log("error during fetchAllUser: ", error);
       }
@@ -22,7 +21,15 @@ function UsersAdmin() {
 
   return (
     <div className="bg-slate-400 w-full ">
-      <div className="font-semibold text-xl pl-9">Active users</div>
+      <div className="font-semibold text-xl pl-9">Search</div>
+      <div>
+        <div className="border bg-white cursor-pointer flex items-center p-4">
+          <div className="w-1/4">Name</div>
+          <div className="w-1/4">Email</div>
+          <div className="w-1/4">Status</div>
+          <div className="w-1/4">Action</div>
+        </div>
+      </div>
       <div>
         {allUsers.map((alluser, index) => (
           <UserListBox key={index} alluser={alluser} />
