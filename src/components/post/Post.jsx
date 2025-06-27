@@ -123,14 +123,7 @@ function Post({ post }) {
           {/* -------------------------------------------------------- */}
 
           <div className="" onClick={(e) => e.stopPropagation()}>
-            {flowstate ? (
-              <span
-                className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded "
-                onClick={handleUnfollow}
-              >
-                Unfollow
-              </span>
-            ) : (
+            {!flowstate && (
               <span
                 className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded "
                 onClick={handleFollow}
@@ -195,7 +188,15 @@ function Post({ post }) {
         {modal && <Exampl onClose={() => setModal(false)} />} */}
       </div>
 
-      {optionsModal && <OptionsModal realImg={realImg} onClose={()=> setOptionsModal(false)} setImgUploaded={setImgUploaded} />}
+      {optionsModal && (
+        <OptionsModal
+          realImg={realImg}
+          onClose={() => setOptionsModal(false)}
+          setImgUploaded={setImgUploaded}
+          flowstate={flowstate}
+          handleUnfollow = {handleUnfollow}
+        />
+      )}
     </div>
   );
 }
