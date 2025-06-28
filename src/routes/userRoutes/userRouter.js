@@ -13,6 +13,7 @@ import ProtectedRoutes from "../../context/ProtectedRoutes";
 import NonProtectedRoutes from "../../context/nonProtectedRoutes";
 import Error from "../../pages/error/Error";
 import adminRouter from "../adminRoutes/adminRouter";
+import EditProfile from "../../pages/Profile/EditProfile";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -24,40 +25,50 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element:<NonProtectedRoutes element={<Login />}/> ,
+        element: <NonProtectedRoutes element={<Login />} />,
       },
+
       {
         path: "signup",
-        element:<NonProtectedRoutes element={<Signup />}/> ,
+        element: <NonProtectedRoutes element={<Signup />} />,
       },
+
       {
         path: "/",
-        element:<Home />,
+        element: <Home />,
       },
-      
+
       {
         path: ":urlUsername",
-        element:<ProtectedRoutes element={<Profile />} />,
+        element: <ProtectedRoutes element={<Profile />} />,
+      },
+
+      {
+        path: ":urlUsername/edit",
+        element: <EditProfile />
+      },
+
+      {
+        path: "a",
+        element: <Xample />,
+      },
+
+      {
+        path: "message",
+        element: <Message />,
       },
       {
-        path:"a",
-        element: <Xample />
+        path: "profileUpload",
+        element: <ProfileUpload />,
       },
+
       {
-        path:"message",
-        element: <Message />
+        path: "error",
+        element: <Error />,
       },
-      {
-        path:"profileUpload",
-        element: <ProfileUpload />
-      },
-      {
-        path:"error",
-        element: <Error />
-      }
     ],
   },
-  adminRouter
+  adminRouter,
 ]);
 
 export default Router;

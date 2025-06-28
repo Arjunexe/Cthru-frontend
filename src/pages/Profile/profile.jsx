@@ -73,11 +73,8 @@ export default function Profile() {
   // SET USERNAME
   useEffect(() => {
     if (loggedIn) {
-      console.log("yyyyyyyyyyyyyyyyyyyyy: ", userName);
       setUserName(userName);
     } else if (profileData?.userData?.Username) {
-      console.log("mannnnnnnnnnnnnnnnnnnnn: ", profileData?.userData?.Username);
-
       setUserName(profileData?.userData?.Username);
     }
   }, [loggedIn, profileData?.userData?.Username, userName]);
@@ -111,9 +108,16 @@ export default function Profile() {
     const selectedFile = event.target.files[0];
     setProfilePics(selectedFile);
   }
-
+  // TOGGLE SETTINGS MODAL
   function handleSettingsModal() {
-    setSettingsModal(true)
+    setSettingsModal(true);
+  }
+
+  // NAVIGATE TO EDIT PROFILE
+  function handleEditProfile() {
+    if (loggedIn) {
+      navigate(`/${urlUsername}/edit`);
+    }
   }
 
   // REMOVES LOGGEDIN USER DATA UPON LOGGING OUT
@@ -146,11 +150,6 @@ export default function Profile() {
           {UserName}
         </div>
 
-        <div className="bg-gray-50">
-          <button className="cursor-pointer" onClick={handleClick}>
-            Logout
-          </button>
-        </div>
         <div
           className="bg-amber-400 cursor-pointer"
           onClick={handleSettingsModal}
@@ -160,7 +159,14 @@ export default function Profile() {
       </div>
       {/* ------------SETTINGS MODAL------------- */}
 
-      {settingsModal && <SettingsModal onClose ={()=>setSettingsModal()} />}
+      {settingsModal && (
+        <SettingsModal
+          logout={handleClick}
+          onClose={() => setSettingsModal()}
+          handleEditProfile={handleEditProfile}
+          loggedIn={loggedIn}
+        />
+      )}
 
       {/* The grid */}
       <div className="bg-cyan-600 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">

@@ -1,6 +1,6 @@
 import React from "react";
 
-function SettingsModal({ onClose }) {
+function SettingsModal({ onClose, logout, handleEditProfile, loggedIn }) {
   const buttonStyle =
     "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   const spanStyle = "font-medium";
@@ -12,22 +12,42 @@ function SettingsModal({ onClose }) {
     >
       {/* modal body */}
       <div
-        className="w-80 items-center relative flex flex-col bg-[rgba(255,255,255,0.35)]  shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-md rounded-2xl overflow-hidden"
+        className="w-80 items-center relative flex flex-col bg-[rgba(255,255,255,0.49)]  shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur rounded-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className={buttonStyle}>
-          <span className={spanStyle}>Edit Profile</span>
-        </button>
+        {loggedIn && (
+          <>
+            <button className={buttonStyle} onClick={handleEditProfile}>
+              <span className={spanStyle}>Edit Profile</span>
+            </button>
 
-        <button className={buttonStyle}>
-          <span className={spanStyle}>Saved</span>
-        </button>
+            <button className={buttonStyle}>
+              <span className={spanStyle}>Saved</span>
+            </button>
 
-        <button className={buttonStyle}>
-          <span className={spanStyle}>Logout</span>
-        </button>
+            <button className={buttonStyle} onClick={logout}>
+              <span className={spanStyle}>Logout</span>
+            </button>
+          </>
+        )}
 
-        <button className={buttonStyle}>
+        {!loggedIn && (
+          <>
+            <button className={buttonStyle}>
+              <span className={spanStyle}>Send Message</span>
+            </button>
+
+            <button className={buttonStyle}>
+              <span className={spanStyle}>Report</span>
+            </button>
+
+            <button className={buttonStyle}>
+              <span className={spanStyle}>Block</span>
+            </button>
+          </>
+        )}
+
+        <button className={buttonStyle} onClick={onClose}>
           <span className={spanStyle}>Cancel</span>
         </button>
       </div>

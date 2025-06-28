@@ -5,20 +5,15 @@ import SessionContext from "./SessionContext";
 
 function ProtectedRoutes({ element }) {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext (SessionContext );
+  const { isLoggedIn } = useContext(SessionContext);
 
   useEffect(() => {
-     if (!isLoggedIn) {
-    navigate("/login");
-    
-  }
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, navigate]);
 
-  },[isLoggedIn, navigate])
-
- console.log("I was here at protectedRoutes", isLoggedIn);
- 
-
-  return isLoggedIn?  element : null;
+  return isLoggedIn ? element : null;
 }
 
 export default ProtectedRoutes;
