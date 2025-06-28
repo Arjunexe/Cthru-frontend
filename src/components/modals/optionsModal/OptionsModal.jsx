@@ -11,12 +11,12 @@ function OptionsModal({
 }) {
   const [loader, setLoader] = useState(false);
 
-  const optionSpan = "font-semibold";
-  const optionDiv =
-    "w-80 h-8 items-center justify-center flex flex-col shadow shadow-black/15 cursor-pointer";
+  const optionSpan = "font-medium";
+  const buttonStyle =
+    "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
   async function handleDelete() {
-    setLoader(true);
+    setLoader(true);  
     const PublicId = extractPublicId(realImg);
     try {
       const postDeleted = await deletePost(PublicId, realImg, setImgUploaded);
@@ -40,23 +40,27 @@ function OptionsModal({
           onClick={(e) => e.stopPropagation()}
         >
           {/* Options */}
-          <div className={optionDiv} onClick={handleDelete}>
+          <button className={buttonStyle} onClick={handleDelete}>
             <span className={optionSpan}>Delete</span>
-          </div>
+          </button>
+
+          <button className={buttonStyle}>
+            <span className={optionSpan}>Save</span>
+          </button>
 
           {flowstate && (
-            <div className={optionDiv} onClick={handleUnfollow}>
+            <button className={buttonStyle} onClick={handleUnfollow}>
               <span className={optionSpan}>Unfollow</span>
-            </div>
+            </button>
           )}
 
-          <div className={optionDiv} >
+          <button className={buttonStyle}>
             <span className={optionSpan}>Report</span>
-          </div>
+          </button>
 
-          <div className={optionDiv} onClick={onClose}>
+          <button className={buttonStyle} onClick={onClose}>
             <span className={optionSpan}>Cancel</span>
-          </div>
+          </button>
         </div>
       )}
     </div>

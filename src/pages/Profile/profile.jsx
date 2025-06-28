@@ -7,6 +7,7 @@ import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
 import SessionContext from "../../context/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
 import { useNavigate, useParams } from "react-router-dom";
+import SettingsModal from "../../components/modals/settingsModal/SettingsModal";
 
 export default function Profile() {
   const { logout } = useContext(SessionContext);
@@ -16,6 +17,7 @@ export default function Profile() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [post, setPost] = useState([]);
   const [profileData, setProfileData] = useState({});
+  const [settingsModal, setSettingsModal] = useState(false);
   const navigate = useNavigate();
   const { urlUsername } = useParams();
   const { userDetails, setUserDetails, imgUploaded } = useContext(MainContext);
@@ -110,6 +112,10 @@ export default function Profile() {
     setProfilePics(selectedFile);
   }
 
+  function handleSettingsModal() {
+    setSettingsModal(true)
+  }
+
   // REMOVES LOGGEDIN USER DATA UPON LOGGING OUT
   function handleClick() {
     localStorage.removeItem("jwtToken");
@@ -119,7 +125,8 @@ export default function Profile() {
 
   return (
     <div className=" h-screen w-screen bg-slate-700 overflow-auto">
-      <div className="w-96  bg-gray-400 flex ml-10">
+      {/* Header */}
+      <div className="w-96  bg-gray-400 flex ml-10 items-center  justify-between">
         <div className=" relative inline-block bg-red-500">
           {/* CONDITIONAL RENDERING */}
           <input
@@ -139,15 +146,25 @@ export default function Profile() {
           {UserName}
         </div>
 
-        <div>
+        <div className="bg-gray-50">
           <button className="cursor-pointer" onClick={handleClick}>
             Logout
           </button>
         </div>
+        <div
+          className="bg-amber-400 cursor-pointer"
+          onClick={handleSettingsModal}
+        >
+          Settings
+        </div>
       </div>
+      {/* ------------SETTINGS MODAL------------- */}
 
+      {settingsModal && <SettingsModal onClose ={()=>setSettingsModal()} />}
+
+      {/* The grid */}
       <div className="bg-cyan-600 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
-        {/* MAYBE ProfileGrid NEEDS AN STABLE KEY */}
+        {/* MAYBE ProfileGrid NEEDS A STABLE KEY */}
         {post.map((post, index) => (
           <ProfileGrid key={index} post={post} />
         ))}
