@@ -50,7 +50,7 @@ export default function Profile() {
         const response = await getPostData(urlUsername);
         if (response.status === 200) {
           setProfileData(response.data);
-        } else {
+        } else { 
           navigate("/error");
         }
       } catch (error) {
@@ -93,6 +93,12 @@ export default function Profile() {
     }
   }, [profilePic, setUserDetails]);
 
+   // HANDLES THE PROFILE PIC UPLOAD CHANGE
+  async function handleChangeClick(event) {
+    const selectedFile = event.target.files[0];
+    setProfilePics(selectedFile);
+  }
+
   // GET POSTS
   useEffect(() => {
     async function getPost() {
@@ -103,11 +109,7 @@ export default function Profile() {
     getPost().catch((err) => console.error("error during getPost:", err));
   }, [imgUploaded, loggedIn, urlUsername]);
 
-  // HANDLES THE PROFILE PIC UPLOAD CHANGE
-  async function handleChangeClick(event) {
-    const selectedFile = event.target.files[0];
-    setProfilePics(selectedFile);
-  }
+ 
   // TOGGLE SETTINGS MODAL
   function handleSettingsModal() {
     setSettingsModal(true);

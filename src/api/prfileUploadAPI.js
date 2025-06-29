@@ -5,23 +5,23 @@ import { jwtToken } from "../jwt/jwt";
 
 //------------ PROFILE AND POST ----------------
 
-// TO HANDLE CHANGE IN PROFILE FIELD
-export async function handleChangeClickAPI(
-  event,
-  setProfilePic,
-  setProfilePicUrl
-) {
-  try {
-    const selectedFile = event.target.files[0];
-    setProfilePic(selectedFile);
+// TO HANDLE CHANGE IN PROFILE FIELD  || COMMENTED THIS CODE CAUSE ITS ALREADY IN profileUplaod.jsx
+// export async function handleChangeClickAPI(
+//   event,
+//   setProfilePic,
+//   setProfilePicUrl
+// ) {
+//   try {
+//     const selectedFile = event.target.files[0];
+//     setProfilePic(selectedFile);
 
-    const fileURL = URL.createObjectURL(selectedFile);
+//     const fileURL = URL.createObjectURL(selectedFile);
 
-    setProfilePicUrl(fileURL);
-  } catch (error) {
-    console.log("error during handleChangeClickAPI", error);
-  }
-}
+//     setProfilePicUrl(fileURL);
+//   } catch (error) {
+//     console.log("error during handleChangeClickAPI", error);
+//   }
+// }
 
 // HANDLE UPLOAD CLICK PROFILE PICTURE
 export async function handleUploadClickAPI(profilePic, setUserDetails) {
@@ -98,7 +98,7 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
     });
     console.log("its hereeeeeee: ", deleted.data.success);
     setImgUploaded(deleted.data.success);
-    if(deleted.data.success) return deleted.data.success;
+    if (deleted.data.success) return deleted.data.success;
   } catch (error) {
     console.log("error during deletePost: ", error);
   }

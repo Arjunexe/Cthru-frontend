@@ -24,6 +24,7 @@ function ProfileUpload() {
     console.log("temp file :", fileURL);
     setProfilePicUrl(fileURL);
   }
+  
   // Handles the Upload to Cloudinary 
   async function handleUploadClick() {
     if (!profilePic) {
