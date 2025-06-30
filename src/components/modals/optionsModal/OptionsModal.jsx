@@ -32,7 +32,7 @@ function OptionsModal({
       onClick={onClose}
     >
       {loader ? (
-        <div className="w-36 h-36  border-t-transparent rounded-full animate-spin" />
+        <div className="w-36 h-36 border-4 border-white border-t-transparent rounded-full animate-spin" />
       ) : (
         // Modal body
         <div

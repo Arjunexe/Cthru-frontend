@@ -1,6 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
+import { extractPublicId } from "cloudinary-build-url";
 // import { useId } from "react";
 
 //------------ PROFILE AND POST ----------------
@@ -103,6 +104,22 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
     console.log("error during deletePost: ", error);
   }
 }
+
+// DELTE PROFILE PIC ONLY FROM CLOUDINARY
+export async function delteFromCloudinaryAPI(image) {
+  const publicId = extractPublicId(image);
+  try {
+    const deleteFromCloudinary = await axios.post("/user/deleteFromCloud", {
+      publicId,
+    });
+    if(!deleteFromCloudinary){
+      console.error("image not deleted form the cloud: ",deleteFromCloudinary);
+      
+    }
+  } catch (error) {
+    console.log("error during delteFromCloudinaryAPI: ", error);
+  }
+} 
 
 // Handle Like post
 export async function handleLikeApi(

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../Profile/profile.css";
 // import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../context/context";
