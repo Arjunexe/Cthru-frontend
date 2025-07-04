@@ -1,22 +1,26 @@
 import React from "react";
+import "../settingsModal/settingsModal.css"
 import { useNavigate } from "react-router-dom";
-import texture from "../../../assests/textures/Mesh.png"
+// import texture from "../../../assests/textures/Mesh.png"
+
 
 function SettingsModal({ onClose, logout, loggedIn, urlUsername }) {
   const navigate = useNavigate()
   const buttonStyle =
-    "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
-  const spanStyle = "font-medium";
+    "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20 ";
+  const spanStyle = "text-white text-opacity-95";
 
   return (
     <div
-      className="w-full h-full fixed top-0 left-0 bg-black bg-opacity-25 z-30 flex justify-center items-center" 
+      className="w-full h-full fixed inset-0 top-0 left-0   bg-black bg-opacity-10 z-30 flex justify-center items-center" 
       onClick={onClose}
     >
       {/* modal body */}
       <div
-        className="w-80 items-center relative flex flex-col bg-[rgba(255,255,255,0.49)]  shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur rounded-2xl overflow-hidden"
-        style={{ backgroundImage: `url(${texture})` }}
+        className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-lg 
+        border border-white border-opacity-30
+        rounded-2xl shadow-xl noise-texture overflow-hidden"
+        
         onClick={(e) => e.stopPropagation()}
       >
         {loggedIn && (

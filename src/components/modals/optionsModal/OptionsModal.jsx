@@ -1,5 +1,6 @@
 import { extractPublicId } from "cloudinary-build-url";
 import React, { useState } from "react";
+import "../optionsModal/optionsModal.css"
 import { deletePost } from "../../../api/prfileUploadAPI";
 
 function OptionsModal({
@@ -11,7 +12,7 @@ function OptionsModal({
 }) {
   const [loader, setLoader] = useState(false);
 
-  const optionSpan = "font-medium";
+  const optionSpan = "text-white text-opacity-95";
   const buttonStyle =
     "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
@@ -28,7 +29,7 @@ function OptionsModal({
 
   return (
     <div
-      className="w-full h-full fixed top-0 left-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
+      className="w-full h-full fixed top-0 left-0 inset-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
       onClick={onClose}
     >
       {loader ? (
@@ -36,7 +37,7 @@ function OptionsModal({
       ) : (
         // Modal body
         <div
-          className="w-80 items-center relative flex flex-col bg-[rgba(255,255,255,0.35)]  shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-md rounded-2xl overflow-hidden"
+          className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white border-opacity-30  shadow-xl noise-texture"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Options */}

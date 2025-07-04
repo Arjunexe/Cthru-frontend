@@ -15,6 +15,7 @@ import Error from "../../pages/error/Error";
 import adminRouter from "../adminRoutes/adminRouter";
 import EditProfile from "../../pages/settings/EditProfile";
 import SettingsLayout from "../../pages/settings/SettingsLayout";
+import PrevModal from "../../pages/settings/DEMO/prevModal";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -51,7 +52,7 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element: <Xample />,
+        element: <PrevModal />,  //         element: <Xample />,
       },
 
       {

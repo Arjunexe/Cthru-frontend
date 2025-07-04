@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../commentModal/commentModal.css"
 import InfiniteScroll from "react-infinite-scroll-component";
 import Comment from "../../comment/Comment";
 import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
@@ -61,7 +62,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
     >
       {/* MODAL BODY */}
       <div
-        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-[10px] bg-[rgba(255,255,255,0.25)] shadow-[0_8px_32px_0_rgba(255,255,255,0.12)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.18)] "
+        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-2xl bg-white bg-opacity-10  shadow-xl backdrop-blur-lg border border-white border-opacity-30 noise-textur"
         onClick={(e) => e.stopPropagation()}
       >
         {/*---------- Infinite scroll -----------*/}
@@ -81,9 +82,9 @@ function CommentModal({ onClose, postId, loggedUserId }) {
           </InfiniteScroll>
         </div>
 
-        <div className="bg-orange-400 ">
+        <div className="bg-orange-400">
           <textarea
-            className="bg-[rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none text-black font-medium absolute bottom-2 right-24 left-5 rounded-md"
+            className="bg-[rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none text-black font-medium mb-2 absolute bottom-2 right-24 left-5 rounded-2xl"
             name="cSection"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -93,7 +94,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
           ></textarea>
           <button
             onClick={handlePostClick}
-            className="absolute bottom-2 right-2 bg-blue-500 text-white px-4 py-2 rounded font-medium hover:bg-red-600 mr-3"
+            className="absolute bottom-2 right-2 bg-blue-500 text-white px-4 mb-2 py-2 rounded-2xl font-medium hover:bg-red-600 mr-3"
           >
             Post
           </button>
