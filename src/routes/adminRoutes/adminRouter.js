@@ -11,7 +11,7 @@ export const adminRouter = {
   errorElement: <Error />,
   children: [
     {
-      path: "/admin/dashboard",
+      path: "/admin/dashboard", // index: true, 
       element: <DashBoard />,
     },
     {

@@ -78,25 +78,25 @@ export default function Profile() {
     }
   }, [loggedIn, profileData?.userData?.Username, userName]);
 
-  // SEND PROFILEPIC TO UPLOAD FUNCTION
-  useEffect(() => {
-    if (profilePic) {
-      async function uploadProfileImage() {
-        const uploadedImg = await handleUploadClickAPI(
-          profilePic,
-          setUserDetails
-        );
-        return uploadedImg;
-      }
-      uploadProfileImage();
-    }
-  }, [profilePic, setUserDetails]);
+  // SEND PROFILEPIC TO UPLOAD FUNCTION || NO NEED
+  // useEffect(() => {
+  //   if (profilePic) {
+  //     async function uploadProfileImage() {
+  //       const uploadedImg = await handleUploadClickAPI(
+  //         profilePic,
+  //         setUserDetails
+  //       );
+  //       return uploadedImg;
+  //     }
+  //     uploadProfileImage();
+  //   }
+  // }, [profilePic, setUserDetails]);
 
    // HANDLES THE PROFILE PIC UPLOAD CHANGE
-  async function handleChangeClick(event) {
-    const selectedFile = event.target.files[0];
-    setProfilePics(selectedFile);
-  }
+  // async function handleChangeClick(event) {
+  //   const selectedFile = event.target.files[0];
+  //   setProfilePics(selectedFile);
+  // }
 
   // GET POSTS
   useEffect(() => {
@@ -114,12 +114,12 @@ export default function Profile() {
     setSettingsModal(true);
   }
 
-  // NAVIGATE TO EDIT PROFILE
-  function handleEditProfile() {
-    if (loggedIn) {
-      navigate(`/${urlUsername}/edit`);
-    }
-  }
+  // NAVIGATE TO EDIT PROFILE || its on settingsModal
+  // function handleEditProfile() {
+  //   if (loggedIn) {
+  //     navigate(`/settings/${urlUsername}/edit`);
+  //   }
+  // }
 
   // REMOVES LOGGEDIN USER DATA UPON LOGGING OUT
   function handleClick() {
@@ -134,13 +134,13 @@ export default function Profile() {
       <div className="w-96  bg-gray-400 flex ml-10 items-center  justify-between">
         <div className=" relative inline-block bg-red-500">
           {/* CONDITIONAL RENDERING */}
-          <input
+          {/* <input
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             accept="image/jpeg, image/png, image/webp, image/jpg"
             name="image"
             type="file"
             onChange={handleChangeClick}
-          />
+          /> */}
           <div>
             <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
           </div>
@@ -164,8 +164,8 @@ export default function Profile() {
         <SettingsModal
           logout={handleClick}
           onClose={() => setSettingsModal()}
-          handleEditProfile={handleEditProfile}
           loggedIn={loggedIn}
+          urlUsername={urlUsername}
         />
       )}
 

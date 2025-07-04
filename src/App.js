@@ -24,7 +24,9 @@ function App() {
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
   const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
-  const renderSidebar = !noSidebar.includes(location.pathname);
+  const endsWith = location.pathname.endsWith("/edit") //eg: path.endsWith("/edit") || path.endsWith("/notification");
+  const renderSidebar = !noSidebar.includes(location.pathname) && ! endsWith
+
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
@@ -38,7 +40,7 @@ function App() {
 
         const stuff = response.data.userFollowData;
         const userData = response.data;
-        const { userPost, ...filteredUserData } = userData;
+        const { userPost, ...filteredUserData } = userData; 
         console.log("userDetails in app.js :", filteredUserData);
 
         // UPDATING THE CONTEXT WITH USER DETAILS
@@ -85,9 +87,8 @@ function App() {
   // function toggleCommentModal(data) {
   //   setCommentModal((prev) => !prev);
   //   setCommentId(data)
-    
-  // }
 
+  // }
 
   return (
     <>

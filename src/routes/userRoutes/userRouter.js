@@ -13,7 +13,8 @@ import ProtectedRoutes from "../../context/ProtectedRoutes";
 import NonProtectedRoutes from "../../context/nonProtectedRoutes";
 import Error from "../../pages/error/Error";
 import adminRouter from "../adminRoutes/adminRouter";
-import EditProfile from "../../pages/Profile/EditProfile";
+import EditProfile from "../../pages/settings/EditProfile";
+import SettingsLayout from "../../pages/settings/SettingsLayout";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -43,10 +44,10 @@ const Router = createBrowserRouter([
         element: <ProtectedRoutes element={<Profile />} />,
       },
 
-      {
-        path: ":urlUsername/edit",
-        element: <EditProfile />
-      },
+      // {
+      //   path: ":urlUsername/edit",
+      //   element: <EditProfile />,
+      // },
 
       {
         path: "a",
@@ -65,6 +66,16 @@ const Router = createBrowserRouter([
       {
         path: "error",
         element: <Error />,
+      },
+      {
+        path: "settings",
+        element: <SettingsLayout />,
+        children: [
+          {
+            path: ":urlUsername/edit",
+            element: <EditProfile />,
+          },
+        ],
       },
     ],
   },
