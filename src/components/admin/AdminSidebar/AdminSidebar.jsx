@@ -16,8 +16,8 @@ function AdminSidebar() {
             key={link.name}
             to={link.path}
             className={({ isActive }) =>
-              `block py-2 px-4 hover:bg-gray-700 ${
-                isActive ? "bg-gray-700 text-blue-400 font-bold" : ""
+              `block py-2 px-4 hover:bg-gray-700 font-medium ${
+                isActive ? "bg-gray-700 text-blue-400 " : ""
               }`
             }
           >

@@ -25,11 +25,11 @@ function SettingsModal({ onClose, logout, loggedIn, urlUsername }) {
       >
         {loggedIn && (
           <>
-            <button className={buttonStyle} onClick={()=>{navigate(`/settings/${urlUsername}/edit`)}}>
+            {/* <button className={buttonStyle} onClick={()=>{navigate(`/settings/${urlUsername}/edit`)}}>
               <span className={spanStyle}>Edit Profile</span>
-            </button>
+            </button> */}
 
-            <button className={buttonStyle} onClick={()=>{navigate(`/settings/${urlUsername}/edit`)}}>
+            <button className={buttonStyle} onClick={()=>{navigate(`/${urlUsername}/settings/edit`)}}>
               <span className={spanStyle}>Settings</span>
             </button>
 

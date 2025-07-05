@@ -16,6 +16,9 @@ import adminRouter from "../adminRoutes/adminRouter";
 import EditProfile from "../../pages/settings/EditProfile";
 import SettingsLayout from "../../pages/settings/SettingsLayout";
 import PrevModal from "../../pages/settings/DEMO/prevModal";
+import SavedPosts from "../../pages/settings/SavedPosts";
+import LIkedPosts from "../../pages/settings/LIkedPosts";
+import Logout from "../../pages/settings/Logout";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -52,7 +55,7 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element: <PrevModal />,  //         element: <Xample />,
+        element: <PrevModal />, //         element: <Xample />,
       },
 
       {
@@ -69,12 +72,24 @@ const Router = createBrowserRouter([
         element: <Error />,
       },
       {
-        path: "settings",
+        path: ":urlUsername/settings",
         element: <SettingsLayout />,
         children: [
           {
-            path: ":urlUsername/edit",
+            path: "edit",
             element: <EditProfile />,
+          },
+          {
+            path: "saved",
+            element: <SavedPosts />,
+          },
+          {
+            path: "liked",
+            element: <LIkedPosts />,
+          },
+          {
+            path: "logout",
+            element: <Logout />,
           },
         ],
       },

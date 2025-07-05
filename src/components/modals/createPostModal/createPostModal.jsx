@@ -81,7 +81,8 @@ function CreatePostModal({ PostModalProp }) {
 
   return (
     <div className="modal" onClick={PostModalProp}>
-      <div className="modalBody" onClick={(e) => e.stopPropagation()}>
+      {/* Modal body */}
+      <div className="w-[500px] h-[500px] bg-white bg-opacity-10 border border-white border-opacity-30 rounded-2xl relative flex-col flex p-5 backdrop-blur-lg shadow-xl noise-textur" onClick={(e) => e.stopPropagation()}>
         {/* <div className="bg-blue-700 flex"> */}
         <input
           className="inputType"

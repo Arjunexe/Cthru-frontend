@@ -6,8 +6,11 @@ function Comment({comment}) {
   return (
     <div className='pt-2 flex'>
        <ProfileField profilePicUrl={comment.user.ProfilePic} />
-       <span className='pb-2 mr-2 font-semibold'>{comment.user.Username}</span>
-      {comment.text}
+       <span className='pb-2 pl-2 mr-2 text-white text-opacity-95 font-semibold'>{comment.user.Username}</span>
+       <span className='text-white text-opacity-95  '>
+        {comment.text}
+       </span> 
+      
     </div>
   )
 }

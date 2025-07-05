@@ -73,7 +73,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
             // style={{ display: "flex", flexDirection: "column-reverse" }} //To put endMessage and loader to the top.
             hasMore={hasMore}
             loader={<h4>Loading...</h4>}
-            endMessage={<h4>All good</h4>}
+            endMessage={<h4 className="text-white text-opacity-95 font-light">All good</h4>}
             scrollableTarget="parentScroll"
           >
             {commentList.map((comment) => (

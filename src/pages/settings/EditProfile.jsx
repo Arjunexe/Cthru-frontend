@@ -45,9 +45,9 @@ function EditProfile() {
   }
 
   return (
-    <div className="h-screen w-full bg-slate-700 flex justify-center flex-col">
-      <div className=" bg-red-700  flex justify-center ">
-        <div className="bg-yellow-500 relative inline-block ">
+    <div className="h-screen w-1/2  flex pt-12 items-center  flex-col">
+      <div className="   flex justify-center ">
+        <div className=" relative inline-block ">
           <input
             className="absolute inset-0 w-full opacity-0 cursor-pointer z-10"
             accept="image/jpeg, image/png, image/webp, image/jpg"
@@ -56,7 +56,7 @@ function EditProfile() {
             onChange={handleChangeClick}
           />
 
-          <div className="pt-4 w-fit relative bg-gray-100 z-0">
+          <div className="w-fit relative  z-0">
             <ProfileField width="11" height="11" profilePicUrl={dP} />
             {loader && (
               <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30 rounded-full pointer-events-none">
@@ -71,7 +71,7 @@ function EditProfile() {
         BIO
       </div>
 
-      <div className="bg-yellow-200 flex ml-80 w-1/2 flex-col justify-center mt-9 items-center">
+      <div className=" flex w-full flex-col justify-center mt-9 items-center">
         <label className={labelStyle}>Username</label>
         <input type="text" value={userName} className={inputStyle} />
 

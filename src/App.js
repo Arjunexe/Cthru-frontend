@@ -24,7 +24,9 @@ function App() {
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
   const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
-  const endsWith = location.pathname.endsWith("/edit") //eg: path.endsWith("/edit") || path.endsWith("/notification");
+  const noSidebarEndWith = ["/edit", "/saved", "/liked", "/logout"];
+  const endsWith = noSidebarEndWith.some((ending) => location.pathname.endsWith(ending))
+  // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification");
   const renderSidebar = !noSidebar.includes(location.pathname) && ! endsWith
 
 
