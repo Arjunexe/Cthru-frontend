@@ -20,7 +20,7 @@ function ProfileGrid({ post }) {
   return (
     <div>
       <div
-        className="aspect-square bg-lime-600 overflow-hidden cursor-pointer"
+        className="aspect-square bg-slate-500 overflow-hidden cursor-pointer"
         onClick={handleProfilePost}
       >
         <img className="w-full h-full object-cover" src={img} alt="" />

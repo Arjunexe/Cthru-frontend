@@ -12,7 +12,7 @@ function SettingSidebar() {
     },
     // { label: "Notifications", icon: <Bell /> },  NOT rn
     {
-      label: "Saved",
+      label: "Savedd",
       icon: <Bookmark />,
       path: `/${urlUsername}/settings/saved`,
     },
@@ -35,7 +35,8 @@ function SettingSidebar() {
           <NavLink
             key={label}
             to={path}
-            className="flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-2 rounded-lg transition-all"
+            className={({isActive}) =>`flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-2 rounded-lg transition-all ${isActive ? " bg-white/20" : ""}`} 
+          
           >
             <span className="w-5 h-5">{icon}</span>
             <span className="text-sm font-medium">{label}</span>

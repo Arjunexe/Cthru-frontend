@@ -104,43 +104,43 @@ function Siidebar({ openCreateModal }) {
   }
 
   return (
-    <div className=" mt-32 md:w-36 xl:w-56 flex flex-col justify-between z-1 bg-neutral-700 ">
+    <div className=" mt-32 md:w-36 xl:w-56 flex flex-col justify-between z-1 bg-slate-400 ">
       {/* <img className="w-32 m-4" src={logo} alt="failed to upload" /> */}
 
-      <div className="flex flex-col bg-neutral-700">
+      <div className="flex flex-col ">
         <button
-          className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 bg-neutral-700"
+          className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 "
           onClick={handleHomeClick}
         >
-          <GoHomeFill size={29} className="bg-neutral-700" />
+          <GoHomeFill size={29} className="" />
 
-          <span className="ml-4 hidden xl:block bg-neutral-700">Home</span>
+          <span className="ml-4 hidden xl:block ">Home</span>
         </button>
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4 ">
-          <FaSearch size={29} className="bg-neutral-700" />{" "}
-          <span className="ml-4 hidden xl:block bg-neutral-700">Search</span>
+          <FaSearch size={29} className="" />{" "}
+          <span className="ml-4 hidden xl:block ">Search</span>
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={openCreateModal}
         >
-          <BsPlusSquareFill size={24} className="bg-neutral-700" />{" "}
-          <span className="ml-4 hidden xl:block bg-neutral-700">Create</span>
+          <BsPlusSquareFill size={24} className="" />{" "}
+          <span className="ml-4 hidden xl:block ">Create</span>
         </button>
 
         <button
           className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4"
           onClick={handleMessageClick}
         >
-          <BiSolidMessageDots size={29} className="bg-neutral-700" />
-          <span className="ml-3 hidden xl:block bg-neutral-700">Messages</span>
+          <BiSolidMessageDots size={29} className="" />
+          <span className="ml-3 hidden xl:block ">Messages</span>
         </button>
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
-          <IoIosNotifications size={29} className="bg-neutral-700" />{" "}
-          <span className=" ml-3 hidden xl:block bg-neutral-700">
+          <IoIosNotifications size={29} className="" />{" "}
+          <span className=" ml-3 hidden xl:block ">
             Notifications
           </span>
         </button>
@@ -153,7 +153,7 @@ function Siidebar({ openCreateModal }) {
             width="2"
             height="2"
             profilePicUrl={profilePicUrl}
-            className="bg-neutral-700"
+            className=""
           />
           <span className="ml-2 hidden xl:block ">Profile</span>
         </button>

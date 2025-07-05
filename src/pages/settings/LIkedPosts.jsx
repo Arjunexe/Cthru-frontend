@@ -2,7 +2,7 @@ import React from 'react'
 
 function LIkedPosts() {
   return (
-    <div>LIkedPosts</div>
+    <div className='h-screen w-1/2'>LIkedPosts</div>
   )
 }
 

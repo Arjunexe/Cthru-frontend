@@ -129,7 +129,7 @@ export default function Profile() {
   }
 
   return (
-    <div className=" h-screen w-screen bg-slate-700 overflow-auto">
+    <div className=" h-screen w-screen bg-slate-500 overflow-auto">
       {/* Header */}
       <div className="w-96  bg-gray-400 flex ml-10 items-center  justify-between">
         <div className=" relative inline-block bg-red-500">
@@ -170,7 +170,7 @@ export default function Profile() {
       )}
 
       {/* The grid */}
-      <div className="bg-cyan-600 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
+      <div className="bg-slate-500 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
         {/* MAYBE ProfileGrid NEEDS A STABLE KEY */}
         {post.map((post, index) => (
           <ProfileGrid key={index} post={post} />
