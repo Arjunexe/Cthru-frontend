@@ -24,11 +24,12 @@ function App() {
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
   const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
-  const noSidebarEndWith = ["/edit", "/saved", "/liked", "/logout"];
-  const endsWith = noSidebarEndWith.some((ending) => location.pathname.endsWith(ending))
+  const noSidebarEndWith = [ "/saved", "/liked", "/logout"];
+  const endsWith = noSidebarEndWith.some((ending) =>
+    location.pathname.endsWith(ending)
+  );
   // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification");
-  const renderSidebar = !noSidebar.includes(location.pathname) && ! endsWith
-
+  const renderSidebar = !noSidebar.includes(location.pathname) && !endsWith;
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
@@ -42,7 +43,7 @@ function App() {
 
         const stuff = response.data.userFollowData;
         const userData = response.data;
-        const { userPost, ...filteredUserData } = userData; 
+        const { userPost, ...filteredUserData } = userData;
         console.log("userDetails in app.js :", filteredUserData);
 
         // UPDATING THE CONTEXT WITH USER DETAILS
@@ -94,9 +95,9 @@ function App() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex ">
         {renderSidebar && (
-          <div className="hidden sm:block bg-slate-500">
+          <div className="  hidden sm:block bg-slate-500 ">
             <Siidebar openCreateModal={toggleCreateModal} />
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>

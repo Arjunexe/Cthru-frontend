@@ -195,6 +195,9 @@ function Post({ post }) {
           setImgUploaded={setImgUploaded}
           flowstate={flowstate}
           handleUnfollow = {handleUnfollow}
+          loggedUserId = {loggedUserId}
+          postId= {postId}
+
         />
       )}
     </div>

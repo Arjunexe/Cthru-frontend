@@ -12,7 +12,7 @@ function SettingSidebar() {
     },
     // { label: "Notifications", icon: <Bell /> },  NOT rn
     {
-      label: "Savedd",
+      label: "Saved",
       icon: <Bookmark />,
       path: `/${urlUsername}/settings/saved`,
     },

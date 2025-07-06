@@ -1,12 +1,15 @@
 import { extractPublicId } from "cloudinary-build-url";
 import React, { useState } from "react";
-import "../optionsModal/optionsModal.css"
+import "../optionsModal/optionsModal.css";
 import { deletePost } from "../../../api/prfileUploadAPI";
+import { savePost } from "../../../api/settingsAPi";
 
 function OptionsModal({
   realImg,
   onClose,
   setImgUploaded,
+  loggedUserId,
+  postId,
   flowstate,
   handleUnfollow,
 }) {
@@ -17,13 +20,21 @@ function OptionsModal({
     "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
   async function handleDelete() {
-    setLoader(true);  
+    setLoader(true);
     const PublicId = extractPublicId(realImg);
     try {
       const postDeleted = await deletePost(PublicId, realImg, setImgUploaded);
       if (postDeleted) onClose();
     } catch (error) {
       console.error("Failed to Delete: ", error);
+    }
+  }
+
+  async function handleSave() {
+    try {
+      const savedPost = await savePost(loggedUserId, postId);
+    } catch (error) {
+      console.error("Failed to Save Post: ", error);
     }
   }
 
@@ -45,7 +56,7 @@ function OptionsModal({
             <span className={optionSpan}>Delete</span>
           </button>
 
-          <button className={buttonStyle}>
+          <button className={buttonStyle} onClick={handleSave}>
             <span className={optionSpan}>Save</span>
           </button>
 
@@ -57,6 +68,10 @@ function OptionsModal({
 
           <button className={buttonStyle}>
             <span className={optionSpan}>Report</span>
+          </button>
+
+          <button className={buttonStyle}>
+            <span className={optionSpan}>Copy link</span>
           </button>
 
           <button className={buttonStyle} onClick={onClose}>

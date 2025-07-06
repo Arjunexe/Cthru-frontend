@@ -33,13 +33,7 @@ function SettingsModal({ onClose, logout, loggedIn, urlUsername }) {
               <span className={spanStyle}>Settings</span>
             </button>
 
-            <button className={buttonStyle}>
-              <span className={spanStyle}>Saved</span>
-            </button>
 
-            <button className={buttonStyle}>
-              <span className={spanStyle}>Notifications</span>
-            </button>
 
             <button className={buttonStyle} onClick={logout}>
               <span className={spanStyle}>Logout</span>

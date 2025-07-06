@@ -18,7 +18,7 @@ function ProfileGrid({ post }) {
   }
 
   return (
-    <div>
+    <div className="w-64">
       <div
         className="aspect-square bg-slate-500 overflow-hidden cursor-pointer"
         onClick={handleProfilePost}

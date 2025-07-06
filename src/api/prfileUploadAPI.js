@@ -81,12 +81,8 @@ export async function getPostData(userId) {
 
     return response;
   } catch (error) {
-    // if (error.response.status === 404) {
-    //   setError("user not found");
-    // } else {
     console.log("error during getPostData: ", error);
     return error;
-    // }
   }
 }
 
@@ -112,14 +108,13 @@ export async function delteFromCloudinaryAPI(image) {
     const deleteFromCloudinary = await axios.post("/user/deleteFromCloud", {
       publicId,
     });
-    if(!deleteFromCloudinary){
-      console.error("image not deleted form the cloud: ",deleteFromCloudinary);
-      
+    if (!deleteFromCloudinary) {
+      console.error("image not deleted form the cloud: ", deleteFromCloudinary);
     }
   } catch (error) {
     console.log("error during delteFromCloudinaryAPI: ", error);
   }
-} 
+}
 
 // Handle Like post
 export async function handleLikeApi(
@@ -128,7 +123,6 @@ export async function handleLikeApi(
   likeState,
   setLikeState
 ) {
-  // console.log("like data is hereeee: ", loggedUserId, postId);
   try {
     const postLiked = await axios.post("/user/likePost", {
       loggedUserId,
@@ -178,3 +172,4 @@ export async function handleComment(comment, commentId) {
     throw error;
   }
 }
+
