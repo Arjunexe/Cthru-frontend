@@ -38,7 +38,7 @@ function OptionsModal({
     }
   }
 
-  return (
+  return (  
     <div
       className="w-full h-full fixed top-0 left-0 inset-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
       onClick={onClose}

@@ -23,17 +23,20 @@ function Post({ post }) {
   const [profilePicUrl, setDp] = useState("");
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
-  const [likeState, setLikeState] = useState(false);
+  // const [likeState, setLikeState] = useState(false);
+
   const [modal, setModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
   const navigate = useNavigate();
   // const { toggleCommentModal } = useOutletContext();
-
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
+  const [likeState, setLikeState] = useState(
+    post.like.includes(userDetails?.userData?._id)
+  );
   const followInfo = userDetails?.userFollowData?.following || [];
-  const loggedUserId = userDetails?.userFollowData?.userId || "";
+  const loggedUserId = userDetails?.userData?._id || "";
 
   // if(followInfo.includes(following)){
   //   setflowState(followInfo)
@@ -61,11 +64,11 @@ function Post({ post }) {
       setflowState(false);
     }
     // --------Like and Unlike ting---------
-    if (likesId.includes(loggedUserId)) {
-      setLikeState(true);
-    } else {
-      setLikeState(false);
-    }
+    // if (likesId.includes(loggedUserId)) {
+    //   setLikeState(true);
+    // } else {
+    //   setLikeState(false);
+    // }
   }, [
     post.postImage,
     post.userId.ProfilePic,
@@ -102,14 +105,24 @@ function Post({ post }) {
   }
 
   // Handle Like $ unlike
-  function handleLikeOrUnlike() {
-    handleLikeApi(loggedUserId, postId, likeState, setLikeState);
+  async function handleLikeOrUnlike() {
+    try {
+      const postLiked = await handleLikeApi(loggedUserId, postId, likeState);
+
+      if (postLiked) {
+        setLikeState(true);
+      } else {
+        setLikeState(false);
+      }
+    } catch (error) {
+      console.log("error during handleLikeApi: ", error);
+    }
   }
 
   function handleComment() {}
 
   return (
-    <div className="mt-5 bg-yellow-300">
+    <div className="mt-5 bg-yellow-300 rounded-lg">
       {/* <div className="flex {*bg-orange-700*} "> */}
       <div className=" flex items-center space-x-2 justify-between">
         {/* profile pic & userName */}
@@ -194,10 +207,9 @@ function Post({ post }) {
           onClose={() => setOptionsModal(false)}
           setImgUploaded={setImgUploaded}
           flowstate={flowstate}
-          handleUnfollow = {handleUnfollow}
-          loggedUserId = {loggedUserId}
-          postId= {postId}
-
+          handleUnfollow={handleUnfollow}
+          loggedUserId={loggedUserId}
+          postId={postId}
         />
       )}
     </div>

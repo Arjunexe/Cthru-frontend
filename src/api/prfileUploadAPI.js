@@ -117,12 +117,7 @@ export async function delteFromCloudinaryAPI(image) {
 }
 
 // Handle Like post
-export async function handleLikeApi(
-  loggedUserId,
-  postId,
-  likeState,
-  setLikeState
-) {
+export async function handleLikeApi(loggedUserId, postId, likeState) {
   try {
     const postLiked = await axios.post("/user/likePost", {
       loggedUserId,
@@ -130,11 +125,13 @@ export async function handleLikeApi(
       likeState,
     });
 
-    if (postLiked.data.liked) {
-      setLikeState(true);
-    } else {
-      setLikeState(false);
-    }
+    return postLiked.data.liked;
+
+    // if (postLiked.data.liked) {
+    //   setLikeState(true);
+    // } else {
+    //   setLikeState(false);
+    // }
   } catch (error) {
     console.log("error during handleLikeApi: ", error);
   }
@@ -172,4 +169,3 @@ export async function handleComment(comment, commentId) {
     throw error;
   }
 }
-
