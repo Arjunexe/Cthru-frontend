@@ -1,5 +1,5 @@
 import { extractPublicId } from "cloudinary-build-url";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../optionsModal/optionsModal.css";
 import { deletePost } from "../../../api/prfileUploadAPI";
 import { savePost } from "../../../api/settingsAPi";
@@ -12,13 +12,15 @@ function OptionsModal({
   postId,
   flowstate,
   handleUnfollow,
+  saved,
 }) {
   const [loader, setLoader] = useState(false);
-
+  const [saveState, setSaveState] = useState(saved.includes(loggedUserId));
   const optionSpan = "text-white text-opacity-95";
   const buttonStyle =
     "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
+
   async function handleDelete() {
     setLoader(true);
     const PublicId = extractPublicId(realImg);
@@ -33,12 +35,17 @@ function OptionsModal({
   async function handleSave() {
     try {
       const savedPost = await savePost(loggedUserId, postId);
+      if (savedPost) {
+        setSaveState(true);
+      } else {
+        setSaveState(false);
+      }
     } catch (error) {
       console.error("Failed to Save Post: ", error);
     }
   }
 
-  return (  
+  return (
     <div
       className="w-full h-full fixed top-0 left-0 inset-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
       onClick={onClose}
@@ -57,7 +64,11 @@ function OptionsModal({
           </button>
 
           <button className={buttonStyle} onClick={handleSave}>
-            <span className={optionSpan}>Save</span>
+            {saveState ? (
+              <span className={optionSpan}>Unsave</span>
+            ) : (
+              <span className={optionSpan}>Save</span>
+            )}
           </button>
 
           {flowstate && (

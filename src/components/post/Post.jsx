@@ -50,6 +50,7 @@ function Post({ post }) {
   let userID = post.userId._id; // User Id of the post
   let postId = post._id; // Id of the post
   let likesId = post.like;
+  let saved = post.saved;
 
   useEffect(() => {
     //Accessing from prop was here
@@ -210,6 +211,7 @@ function Post({ post }) {
           handleUnfollow={handleUnfollow}
           loggedUserId={loggedUserId}
           postId={postId}
+          saved={saved}
         />
       )}
     </div>
