@@ -9,22 +9,27 @@ export async function savePost(loggedUserId, postId) {
     });
 
     return postSaved.data.saved;
-  } catch (error) {
+  } catch (error) { 
     console.log("error during savePost: ", error);
   }
 }
 
-
 // FETCH SAVED POST
-export async function fetchSavedPost (loggedUserId){
+export async function fetchSavedPost(loggedUserId) {
   try {
-    const savedPost = await axios.post("/user/fetchPost", {loggedUserId})
-
+    const savedPost = await axios.post("/user/fetchPost", { loggedUserId });
     return savedPost.data.savedPosts;
-    
   } catch (error) {
     console.log("error during fetchSavePost: ", error);
-    
-    
   }
 }
+
+// FETCH LIKE POST
+export async function fetchLikedPost (loggedUserId){ 
+  try {
+   const likedPost = await axios.post("/user/fetchLikedPost",{ loggedUserId }) 
+    return likedPost;
+  } catch (error) {
+    console.log("error during fetchLikedPost: ", error);
+    
+  }}

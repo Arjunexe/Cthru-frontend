@@ -11,6 +11,7 @@ function SavedPosts() {
   useEffect(() => {
     async function getSavedPost() {
       const savedPost = await fetchSavedPost(loggedUserId);
+      
       setPost(savedPost);
     }
 
