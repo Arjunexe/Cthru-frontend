@@ -30,4 +30,4 @@ function SavedPosts() {
   );
 }
 
-export default SavedPosts;
+export default SavedPosts; 
