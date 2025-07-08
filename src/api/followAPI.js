@@ -12,6 +12,7 @@ export async function handleFollowAPI(following, setUserDetails) {
 
     if (userFollower === following) {
       console.log("You cannot follow yourself");
+      
     } else {
       try {
         const response = await axios.post("/user/followUser", {

@@ -32,7 +32,7 @@ function EditProfile() {
 
     if (selectedFile) {
       const newPicUploaded = await handleUploadClickAPI(
-        selectedFile, 
+        selectedFile,
         setUserDetails
       );
       if (newPicUploaded) {
@@ -67,16 +67,24 @@ function EditProfile() {
         </div>
       </div>
 
-      <div className="bg-pink-500">
-        BIO
-      </div>
+      <div className="bg-pink-500">BIO</div>
 
       <div className=" flex w-full flex-col justify-center mt-9 items-center">
         <label className={labelStyle}>Username</label>
-        <input type="text" value={userName} className={inputStyle} />
+        <input
+          type="text"
+          value={userName}
+          onChange={(e) => setEmailorPh(e.target.value)}
+          className={inputStyle}
+        />
 
         <label className={labelStyle}>Full Name</label>
-        <input type="text" value={fullName} className={inputStyle} />
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setEmailorPh(e.target.value)}
+          className={inputStyle}
+        />
 
         <label className={labelStyle}>Email or Phone</label>
         <input
