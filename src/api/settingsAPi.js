@@ -19,9 +19,8 @@ export async function savePost(loggedUserId, postId) {
 export async function fetchSavedPost (loggedUserId){
   try {
     const savedPost = await axios.post("/user/fetchPost", {loggedUserId})
-    console.log("yeah no iam here");
 
-    console.log("savedPostssssssssssssssssssssssss: ", savedPost);
+    return savedPost.data.savedPosts;
     
   } catch (error) {
     console.log("error during fetchSavePost: ", error);
