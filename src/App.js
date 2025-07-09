@@ -28,8 +28,8 @@ function App() {
   const endsWith = noSidebarEndWith.some((ending) =>
     location.pathname.endsWith(ending)
   );
-  // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification");
-  const renderSidebar = !noSidebar.includes(location.pathname) && !endsWith;
+  // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification"); 
+  const renderSidebar = !noSidebar.includes(location.pathname) // && !endsWith;
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
