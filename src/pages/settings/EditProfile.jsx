@@ -57,7 +57,7 @@ function EditProfile() {
           />
 
           <div className="w-fit relative  z-0">
-            <ProfileField width="11" height="11" profilePicUrl={dP} />
+            <ProfileField width="14" height="14" profilePicUrl={dP} />
             {loader && (
               <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30 rounded-full pointer-events-none">
                 <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />

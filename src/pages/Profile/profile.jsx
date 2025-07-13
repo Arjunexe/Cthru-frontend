@@ -144,7 +144,7 @@ export default function Profile() {
             onChange={handleChangeClick}
           /> */}
           <div>
-            <ProfileField width="8" height="8" profilePicUrl={profilePicUrl} />
+            <ProfileField width="12" height="12" profilePicUrl={profilePicUrl} />
           </div>
           {/* CONDITIONAL RENDERING */}
         </div>

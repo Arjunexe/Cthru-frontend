@@ -5,6 +5,7 @@ import { deletePost } from "../../../api/prfileUploadAPI";
 import { savePost } from "../../../api/settingsAPi";
 
 function OptionsModal({
+  postUserId, 
   realImg,
   onClose,
   setImgUploaded,
@@ -16,10 +17,22 @@ function OptionsModal({
 }) {
   const [loader, setLoader] = useState(false);
   const [saveState, setSaveState] = useState(saved.includes(loggedUserId));
+  const [loggedInUser, setItsLoggedUser] = useState(false)
   const optionSpan = "text-white text-opacity-95";
   const buttonStyle =
     "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
+
+  useEffect(() => {
+   if(loggedUserId === postUserId) {
+    setItsLoggedUser(true)
+   } else {
+    setItsLoggedUser(false)
+   }
+  
+    
+  }, [])
+  
 
   async function handleDelete() {
     setLoader(true);
@@ -59,10 +72,17 @@ function OptionsModal({
           onClick={(e) => e.stopPropagation()}
         >
           {/* Options */}
+          
+
+          { loggedInUser && (
+
           <button className={buttonStyle} onClick={handleDelete}>
             <span className={optionSpan}>Delete</span>
           </button>
 
+
+
+          )}
           <button className={buttonStyle} onClick={handleSave}>
             {saveState ? (
               <span className={optionSpan}>Unsave</span>

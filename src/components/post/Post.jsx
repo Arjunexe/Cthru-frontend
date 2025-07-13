@@ -212,6 +212,7 @@ function Post({ post }) {
           loggedUserId={loggedUserId}
           postId={postId}
           saved={saved}
+          postUserId = {following}
         />
       )}
     </div>
