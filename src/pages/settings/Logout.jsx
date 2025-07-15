@@ -15,7 +15,7 @@ function Logout() {
   return (
     <div className="h-full bg-yellow-300 w-1/2">
       <div className="bg-blue-500">
-        <button className="bg-purple-700" onClick={handleLogout}>
+        <button className="" onClick={handleLogout}>
           <span>logout</span>
         </button>
       </div>

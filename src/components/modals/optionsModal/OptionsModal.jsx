@@ -55,19 +55,20 @@ function OptionsModal({
     }
   }
 
-
-  async function handleBlock () {
+  async function handleBlock() {
     try {
-      
-      const blockedUser = await blockUser(loggedUserId, postUserId)
-
+      const blockedUser = await blockUser(loggedUserId, postUserId);
+      if (blockedUser.success && blockedUser.blocked) {
+        console.log("User is blocked");
+      } else if (blockedUser.success && !blockedUser.blocked) {
+        console.log("User is unblocked");
+      } else {
+        console.log("Something's wrong, try again");
+      }
     } catch (error) {
       console.log("error during handleBlock: ", error);
-      
-      
     }
   }
-
 
   return (
     <div
@@ -110,9 +111,9 @@ function OptionsModal({
           {!loggedInUser && (
             <>
               <button className={buttonStyle} onClick={handleBlock}>
-                <span className={optionSpan} >Block</span>
+                <span className={optionSpan}>Block</span>
               </button>
- 
+
               <button className={buttonStyle}>
                 <span className={optionSpan}>Report</span>
               </button>

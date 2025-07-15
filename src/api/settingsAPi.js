@@ -36,14 +36,16 @@ export async function fetchLikedPost(loggedUserId) {
   }
 }
 
-// BLOCK A USER 
-export async function blockUser (loggedUserId, postUserId) {
+// BLOCK A USER
+export async function blockUser(loggedUserId, postUserId) {
   try {
-      const blockedUser = await axios.post("/user/blockUser",{
-        loggedUserId,postUserId 
-      }) 
-  } catch (error) {
+    const blockedUser = await axios.post("/user/blockUser", {
+      loggedUserId,
+      postUserId,
+    });
+   return blockedUser.data; 
+ } catch (error) {
     console.log("error during blockUser: ", error);
-    
+    return false;
   }
 }

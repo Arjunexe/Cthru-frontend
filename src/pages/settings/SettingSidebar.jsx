@@ -1,5 +1,5 @@
 import React from "react";
-import { Bell, Pencil, LogOut, Bookmark, Heart, X } from "lucide-react";
+import { Bell, Pencil, LogOut, Bookmark, Heart, X, Ban  } from "lucide-react";
 import { NavLink, useParams } from "react-router-dom";
 
 function SettingSidebar() {
@@ -21,6 +21,12 @@ function SettingSidebar() {
       icon: <Heart />,
       path: `/${urlUsername}/settings/liked`,
     },
+    {
+      label: "Blocked",
+      icon: <Ban />,
+      path: `/${urlUsername}/settings/blocked_accounts`,
+    },
+ 
     {
       label: "Logout",
       icon: <LogOut />,

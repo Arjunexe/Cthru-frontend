@@ -19,6 +19,7 @@ import PrevModal from "../../pages/settings/DEMO/prevModal";
 import SavedPosts from "../../pages/settings/SavedPosts";
 import LIkedPosts from "../../pages/settings/LIkedPosts";
 import Logout from "../../pages/settings/Logout";
+import BlockedAc from "../../pages/settings/BlockedAc";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -86,6 +87,10 @@ const Router = createBrowserRouter([
           {
             path: "liked",
             element: <LIkedPosts />,
+          },
+          {
+            path: "blocked_accounts",
+            element: <BlockedAc />,
           },
           {
             path: "logout",
