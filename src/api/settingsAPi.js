@@ -35,3 +35,15 @@ export async function fetchLikedPost(loggedUserId) {
     console.log("error during fetchLikedPost: ", error);
   }
 }
+
+// BLOCK A USER 
+export async function blockUser (loggedUserId, postUserId) {
+  try {
+      const blockedUser = await axios.post("/user/blockUser",{
+        loggedUserId,postUserId 
+      }) 
+  } catch (error) {
+    console.log("error during blockUser: ", error);
+    
+  }
+}
