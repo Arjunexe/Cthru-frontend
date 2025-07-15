@@ -6,7 +6,7 @@ import { fetchSavedPost } from "../../api/settingsAPi";
 function SavedPosts() {
   const [post, setPost] = useState([]);
   const { userDetails } = useContext(MainContext);
-  const loggedUserId = userDetails?.userData?._id || "meh";
+  const loggedUserId = userDetails?.userData?._id || "";
 
   useEffect(() => {
     async function getSavedPost() {

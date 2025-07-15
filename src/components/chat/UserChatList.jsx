@@ -18,7 +18,7 @@ function UserChatList() {
    async function fetchData () {
     const data = await getFollowing(userId)
     setFollowing(data)
-    // console.log(followInfo);
+   // console.log(following);
    }
   fetchData().catch(err => console.error("error during fetchData: ", err))
   }, []);

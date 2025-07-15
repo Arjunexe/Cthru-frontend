@@ -49,3 +49,18 @@ export async function blockUser(loggedUserId, postUserId) {
     return false;
   }
 }
+
+// FETCH BLOCKED USERS
+export async function fetchBockList (loggedUserId) {
+  try {
+    
+   const blockedList = await axios.post("/user/fetchBlockedUsers", {
+    loggedUserId
+   }) 
+   return blockedList.data.blockedList.blocked;
+   
+  } catch (error) {
+   console.log("error during fetchBlockList: ", error);
+    
+  }
+}
