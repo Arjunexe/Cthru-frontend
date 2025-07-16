@@ -43,8 +43,9 @@ function App() {
 
         const stuff = response.data.userFollowData;
         const userData = response.data;
+
+        console.log("userDetails in app.js :", userData);
         const { userPost, ...filteredUserData } = userData;
-        console.log("userDetails in app.js :", filteredUserData);
 
         // UPDATING THE CONTEXT WITH USER DETAILS
         setUserDetails(filteredUserData);
