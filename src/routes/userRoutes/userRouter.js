@@ -20,6 +20,7 @@ import SavedPosts from "../../pages/settings/SavedPosts";
 import LIkedPosts from "../../pages/settings/LIkedPosts";
 import Logout from "../../pages/settings/Logout";
 import BlockedAc from "../../pages/settings/BlockedAc";
+import MainSidebar from "../../components/sidebar/MainSidebar";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -56,14 +57,14 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element: <PrevModal />, //         element: <Xample />,
+        element:   <PrevModal />, // <MainSidebar />      element: <Xample />,
       },
 
       {
         path: "message",
         element: <Message />,
       },
-      {
+     {
         path: "profileUpload",
         element: <ProfileUpload />,
       },

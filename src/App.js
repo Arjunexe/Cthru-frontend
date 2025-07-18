@@ -12,6 +12,7 @@ import Siidebar from "./components/sidebar/Sidebar";
 import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
+import MainSidebar from "./components/sidebar/MainSidebar";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
         {renderSidebar && (
           <div className="  hidden sm:block bg-slate-500 ">
             <Siidebar openCreateModal={toggleCreateModal} />
+            <MainSidebar openCreateModal={toggleCreateModal}/>
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>
         )}

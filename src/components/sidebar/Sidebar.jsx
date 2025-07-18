@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Sidebar.css";
 import logo from "../../assests/IconAsests/YouTube Logo Png.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { GoHome, GoHomeFill } from "react-icons/go";
@@ -140,9 +139,7 @@ function Siidebar({ openCreateModal }) {
 
         <button className="flex flex-row items-center mx-2.5 my-1 py-2.5 px-4">
           <IoIosNotifications size={29} className="" />{" "}
-          <span className=" ml-3 hidden xl:block ">
-            Notifications
-          </span>
+          <span className=" ml-3 hidden xl:block ">Notifications</span>
         </button>
 
         <button
