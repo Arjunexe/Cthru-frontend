@@ -21,6 +21,7 @@ import LIkedPosts from "../../pages/settings/LIkedPosts";
 import Logout from "../../pages/settings/Logout";
 import BlockedAc from "../../pages/settings/BlockedAc";
 import MainSidebar from "../../components/sidebar/MainSidebar";
+import Explore from "../../pages/Explore/Explore";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
 
@@ -58,6 +59,10 @@ const Router = createBrowserRouter([
       {
         path: "a",
         element:   <PrevModal />, // <MainSidebar />      element: <Xample />,
+      },
+      {
+        path: "explore",
+        element: <Explore />,
       },
 
       {

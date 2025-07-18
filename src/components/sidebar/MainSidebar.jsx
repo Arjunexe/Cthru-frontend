@@ -8,6 +8,9 @@ import {
   X,
   Ban,
   House,
+  Compass,
+  ImagePlus,
+  Mail,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProfileField from "../profileLayouts/ProfileField";
@@ -52,22 +55,22 @@ function MainSidebar({ openCreateModal }) {
       ? [
           {
             label: "Explore",
-            icon: <Bookmark />,
-            path: `/message`,
+            icon: <Compass />,
+            path: `/explore`,
           },
           {
             label: "Create",
-            icon: <Heart />,
+            icon: <ImagePlus />,
             onClick: openCreateModal,
           },
           {
             label: "Message",
-            icon: <Ban />,
+            icon: <Mail />,
             path: `/message`,
           },
           {
             label: "Notification",
-            icon: <Bookmark />,
+            icon: <Bell />,
             path: `/message`,
           },
         ]
@@ -100,14 +103,14 @@ function MainSidebar({ openCreateModal }) {
         ]),
     {
       label: "Profile",
-      icon: <ProfileField width="2.8" height="1.8" />,
+      icon: <ProfileField width="1.8" height="1.8" profilePicUrl={dP} />,
       onClick: handleProfileclick,
     },
   ];
 
   return (
     <div className="flex bg-slate-400 items-center justify-center bg-gradient-to-br ">
-      <div className="relative w-72 p-6 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
+      <div className="relative w-60 p-6 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
         {options.map(({ label, icon, path, onClick }) =>
           path ? (
             <NavLink
@@ -132,9 +135,9 @@ function MainSidebar({ openCreateModal }) {
             <button
               key={label}
               onClick={onClick}
-              className="flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-2 rounded-lg transition-all"
+              className="flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-8 rounded-lg transition-all"
             >
-              <span className="w-5 h-5">{icon}</span>
+              <span className="w-6 h-5">{icon}</span>
               <span className="text-sm font-medium">{label}</span>
             </button>
           )
