@@ -60,7 +60,7 @@ function MainSidebar({ openCreateModal }) {
           },
           {
             label: "Create",
-            icon: <ImagePlus />,
+            icon: <ImagePlus size={25} />,
             onClick: openCreateModal,
           },
           {
@@ -103,14 +103,14 @@ function MainSidebar({ openCreateModal }) {
         ]),
     {
       label: "Profile",
-      icon: <ProfileField width="1.8" height="1.8" profilePicUrl={dP} />,
+      icon: <ProfileField width="1.5" height="1.5" profilePicUrl={dP} />,
       onClick: handleProfileclick,
     },
   ];
 
   return (
-    <div className="flex bg-slate-400 items-center justify-center bg-gradient-to-br ">
-      <div className="relative w-60 p-6 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
+    <div className="flex mt-32   ml-10  bg-gradient-to-br ">
+      <div className="relative w-60 p-6 rounded-2xl  backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
         {options.map(({ label, icon, path, onClick }) =>
           path ? (
             <NavLink
@@ -128,16 +128,16 @@ function MainSidebar({ openCreateModal }) {
                 }`
               }
             >
-              <span className="w-5 h-5">{icon}</span>
-              <span className="text-sm font-medium">{label}</span>
+              <span className="w-5 h-5 ">{icon}</span>
+              <span className="text-sm font-medium ">{label}</span>
             </NavLink>
           ) : (
             <button
               key={label}
               onClick={onClick}
-              className="flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-8 rounded-lg transition-all"
+              className="flex items-center space-x-2 text-white hover:bg-white/20 px-4 py-2 rounded-lg transition-all"
             >
-              <span className="w-6 h-5">{icon}</span>
+              <span className="items-center flex overflow-hidden">{icon}</span>
               <span className="text-sm font-medium">{label}</span>
             </button>
           )

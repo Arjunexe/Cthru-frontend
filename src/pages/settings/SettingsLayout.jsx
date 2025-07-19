@@ -5,9 +5,9 @@ import SettingSidebar from "./SettingSidebar";
 function SettingsLayout() {
   return (
     <div className="flex-grow flex pr-60 bg-slate-500 h-screen overflow-auto w-full justify-center ">
-      <div className="pb-52">
+      {/* <div className="">
         <SettingSidebar />
-      </div>
+      </div> */}
       <Outlet />
     </div>
   );

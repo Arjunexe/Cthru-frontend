@@ -100,7 +100,7 @@ function App() {
       <div className="flex ">
         {renderSidebar && (
           <div className="  hidden sm:block bg-slate-500 ">
-            <Siidebar openCreateModal={toggleCreateModal} />
+            {/* <Siidebar openCreateModal={toggleCreateModal} /> */}
             <MainSidebar openCreateModal={toggleCreateModal}/>
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>
