@@ -12,7 +12,7 @@ import Suggestion from "../../components/suggestion/Suggestion";
 function Home() {
 
   return (
-    <div className=" *{sm:mr-11*} md:h-screen md:flex flex-row md:w-full justify-between overflow-auto {*bg-lime-700*} bg-slate-500 ">
+    <div className=" *{sm:mr-11*} md:h-screen md:flex flex-row md:w-full justify-between overflow-auto {*bg-lime-700*} bg-slate-700">
       <div className="g:ml-44 xl:ml-64 3xl:ml-auto 3xl:mr-72">
         <Timeline />
       </div>

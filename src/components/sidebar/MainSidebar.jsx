@@ -144,7 +144,7 @@ function MainSidebar({ openCreateModal }) {
           )
         )}
       </div>
-      <Notification />
+      {/* <Notification /> */}
     </div>
   );
 }
