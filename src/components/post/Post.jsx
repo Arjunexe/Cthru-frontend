@@ -127,7 +127,7 @@ function Post({ post }) {
       {/* <div className="flex {*bg-orange-700*} "> */}
       <div className=" flex items-center space-x-2 justify-between">
         {/* profile pic & userName */}
-        <div
+        <button
           className=" flex items-center space-x-2 cursor-pointer bg-red-600"
           onClick={handleProfileClick}
         >
@@ -138,24 +138,24 @@ function Post({ post }) {
 
           <div className="" onClick={(e) => e.stopPropagation()}>
             {!flowstate && (
-              <span
+              <button
                 className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded "
                 onClick={handleFollow}
               >
                 Follow
-              </span>
+              </button>
             )}
           </div>
-        </div>
+        </button>
 
-        <div
+        <button
           className="bg-lime-700 cursor-pointer"
           onClick={() => {
             setOptionsModal(true);
           }}
         >
           <SlOptionsVertical />
-        </div>
+        </button>
       </div>
 
       {/* </div> */}
@@ -167,11 +167,11 @@ function Post({ post }) {
       />
       {/* ----------Like and Comment------------ */}
       <div className="flex mt-2">
-        <div className="cursor-pointer" onClick={handleLikeOrUnlike}>
+        <button className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
-        </div>
+        </button>
         {/* -----------Comment--------- */}
-        <div
+        <button
           className="ml-3"
           // onClick={() =>
           //   toggleCommentModal({
@@ -182,7 +182,7 @@ function Post({ post }) {
           onClick={() => setCommentModal(true)}
         >
           <FaRegComment size={25} />
-        </div>
+        </button>
 
         {commentModal && (
           <CommentModal
