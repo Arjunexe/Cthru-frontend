@@ -27,7 +27,7 @@ export default function Profile() {
   // CHECK IF THE USER IS LOGGED IN OR NOT
   useEffect(() => {
     function checkLoggedIn() {
-        console.log("lowkeyyyyyyyy: ", userId);
+        console.log("lowkeyyyyyyyy: ", userId); 
 
       if (userName === urlUsername) {
         console.log("its the logged user");
