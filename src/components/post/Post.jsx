@@ -127,7 +127,7 @@ function Post({ post }) {
       {/* <div className="flex {*bg-orange-700*} "> */}
       <div className=" flex items-center space-x-2 justify-between">
         {/* profile pic & userName */}
-        <button
+        <div
           className=" flex items-center space-x-2 cursor-pointer bg-red-600"
           onClick={handleProfileClick}
         >
@@ -146,7 +146,7 @@ function Post({ post }) {
               </button>
             )}
           </div>
-        </button>
+        </div>
 
         <button
           className="bg-lime-700 cursor-pointer"
