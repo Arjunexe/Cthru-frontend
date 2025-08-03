@@ -20,6 +20,7 @@ function Home() {
       <div className="hidden xl:block bg-slate-500">
         <Suggestion />  
       </div>
+
     </div>
   );
 }
