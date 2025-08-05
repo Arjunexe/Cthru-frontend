@@ -20,6 +20,7 @@ import Notification from "../../pages/notification/Notification";
 function MainSidebar({ openCreateModal }) {
   const { urlUsername } = useParams();
   const [home, setHome] = useState(false);
+  const [openNotification, setOpenNotification] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { userDetails } = useContext(MainContext);
@@ -32,6 +33,11 @@ function MainSidebar({ openCreateModal }) {
     }
   }
 
+  // Open notificatin
+  function openNotificationModal() {
+    setOpenNotification(true);
+  }
+
   //   const message = location.pathname("/messages");
   const endsWith = [
     "/saved",
@@ -41,7 +47,7 @@ function MainSidebar({ openCreateModal }) {
     "/blocked_accounts",
   ];
   const settings = endsWith.some((ending) =>
-    location.pathname.endsWith(ending)
+    location.pathname.endsWith(ending),
   );
 
   const options = [
@@ -72,7 +78,7 @@ function MainSidebar({ openCreateModal }) {
           {
             label: "Notification",
             icon: <Bell />,
-            path: `/message`,
+            onClick: openNotificationModal,
           },
         ]
       : [
@@ -141,10 +147,12 @@ function MainSidebar({ openCreateModal }) {
               <span className="items-center flex overflow-hidden">{icon}</span>
               <span className="text-sm font-medium">{label}</span>
             </button>
-          )
+          ),
         )}
       </div>
-      {/* <Notification /> */}
+      {openNotification && (
+        <Notification onClose={() => setOpenNotification(false)} />
+      )}
     </div>
   );
 }

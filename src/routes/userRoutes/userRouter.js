@@ -58,7 +58,7 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element:   <PrevModal />, // <MainSidebar />      element: <Xample />,
+        element: <PrevModal />, // <MainSidebar />      element: <Xample />,
       },
       {
         path: "explore",
@@ -69,7 +69,7 @@ const Router = createBrowserRouter([
         path: "message",
         element: <Message />,
       },
-     {
+      {
         path: "profileUpload",
         element: <ProfileUpload />,
       },
