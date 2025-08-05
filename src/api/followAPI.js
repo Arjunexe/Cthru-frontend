@@ -12,18 +12,17 @@ export async function handleFollowAPI(following, setUserDetails) {
 
     if (userFollower === following) {
       console.log("You cannot follow yourself");
-      
     } else {
       try {
         const response = await axios.post("/user/followUser", {
           userFollower,
           following,
         });
-        console.log("response is therererere :", response.data.followData);
+        console.log("response is therererere :", response.data.followerUser);
         // setUserDetails({userFollowData: { ...response.data.followData}})
         setUserDetails((prevDetails) => ({
           ...prevDetails, // Spreads existing userData and userFollowData
-          userFollowData: { ...response.data.followData }, // Updates userFollowData only
+          userFollowData: { ...response.data.followerUser }, // Updates userFollowData only
         }));
       } catch (error) {
         console.log("error during handleFollowAPI :", error);

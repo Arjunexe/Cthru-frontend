@@ -33,7 +33,7 @@ function Post({ post }) {
   const { setImgUploaded, userDetails, setUserDetails } =
     useContext(MainContext);
   const [likeState, setLikeState] = useState(
-    post.like.includes(userDetails?.userData?._id)
+    post.like.includes(userDetails?.userData?._id),
   );
   const followInfo = userDetails?.userFollowData?.following || [];
   const loggedUserId = userDetails?.userData?._id || "";
@@ -212,7 +212,7 @@ function Post({ post }) {
           loggedUserId={loggedUserId}
           postId={postId}
           saved={saved}
-          postUserId = {following}
+          postUserId={following}
         />
       )}
     </div>
