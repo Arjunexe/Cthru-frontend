@@ -13,6 +13,7 @@ import CreatePostModal from "./components/modals/createPostModal/createPostModal
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
 import MainSidebar from "./components/sidebar/MainSidebar";
+import { connectSocket } from "./utils/socket";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
@@ -25,12 +26,27 @@ function App() {
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
   const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
-  const noSidebarEndWith = [ "/saved", "/liked", "/logout"];
+  const noSidebarEndWith = ["/saved", "/liked", "/logout"];
   const endsWith = noSidebarEndWith.some((ending) =>
-    location.pathname.endsWith(ending)
+    location.pathname.endsWith(ending),
   );
-  // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification"); 
-  const renderSidebar = !noSidebar.includes(location.pathname) // && !endsWith;
+  // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification");
+  const renderSidebar = !noSidebar.includes(location.pathname); // && !endsWith;
+
+  useEffect(() => {
+    try {
+      if (Token) {
+        const decodedToken = jwtDecode(Token);
+        const userId = decodedToken.userId;
+        if (userId) {
+          const socket = connectSocket();
+          socket.emit("joinUserRoom", userId);
+        }
+      }
+    } catch (error) {
+      console.log("error during socket in app.js: ", error);
+    }
+  }, [Token]);
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
@@ -101,7 +117,7 @@ function App() {
         {renderSidebar && (
           <div className="  hidden sm:block bg-slate-500 ">
             {/* <Siidebar openCreateModal={toggleCreateModal} /> */}
-            <MainSidebar openCreateModal={toggleCreateModal}/>
+            <MainSidebar openCreateModal={toggleCreateModal} />
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>
         )}

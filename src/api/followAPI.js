@@ -8,7 +8,6 @@ export async function handleFollowAPI(following, setUserDetails) {
   if (Token) {
     const decode = jwtDecode(Token);
     const userFollower = decode.userId;
-    console.log("follower :", userFollower);
 
     if (userFollower === following) {
       console.log("You cannot follow yourself");
