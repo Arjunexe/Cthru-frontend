@@ -13,7 +13,7 @@ import CreatePostModal from "./components/modals/createPostModal/createPostModal
 import SessionContext from "./context/SessionContext";
 import { getPostData } from "./api/prfileUploadAPI";
 import MainSidebar from "./components/sidebar/MainSidebar";
-import { connectSocket } from "./utils/socket";
+import { connectSocket, getSocket } from "./utils/socket";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
   // const endsWith = location.pathname.endsWith("/edit") || location.pathname.endsWith("/saved") //eg: path.endsWith("/edit") || path.endsWith("/notification");
   const renderSidebar = !noSidebar.includes(location.pathname); // && !endsWith;
 
+  // Emitiing userId to BACKEND using Socket.io
   useEffect(() => {
     try {
       if (Token) {
@@ -47,6 +48,18 @@ function App() {
       console.log("error during socket in app.js: ", error);
     }
   }, [Token]);
+
+  // Receive socket from backend
+  useEffect(() => {
+    const socketInstance = getSocket();
+    try {
+      socketInstance.on("notification:new", (data) => {
+        console.log("hopefully its bear: ", data);
+      });
+    } catch (error) {
+      console.log("error during socket receive in app.js: ", error);
+    }
+  }, []);
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT

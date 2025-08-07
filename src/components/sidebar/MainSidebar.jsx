@@ -16,6 +16,7 @@ import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProfileField from "../profileLayouts/ProfileField";
 import MainContext from "../../context/context";
 import Notification from "../../pages/notification/Notification";
+import Redbell from "../button/Redbell";
 
 function MainSidebar({ openCreateModal }) {
   const { urlUsername } = useParams();
@@ -77,7 +78,7 @@ function MainSidebar({ openCreateModal }) {
           },
           {
             label: "Notification",
-            icon: <Bell />,
+            icon: <Redbell />, // <Bell />
             onClick: openNotificationModal,
           },
         ]

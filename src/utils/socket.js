@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { io } from "socket.io-client";
 import { jwtToken } from "../jwt/jwt";
 
-let socket;
+let socketInstance = null;
 
 export function connectSocket() {
   const token = localStorage.getItem(jwtToken);
@@ -11,7 +11,7 @@ export function connectSocket() {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
 
-      socket = io("http://localhost:5000", {
+      socketInstance = io("http://localhost:5000", {
         query: {
           userId: userId,
         },
@@ -21,5 +21,9 @@ export function connectSocket() {
     }
   }
 
-  return socket;
+  return socketInstance;
+}
+
+export function getSocket() {
+  return socketInstance;
 }
