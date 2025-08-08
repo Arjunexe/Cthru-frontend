@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { getNotification } from "../../api/prfileUploadAPI";
 import NotificationCard from "../../components/card/NotificationCard";
+import MainContext from "../../context/context";
 
 function Notification({ onClose }) {
+  const { userDetails } = useContext(MainContext);
+
+  const userId = userDetails?.userData?._id || "Guest";
+
+  useEffect(() => {
+    async function fetchNotification() {
+      try {
+        if (userId) {
+          const notificationData = await getNotification(userId);
+        }
+      } catch (error) {
+        console.log("error during fetchNotification: ", error);
+      }
+    }
+    fetchNotification();
+  }, []);
+
   return (
     <div
       className="w-screen flex  inset-0 fixed h-screen bg-black/20 "

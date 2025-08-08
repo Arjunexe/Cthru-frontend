@@ -37,11 +37,11 @@ export async function handleUploadClickAPI(profilePic, setUserDetails) {
   try {
     const response = await axios.post(
       "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
-      formData
+      formData,
     );
     const sendImgResult = await sendProfileImgUrl(
       response.data.secure_url,
-      setUserDetails
+      setUserDetails,
     );
     return sendImgResult;
   } catch (error) {
@@ -167,5 +167,15 @@ export async function handleComment(comment, commentId) {
   } catch (error) {
     console.log("error during handlComment: ", error);
     throw error;
+  }
+}
+
+// FETCH NOTIFICATION DATA
+export async function getNotification(userId) {
+  try {
+    const response = await axios.get(`/user/getNotificationData/${userId}`);
+    console.log("notification is here: ", response.data.notificationData);
+  } catch (error) {
+    console.log("error during getNotification: ", error);
   }
 }
