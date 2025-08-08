@@ -174,7 +174,7 @@ export async function handleComment(comment, commentId) {
 export async function getNotification(userId) {
   try {
     const response = await axios.get(`/user/getNotificationData/${userId}`);
-    console.log("notification is here: ", response.data.notificationData);
+    return response.data.notificationData;
   } catch (error) {
     console.log("error during getNotification: ", error);
   }
