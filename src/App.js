@@ -54,7 +54,7 @@ function App() {
     const socketInstance = getSocket();
     try {
       socketInstance.on("notification:new", (data) => {
-        console.log("hopefully its bear: ", data);
+        console.log("Notification came: ", data);
       });
     } catch (error) {
       console.log("error during socket receive in app.js: ", error);

@@ -25,7 +25,7 @@ export default function NotificationCard({ data }) {
   }, [data]);
 
   return (
-    <div className="border p-4 m-0 rounded-2xl ">
+    <div className="border p-3 m-3 rounded-2xl  ">
       <div className="flex">
         <ProfileField width="3" height="3" profilePicUrl={profilePic} />
         <span className="pl-1">{name}</span>

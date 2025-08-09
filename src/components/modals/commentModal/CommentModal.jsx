@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../commentModal/commentModal.css"
+import "../commentModal/commentModal.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Comment from "../../comment/Comment";
 import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
@@ -73,7 +73,11 @@ function CommentModal({ onClose, postId, loggedUserId }) {
             // style={{ display: "flex", flexDirection: "column-reverse" }} //To put endMessage and loader to the top.
             hasMore={hasMore}
             loader={<h4>Loading...</h4>}
-            endMessage={<h4 className="text-white text-opacity-95 font-light">All good</h4>}
+            endMessage={
+              <h4 className="text-white text-opacity-95 font-light">
+                All good
+              </h4>
+            }
             scrollableTarget="parentScroll"
           >
             {commentList.map((comment) => (

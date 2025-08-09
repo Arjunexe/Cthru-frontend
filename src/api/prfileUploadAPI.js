@@ -126,12 +126,6 @@ export async function handleLikeApi(loggedUserId, postId, likeState) {
     });
 
     return postLiked.data.liked;
-
-    // if (postLiked.data.liked) {
-    //   setLikeState(true);
-    // } else {
-    //   setLikeState(false);
-    // }
   } catch (error) {
     console.log("error during handleLikeApi: ", error);
   }
