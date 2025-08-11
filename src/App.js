@@ -11,13 +11,15 @@ import Siidebar from "./components/sidebar/Sidebar";
 // import CommentModal from "./components/modals/commentModal/CommentModal";
 import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
-import { getPostData } from "./api/prfileUploadAPI";
+import { flagChangeApi, getPostData } from "./api/prfileUploadAPI";
 import MainSidebar from "./components/sidebar/MainSidebar";
 import { connectSocket, getSocket } from "./utils/socket";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
   const [postModal, setPostModal] = useState(false);
+  const [notificationFlag, setNotificationFlag] = useState(false);
+  const [userID, setUserId] = useState(null);
   // const [commentModal, setCommentModal] = useState(false);
   // const [commentId, setCommentId] = useState(null)
   const { logout } = useContext(SessionContext);
@@ -42,6 +44,7 @@ function App() {
         if (userId) {
           const socket = connectSocket();
           socket.emit("joinUserRoom", userId);
+          setUserId(userId);
         }
       }
     } catch (error) {
@@ -51,15 +54,21 @@ function App() {
 
   // Receive socket from backend
   useEffect(() => {
+    if (!userID) return;
     const socketInstance = getSocket();
     try {
-      socketInstance.on("notification:new", (data) => {
+      socketInstance.on("notification:new", async (data) => {
         console.log("Notification came: ", data);
+        if (data) {
+          setNotificationFlag(true);
+
+          const flagRedNotification = await flagChangeApi(userID, true);
+        }
       });
     } catch (error) {
       console.log("error during socket receive in app.js: ", error);
     }
-  }, []);
+  }, [userID]);
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
@@ -130,7 +139,10 @@ function App() {
         {renderSidebar && (
           <div className="  hidden sm:block bg-slate-500 ">
             {/* <Siidebar openCreateModal={toggleCreateModal} /> */}
-            <MainSidebar openCreateModal={toggleCreateModal} />
+            <MainSidebar
+              notificationFlag={notificationFlag}
+              openCreateModal={toggleCreateModal}
+            />
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>
         )}

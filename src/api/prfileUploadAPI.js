@@ -173,3 +173,12 @@ export async function getNotification(userId) {
     console.log("error during getNotification: ", error);
   }
 }
+
+// CHANGE NOTIFICATION FLAG
+export async function flagChangeApi(userID) {
+  try {
+    console.log("kfjak askdfjalsk fkadjflak: ", userID);
+  } catch (error) {
+    console.log("error during flagChangeApi: ", error);
+  }
+}

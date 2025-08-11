@@ -14,7 +14,6 @@ function Notification({ onClose }) {
       try {
         if (userId) {
           const notificationData = await getNotification(userId);
-          console.log("faklfalkfjlak: ", notificationData);
           setNotifications(notificationData);
         }
       } catch (error) {

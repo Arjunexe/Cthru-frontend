@@ -18,7 +18,7 @@ import MainContext from "../../context/context";
 import Notification from "../../pages/notification/Notification";
 import Redbell from "../button/Redbell";
 
-function MainSidebar({ openCreateModal }) {
+function MainSidebar({ openCreateModal, notificationFlag }) {
   const { urlUsername } = useParams();
   const [home, setHome] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
@@ -78,7 +78,7 @@ function MainSidebar({ openCreateModal }) {
           },
           {
             label: "Notification",
-            icon: <Redbell />, // <Bell />
+            icon: notificationFlag ? <Redbell /> : <Bell />,
             onClick: openNotificationModal,
           },
         ]

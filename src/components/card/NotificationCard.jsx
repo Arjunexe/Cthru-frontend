@@ -5,18 +5,14 @@ export default function NotificationCard({ data }) {
   const [types, setTypes] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [name, setName] = useState("");
-  console.log("bruh this shit lowkey: ", data.sender.Username);
-
-  // started following you
-  // liked your post
-  // commented on your post
+  console.log("all the data: ", data.isRead);
 
   useEffect(() => {
     setProfilePic(data.sender.ProfilePic);
     setName(data.sender.Username);
 
     if (data.type === "follow") {
-      setTypes(`started ${data.type} you.`);
+      setTypes(`started ${data.type}ing you.`);
     } else if (data.type === "like") {
       setTypes("liked your post.");
     } else if (data.type === "comment") {
