@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Bell,
   Pencil,
@@ -17,8 +17,9 @@ import ProfileField from "../profileLayouts/ProfileField";
 import MainContext from "../../context/context";
 import Notification from "../../pages/notification/Notification";
 import Redbell from "../button/Redbell";
+import { flagChangeApi } from "../../api/prfileUploadAPI";
 
-function MainSidebar({ openCreateModal, notificationFlag }) {
+function MainSidebar({ openCreateModal, redDot, setRedDot }) {
   const { urlUsername } = useParams();
   const [home, setHome] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
@@ -27,6 +28,23 @@ function MainSidebar({ openCreateModal, notificationFlag }) {
   const { userDetails } = useContext(MainContext);
   const dP = userDetails?.userData?.ProfilePic || "Guest";
   const userName = userDetails?.userData?.Username || "";
+  const userID = userDetails?.userData?._id || "";
+
+  const flagRed = userDetails?.userData?.notificatoinFlag || "";
+
+  async function flagCheck() {
+    if (!redDot) {
+      return;
+    }
+    try {
+      const flagRedNotification = await flagChangeApi(userID, false);
+      console.log("just chhecking: ", flagRed);
+      setRedDot(false);
+      //      console.log("jfakfj kadfjkal kfaklsfj: ", flagRedNotification);
+    } catch (error) {
+      console.log("error during : ", error);
+    }
+  }
 
   function handleProfileclick() {
     if (userName) {
@@ -78,8 +96,11 @@ function MainSidebar({ openCreateModal, notificationFlag }) {
           },
           {
             label: "Notification",
-            icon: notificationFlag ? <Redbell /> : <Bell />,
-            onClick: openNotificationModal,
+            icon: redDot ? <Redbell /> : <Bell />,
+            onClick: () => {
+              openNotificationModal();
+              flagCheck();
+            },
           },
         ]
       : [

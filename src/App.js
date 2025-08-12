@@ -18,12 +18,12 @@ import { connectSocket, getSocket } from "./utils/socket";
 
 function App() {
   const [postModal, setPostModal] = useState(false);
-  const [notificationFlag, setNotificationFlag] = useState(false);
+  const [redDot, setRedDot] = useState(false);
   const [userID, setUserId] = useState(null);
-  // const [commentModal, setCommentModal] = useState(false);
-  // const [commentId, setCommentId] = useState(null)
+  const [trueFlag, setTrueFlag] = useState(false);
   const { logout } = useContext(SessionContext);
-  const { setUserDetails } = useContext(MainContext);
+  const { setUserDetails, userDetails } = useContext(MainContext);
+  const redFlag = userDetails?.userData?.notificatoinFlag || "";
   const location = useLocation();
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
@@ -54,21 +54,27 @@ function App() {
 
   // Receive socket from backend
   useEffect(() => {
-    if (!userID) return;
     const socketInstance = getSocket();
+
     try {
       socketInstance.on("notification:new", async (data) => {
         console.log("Notification came: ", data);
-        if (data) {
-          setNotificationFlag(true);
 
-          const flagRedNotification = await flagChangeApi(userID, true);
+        // if (!userID) return;
+        // if (redFlag) {
+        //   return;
+        // }
+
+        console.log("insdie");
+        const flagRedNotification = await flagChangeApi(userID, true);
+        if (flagRedNotification == true) {
+          setRedDot(true);
         }
       });
     } catch (error) {
       console.log("error during socket receive in app.js: ", error);
     }
-  }, [userID]);
+  }, [userID, redFlag]);
 
   useEffect(() => {
     // SENDING THE userId TO THE BACKEND THROUGHT PARAMS TO GET LOGGED IN userDetail TO UPDATE THE CONTEXT
@@ -140,8 +146,9 @@ function App() {
           <div className="  hidden sm:block bg-slate-500 ">
             {/* <Siidebar openCreateModal={toggleCreateModal} /> */}
             <MainSidebar
-              notificationFlag={notificationFlag}
               openCreateModal={toggleCreateModal}
+              redDot={redDot}
+              setRedDot={setRedDot}
             />
             {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
           </div>

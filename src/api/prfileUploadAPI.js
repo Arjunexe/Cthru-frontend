@@ -175,9 +175,20 @@ export async function getNotification(userId) {
 }
 
 // CHANGE NOTIFICATION FLAG
-export async function flagChangeApi(userID) {
+export async function flagChangeApi(userID, flag) {
   try {
-    console.log("kfjak askdfjalsk fkadjflak: ", userID);
+    console.log("its herer but");
+    const flagChanged = await axios.patch("/user/changeFlag", {
+      userID,
+      flag,
+    });
+    console.log("kjfla falkfj  fkadfaj: ", flagChanged.data.notificationFlag);
+
+    if (flagChanged.data.notificationFlag) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.log("error during flagChangeApi: ", error);
   }
