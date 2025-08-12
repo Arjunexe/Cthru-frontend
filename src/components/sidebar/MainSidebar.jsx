@@ -22,24 +22,37 @@ import { flagChangeApi } from "../../api/prfileUploadAPI";
 function MainSidebar({ openCreateModal, redDot, setRedDot }) {
   const { urlUsername } = useParams();
   const [home, setHome] = useState(false);
+  const { userDetails, setUserDetails } = useContext(MainContext);
+  //const [flagRed, setFlagRed] = useState( userDetails?.userData?.notificatoinFlag,);
   const [openNotification, setOpenNotification] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { userDetails } = useContext(MainContext);
   const dP = userDetails?.userData?.ProfilePic || "Guest";
   const userName = userDetails?.userData?.Username || "";
   const userID = userDetails?.userData?._id || "";
 
   const flagRed = userDetails?.userData?.notificatoinFlag || "";
+  console.log("outside redDot: ", redDot);
+  console.log("outside flagRED: ", flagRed);
 
   async function flagCheck() {
-    if (!redDot) {
+    if (!flagRed && !redDot) {
+      // notificaion is true to run this below code
       return;
     }
     try {
       const flagRedNotification = await flagChangeApi(userID, false);
-      console.log("just chhecking: ", flagRed);
+      console.log("just redDot: ", redDot);
+      console.log("just flagRED: ", flagRed);
+      setUserDetails((prev) => ({
+        ...prev,
+        userData: {
+          ...prev.userData,
+          notificatoinFlag: false,
+        },
+      }));
       setRedDot(false);
+      //      setFlagRed(false);
       //      console.log("jfakfj kadfjkal kfaklsfj: ", flagRedNotification);
     } catch (error) {
       console.log("error during : ", error);
@@ -96,10 +109,10 @@ function MainSidebar({ openCreateModal, redDot, setRedDot }) {
           },
           {
             label: "Notification",
-            icon: redDot ? <Redbell /> : <Bell />,
+            icon: !redDot && !flagRed ? <Bell /> : <Redbell />,
             onClick: () => {
-              openNotificationModal();
               flagCheck();
+              openNotificationModal();
             },
           },
         ]

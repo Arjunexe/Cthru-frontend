@@ -27,7 +27,7 @@ export default function Profile() {
   // CHECK IF THE USER IS LOGGED IN OR NOT
   useEffect(() => {
     function checkLoggedIn() {
-        console.log("lowkeyyyyyyyy: ", userId); 
+      console.log("lowkeyyyyyyyy: ", userId);
 
       if (userName === urlUsername) {
         console.log("its the logged user");
@@ -51,7 +51,7 @@ export default function Profile() {
         const response = await getPostData(urlUsername);
         if (response.status === 200) {
           setProfileData(response.data);
-        } else { 
+        } else {
           navigate("/error");
         }
       } catch (error) {
@@ -94,7 +94,7 @@ export default function Profile() {
   //   }
   // }, [profilePic, setUserDetails]);
 
-   // HANDLES THE PROFILE PIC UPLOAD CHANGE
+  // HANDLES THE PROFILE PIC UPLOAD CHANGE
   // async function handleChangeClick(event) {
   //   const selectedFile = event.target.files[0];
   //   setProfilePics(selectedFile);
@@ -110,7 +110,6 @@ export default function Profile() {
     getPost().catch((err) => console.error("error during getPost:", err));
   }, [imgUploaded, loggedIn, urlUsername]);
 
- 
   // TOGGLE SETTINGS MODAL
   function handleSettingsModal() {
     setSettingsModal(true);
@@ -144,7 +143,11 @@ export default function Profile() {
             onChange={handleChangeClick}
           /> */}
           <div>
-            <ProfileField width="12" height="12" profilePicUrl={profilePicUrl} />
+            <ProfileField
+              width="12"
+              height="12"
+              profilePicUrl={profilePicUrl}
+            />
           </div>
           {/* CONDITIONAL RENDERING */}
         </div>

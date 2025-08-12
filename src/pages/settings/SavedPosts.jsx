@@ -11,7 +11,7 @@ function SavedPosts() {
   useEffect(() => {
     async function getSavedPost() {
       const savedPost = await fetchSavedPost(loggedUserId);
-      
+
       setPost(savedPost);
     }
 
@@ -20,10 +20,13 @@ function SavedPosts() {
 
   return (
     <div className="h-screen bg-yellow-300 w-1/2">
-      <div className="grid grid-cols-3 ">
+      <div className=" grid grid-cols-3 ">
         {post.map((post, index) => {
           return (
-            <ProfileGrid key={index} post={post} />  /*Have to use return if there is no normal brackets*/
+            <ProfileGrid
+              key={index}
+              post={post}
+            /> /*Have to use return if there is no normal brackets*/
           );
         })}
       </div>
