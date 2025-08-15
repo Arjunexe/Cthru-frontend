@@ -19,6 +19,7 @@
     "cloudinary-build-url": "^0.2.4",
     "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",
+    "framer-motion": "^12.23.12",
     "jsonwebtoken": "^9.0.2",
     "jws": "^4.0.0",
     "jwt-decode": "^4.0.0",

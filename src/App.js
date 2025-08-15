@@ -14,6 +14,7 @@ import SessionContext from "./context/SessionContext";
 import { flagChangeApi, getPostData } from "./api/prfileUploadAPI";
 import MainSidebar from "./components/sidebar/MainSidebar";
 import { connectSocket, getSocket } from "./utils/socket";
+import MainSidebarAnimation from "./components/sidebar/MainSidebarAnimation";
 // import UserSessionContext from "./context/sessionProvider";
 
 function App() {
@@ -143,9 +144,13 @@ function App() {
     <>
       <div className="flex ">
         {renderSidebar && (
-          <div className="  hidden sm:block bg-slate-500 ">
-            {/* <Siidebar openCreateModal={toggleCreateModal} /> */}
-            <MainSidebar
+          <div className="  hidden sm:block bg-slate-400 ">
+            {/* <MainSidebar */}
+            {/*   openCreateModal={toggleCreateModal} */}
+            {/*   redDot={redDot} */}
+            {/*   setRedDot={setRedDot} */}
+            {/* /> */}
+            <MainSidebarAnimation
               openCreateModal={toggleCreateModal}
               redDot={redDot}
               setRedDot={setRedDot}

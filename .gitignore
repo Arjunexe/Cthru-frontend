@@ -25,3 +25,6 @@ yarn-error.log*
 
 
 frontNote.txt
+
+./src/components/sidebar/MainSidebar.jsx
+./src/components/sidebar/Sidebar.jsx

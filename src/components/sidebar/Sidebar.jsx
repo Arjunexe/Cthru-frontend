@@ -103,7 +103,7 @@ function Siidebar({ openCreateModal }) {
   }
 
   return (
-    <div className=" mt-40 ml-20 md:w-36 xl:w-56 flex flex-col justify-between z-1 bg-slate-400 rounded-2xl">
+    <div className=" mt-40 ml-20 md:w-36 xl:w-56 flex flex-col justify-between z-1 bg-yellow-400 rounded-2xl">
       {/* <img className="w-32 m-4" src={logo} alt="failed to upload" /> */}
 
       <div className="flex flex-col ">
