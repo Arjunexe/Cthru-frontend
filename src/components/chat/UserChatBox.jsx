@@ -15,6 +15,7 @@ function UserChatBox({ user }) {
       setUsername(username);
       setDp(profilePic);
     } else {
+      console.log("stuffff: ", user);
       const username = "Start following to stay connected!";
       setUsername(username);
     }

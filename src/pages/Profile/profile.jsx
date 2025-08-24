@@ -130,53 +130,36 @@ export default function Profile() {
   }
 
   return (
-    <div className=" h-screen w-screen bg-slate-500 overflow-auto">
-      {/* Header */}
-      <div className="w-96  bg-gray-400 flex ml-10 items-center  justify-between">
-        <div className=" relative inline-block bg-red-500">
-          {/* CONDITIONAL RENDERING */}
-          {/* <input
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            accept="image/jpeg, image/png, image/webp, image/jpg"
-            name="image"
-            type="file"
-            onChange={handleChangeClick}
-          /> */}
-          <div>
-            <ProfileField
-              width="12"
-              height="12"
-              profilePicUrl={profilePicUrl}
-            />
-          </div>
-          {/* CONDITIONAL RENDERING */}
+    <div className="bg-slate-500 min-h-screen w-screen flex flex-col items-center overflow-auto">
+      {/* Top section */}
+      <div className="w-full flex flex-col items-center mt-6">
+        <div className="relative inline-block">
+          <ProfileField width="10" height="10" profilePicUrl={profilePicUrl} />
         </div>
 
-        <div className="text-green-500 ml-6 text-2xl md:text-red-500 lg:text-blue-500">
-          {UserName}
-        </div>
+        <div className="text-green-500 text-2xl mt-2">{UserName}</div>
 
         <div
-          className="bg-amber-400 cursor-pointer"
+          className="bg-amber-400 cursor-pointer px-4 py-1 mt-2 rounded"
           onClick={handleSettingsModal}
         >
           Settings
         </div>
       </div>
-      {/* ------------SETTINGS MODAL------------- */}
 
+      {/* -------------Settings Modal--------------- */}
       {settingsModal && (
         <SettingsModal
           logout={handleClick}
-          onClose={() => setSettingsModal()}
+          onClose={() => setSettingsModal(false)}
           loggedIn={loggedIn}
           urlUsername={urlUsername}
         />
       )}
 
-      {/* The grid */}
-      <div className="bg-slate-500 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4">
-        {/* MAYBE ProfileGrid NEEDS A STABLE KEY */}
+      {/* -----------------Posts grid----------------- */}
+      <div className="xl:px-56 lg:px-4 grid grid-cols-3 gap-1 sm:gap-1 md:gap-1 w-full ">
+        {/* <div className="px-56 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4"> */}
         {post.map((post, index) => (
           <ProfileGrid key={index} post={post} />
         ))}

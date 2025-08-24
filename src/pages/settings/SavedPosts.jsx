@@ -20,7 +20,7 @@ function SavedPosts() {
 
   return (
     <div className="h-screen bg-yellow-300 w-1/2">
-      <div className=" grid grid-cols-3 ">
+      <div className=" grid grid-cols-3 gap-1 ">
         {post.map((post, index) => {
           return (
             <ProfileGrid

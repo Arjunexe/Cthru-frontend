@@ -10,21 +10,18 @@ function UserChatList() {
 
   const userId = userDetails?.userFollowData?.userId || "";
 
-
   // GET ALL THE FOLLOWING LIST, DON’T NEED TO MATCH ANYTHING !!!!!!!!!!!!!!!!!
 
-
   useEffect(() => {
-   async function fetchData () {
-    const data = await getFollowing(userId)
-    setFollowing(data)
-   // console.log(following);
-   }
-  fetchData().catch(err => console.error("error during fetchData: ", err))
+    async function fetchData() {
+      const data = await getFollowing(userId);
+      setFollowing(data);
+      // console.log(following);
+    }
+    fetchData().catch((err) => console.error("error during fetchData: ", err));
   }, []);
 
   console.log("userNames: ", following);
-
 
   return (
     <div className="bg-gray-600 h-screen w-80  ">
@@ -32,13 +29,13 @@ function UserChatList() {
         <h1>Messages</h1>
       </div>
       <div className=" pt-4 bg-red-800 w-auto ">
-
-    {following?   following.map((user, index) => (
-                <UserChatBox key={index} user= {user} />
-    ))  : <UserChatBox /> }
-
-   
-
+        {following && following.length > 0 ? (
+          following.map((user, index) => (
+            <UserChatBox key={index} user={user} />
+          ))
+        ) : (
+          <UserChatBox user={null} />
+        )}
       </div>
     </div>
   );

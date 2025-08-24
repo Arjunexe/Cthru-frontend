@@ -1,20 +1,19 @@
-import React, { useContext } from 'react'
-import UserChatList from '../../components/chat/UserChatList'
-import MainContext from '../../context/context'
+import React, { useContext } from "react";
+import Chat from "../../components/chat/Chat";
+import UserChatList from "../../components/chat/UserChatList";
 
 function Message() {
-
-  // const { userDetails } = useContext(MainContext)
-  // const followingData = userDetails?.userFollowData?.following || []
-  // console.log("followind DAtatat  :", followingData);
-
   return (
-    
-    <>
-    <UserChatList />
-    </>
-
-  )
+    <div className="flex h-screen bg-gray-400 w-full">
+      <div className="">
+        <UserChatList />
+      </div>
+      <div className="flex-1 ">
+        <Chat />
+      </div>
+    </div>
+  );
 }
 
-export default Message
+export default Message;
+

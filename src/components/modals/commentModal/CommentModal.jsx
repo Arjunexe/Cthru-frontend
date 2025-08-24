@@ -55,6 +55,12 @@ function CommentModal({ onClose, postId, loggedUserId }) {
     }
   }
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handlePostClick();
+    }
+  }
+
   return (
     <div
       className="w-full h-full fixed top-0 left-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
@@ -95,6 +101,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
             id="cSection"
             rows="1"
             placeholder="Write a comment..."
+            onKeyDown={handleKeyDown}
           ></textarea>
           <button
             onClick={handlePostClick}
