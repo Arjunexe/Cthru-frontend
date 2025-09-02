@@ -57,6 +57,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
+      e.preventDefault();
       handlePostClick();
     }
   }
