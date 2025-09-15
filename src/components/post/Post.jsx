@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../post/Post.css";
 // import MainContext from "../../hooks/context";
 import { useOutletContext } from "react-router-dom";
 import ProfileField from "../profileLayouts/ProfileField";
