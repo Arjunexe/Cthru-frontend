@@ -1,6 +1,7 @@
-import axios from "axios";
+// import API from "API";
 import { jwtToken } from "../jwt/jwt";
 import { jwtDecode } from "jwt-decode";
+import API from "./axios.js";
 
 // Follow user
 export async function handleFollowAPI(following, setUserDetails) {
@@ -13,7 +14,7 @@ export async function handleFollowAPI(following, setUserDetails) {
       console.log("You cannot follow yourself");
     } else {
       try {
-        const response = await axios.post("/user/followUser", {
+        const response = await API.post("/user/followUser", {
           userFollower,
           following,
         });
@@ -39,7 +40,7 @@ export async function handleUnfollowApi(following, setUserDetails) {
     console.log("followerssssssssssss :", following);
 
     try {
-      const response = await axios.post("/user/unFollowUser", {
+      const response = await API.post("/user/unFollowUser", {
         userFollower,
         following,
       });
@@ -58,7 +59,7 @@ export async function handleUnfollowApi(following, setUserDetails) {
 // Get following user list
 export async function getFollowing(userId) {
   try {
-    const response = await axios.get(`/user/getFollowing/${userId}`);
+    const response = await API.get(`/user/getFollowing/${userId}`);
     const followingUserData = response.data.followingData;
     return followingUserData;
   } catch (error) {

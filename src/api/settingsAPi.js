@@ -1,9 +1,10 @@
-import axios from "axios";
+// import API from "API";
+import API from "./axios.js";
 
 // SAVE POST
 export async function savePost(loggedUserId, postId) {
   try {
-    const postSaved = await axios.post("/user/savePost", {
+    const postSaved = await API.post("/user/savePost", {
       loggedUserId,
       postId,
     });
@@ -17,7 +18,7 @@ export async function savePost(loggedUserId, postId) {
 // FETCH SAVED POST
 export async function fetchSavedPost(loggedUserId) {
   try {
-    const savedPost = await axios.post("/user/fetchPost", { loggedUserId });
+    const savedPost = await API.post("/user/fetchPost", { loggedUserId });
     return savedPost.data.savedPosts;
   } catch (error) {
     console.log("error during fetchSavePost: ", error);
@@ -27,7 +28,7 @@ export async function fetchSavedPost(loggedUserId) {
 // FETCH LIKE POST
 export async function fetchLikedPost(loggedUserId) {
   try {
-    const likedPost = await axios.post("/user/fetchLikedPost", {
+    const likedPost = await API.post("/user/fetchLikedPost", {
       loggedUserId,
     });
     return likedPost.data.fetchedLikedPost;
@@ -39,28 +40,26 @@ export async function fetchLikedPost(loggedUserId) {
 // BLOCK A USER
 export async function blockUser(loggedUserId, postUserId) {
   try {
-    const blockedUser = await axios.post("/user/blockUser", {
+    const blockedUser = await API.post("/user/blockUser", {
       loggedUserId,
       postUserId,
     });
-   return blockedUser.data; 
- } catch (error) {
+    return blockedUser.data;
+  } catch (error) {
     console.log("error during blockUser: ", error);
     return false;
   }
 }
 
 // FETCH BLOCKED USERS
-export async function fetchBockList (loggedUserId) {
+export async function fetchBockList(loggedUserId) {
   try {
-    
-   const blockedList = await axios.post("/user/fetchBlockedUsers", {
-    loggedUserId
-   }) 
-   return blockedList.data.blockedList.blocked;
-   
+    const blockedList = await API.post("/user/fetchBlockedUsers", {
+      loggedUserId,
+    });
+    return blockedList.data.blockedList.blocked;
   } catch (error) {
-   console.log("error during fetchBlockList: ", error);
-    
+    console.log("error during fetchBlockList: ", error);
   }
 }
+

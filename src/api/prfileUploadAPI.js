@@ -1,7 +1,8 @@
-import axios from "axios";
+// import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { jwtToken } from "../jwt/jwt";
 import { extractPublicId } from "cloudinary-build-url";
+import API from "./axios.js";
 // import { useId } from "react";
 
 //------------ PROFILE AND POST ----------------
@@ -35,7 +36,7 @@ export async function handleUploadClickAPI(profilePic, setUserDetails) {
   formData.append("file", profilePic);
   formData.append("upload_preset", "E-commerceee");
   try {
-    const response = await axios.post(
+    const response = await API.post(
       "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
       formData,
     );
@@ -56,7 +57,7 @@ async function sendProfileImgUrl(url, setUserDetails) {
     try {
       const decode = jwtDecode(Token);
       const userId = decode.userId;
-      const response = await axios.post("/user/profileImgUrl", {
+      const response = await API.post("/user/profileImgUrl", {
         ProfilePic: url,
         userId: userId,
       });
@@ -76,7 +77,7 @@ export async function getPostData(userId) {
   try {
     const url = userId ? `/user/getUser/${userId}` : "/user/getUrl";
 
-    const response = await axios.get(url);
+    const response = await API.get(url);
     console.log("responseeeeee: ", response);
 
     return response;
@@ -89,7 +90,7 @@ export async function getPostData(userId) {
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
 export async function deletePost(publicId, postImg, setImgUploaded) {
   try {
-    const deleted = await axios.post("/user/deletePost", {
+    const deleted = await API.post("/user/deletePost", {
       publicId,
       postImg,
     });
@@ -105,7 +106,7 @@ export async function deletePost(publicId, postImg, setImgUploaded) {
 export async function delteFromCloudinaryAPI(image) {
   const publicId = extractPublicId(image);
   try {
-    const deleteFromCloudinary = await axios.post("/user/deleteFromCloud", {
+    const deleteFromCloudinary = await API.post("/user/deleteFromCloud", {
       publicId,
     });
     if (!deleteFromCloudinary) {
@@ -119,7 +120,7 @@ export async function delteFromCloudinaryAPI(image) {
 // Handle Like post
 export async function handleLikeApi(loggedUserId, postId, likeState) {
   try {
-    const postLiked = await axios.post("/user/likePost", {
+    const postLiked = await API.post("/user/likePost", {
       loggedUserId,
       postId,
       likeState,
@@ -134,7 +135,7 @@ export async function handleLikeApi(loggedUserId, postId, likeState) {
 // GET COMMENT LIST
 export async function getCommentList(postId, pageNum) {
   try {
-    const commentList = await axios.get("/user/getCommentList", {
+    const commentList = await API.get("/user/getCommentList", {
       params: {
         postId: postId,
         pageNum: pageNum,
@@ -151,7 +152,7 @@ export async function getCommentList(postId, pageNum) {
 // POST A COMMENT
 export async function handleComment(comment, commentId) {
   try {
-    const commented = await axios.post("/user/commentPost", {
+    const commented = await API.post("/user/commentPost", {
       comment,
       commentId,
     });
@@ -167,7 +168,7 @@ export async function handleComment(comment, commentId) {
 // FETCH NOTIFICATION DATA
 export async function getNotification(userId) {
   try {
-    const response = await axios.get(`/user/getNotificationData/${userId}`);
+    const response = await API.get(`/user/getNotificationData/${userId}`);
     return response.data.notificationData;
   } catch (error) {
     console.log("error during getNotification: ", error);
@@ -178,7 +179,7 @@ export async function getNotification(userId) {
 export async function flagChangeApi(userID, flag) {
   try {
     console.log("its herer but");
-    const { data } = await axios.patch("/user/changeFlag", {
+    const { data } = await API.patch("/user/changeFlag", {
       userID,
       flag,
     });
