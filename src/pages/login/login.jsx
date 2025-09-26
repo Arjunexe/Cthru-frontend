@@ -25,9 +25,9 @@ function Login() {
   //   }
   // },[navigate, storedToken]);
 
+  console.log("Backend API:", process.env.REACT_APP_BACKEND_API);
   async function handleClick(e) {
     try {
-      console.log("Backend API:", process.env.REACT_APP_BACKEND_API);
       e.preventDefault();
       const userData = { emailOrmobile, password };
       if (isitEmpty({ ...userData, setError })) {
