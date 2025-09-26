@@ -27,13 +27,13 @@ function Login() {
 
   async function handleClick(e) {
     try {
+      console.log("Backend API:", process.env.REACT_APP_BACKEND_API);
       e.preventDefault();
       const userData = { emailOrmobile, password };
       if (isitEmpty({ ...userData, setError })) {
         const response = await axios.post("/user/login", userData);
         localStorage.setItem(jwtToken, response.data.token);
 
-        console.log("Backend API:", process.env.REACT_APP_BACKEND_API);
         // setIsLoggedIn(true)
         login();
         navigate("/");
