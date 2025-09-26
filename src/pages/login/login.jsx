@@ -33,6 +33,7 @@ function Login() {
         const response = await axios.post("/user/login", userData);
         localStorage.setItem(jwtToken, response.data.token);
 
+        console.log("Backend API:", process.env.REACT_APP_BACKEND_API);
         // setIsLoggedIn(true)
         login();
         navigate("/");
