@@ -11,11 +11,14 @@ export function connectSocket() {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
 
-      socketInstance = io("http://localhost:5000", {
-        query: {
-          userId: userId,
+      socketInstance = io(
+        process.env.REACT_APP_BACKEND_API || "http://localhost:5000",
+        {
+          query: {
+            userId: userId,
+          },
         },
-      });
+      );
     } catch (error) {
       console.log("error during connectSocket: ", error);
     }
