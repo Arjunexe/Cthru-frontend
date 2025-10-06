@@ -1,5 +1,6 @@
 import "./createPostModal.css";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../../api/axios";
 import ImageContext from "../../../context/context";
 import { useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
@@ -46,15 +47,13 @@ function CreatePostModal({ PostModalProp }) {
     formData.append("file", image);
     formData.append("upload_preset", "E-commerceee");
     try {
-      axios
-        .post(
-          "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
-          formData
-        )
-        .then((response) => {
-          // URL OF THE POST IMAGE
-          sendImgUrl(response.data.secure_url);
-        });
+      API.post(
+        "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
+        formData,
+      ).then((response) => {
+        // URL OF THE POST IMAGE
+        sendImgUrl(response.data.secure_url);
+      });
     } catch (error) {
       console.log("error during createPost handleclick", error);
     }
@@ -68,7 +67,7 @@ function CreatePostModal({ PostModalProp }) {
         const decode = jwtDecode(Token);
         const userId = decode.userId;
         // SENDING IMAGE LINK AND USER ID
-        const response = await axios.post("/user/imgUrl", {
+        const response = await API.post("/user/imgUrl", {
           imgUrl: url,
           userId: userId,
         });
@@ -82,7 +81,10 @@ function CreatePostModal({ PostModalProp }) {
   return (
     <div className="modal" onClick={PostModalProp}>
       {/* Modal body */}
-      <div className="w-[500px] h-[500px] bg-white bg-opacity-10 border border-white border-opacity-30 rounded-2xl relative flex-col flex p-5 backdrop-blur-lg shadow-xl noise-textur" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="w-[500px] h-[500px] bg-white bg-opacity-10 border border-white border-opacity-30 rounded-2xl relative flex-col flex p-5 backdrop-blur-lg shadow-xl noise-textur"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* <div className="bg-blue-700 flex"> */}
         <input
           className="inputType"

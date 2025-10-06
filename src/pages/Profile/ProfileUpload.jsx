@@ -1,31 +1,31 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../api/axios";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import { jwtToken } from "../../jwt/jwt";
 import { jwtDecode } from "jwt-decode";
 import MainContext from "../../context/context";
 import SessionContext from "../../context/SessionContext";
 
-
 // THE PAGE AFTER THE SIGNUP
 function ProfileUpload() {
   const [profilePic, setProfilePic] = useState("");
   const [profilePicUrl, setProfilePicUrl] = useState("");
   const { setUserDetails } = useContext(MainContext);
-  const { login } = useContext(SessionContext)
+  const { login } = useContext(SessionContext);
   const navigate = useNavigate();
 
   // Handles the Change
   function handleChangeClick(event) {
     const selectedFile = event.target.files[0];
-    setProfilePic(selectedFile);        // Doubt
+    setProfilePic(selectedFile); // Doubt
     const fileURL = URL.createObjectURL(selectedFile);
     console.log("temp file :", fileURL);
     setProfilePicUrl(fileURL);
   }
-  
-  // Handles the Upload to Cloudinary 
+
+  // Handles the Upload to Cloudinary
   async function handleUploadClick() {
     if (!profilePic) {
       alert("Select and image");
@@ -36,19 +36,14 @@ function ProfileUpload() {
     formData.append("file", profilePic);
     formData.append("upload_preset", "E-commerceee");
     try {
-      axios
-        .post(
-          "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
-          formData
-        )
-        .then((response) => {
-          console.log("Your profile picture:", response);
-          console.log(
-            "and the url of profilePicture:",
-            response.data.secure_url
-          );
-          sendProfileImgUrl(response.data.secure_url);
-        });
+      API.post(
+        "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
+        formData,
+      ).then((response) => {
+        console.log("Your profile picture:", response);
+        console.log("and the url of profilePicture:", response.data.secure_url);
+        sendProfileImgUrl(response.data.secure_url);
+      });
     } catch (error) {
       console.log("error during createPost handleclick", error);
     }
@@ -63,29 +58,29 @@ function ProfileUpload() {
         const decode = jwtDecode(Token);
         const userId = decode.userId;
         // SENDING IMAGE TO BACKEND ACCORDING TO THE USER ID
-        const response = await axios.post(
-          "/user/profileImgUrl",
-          { ProfilePic: url, userId: userId }
-        );
+        const response = await API.post("/user/profileImgUrl", {
+          ProfilePic: url,
+          userId: userId,
+        });
         console.log("backend img url response :", response);
-        setUserDetails({userData: {...response.data.ProfilePicData}});
+        setUserDetails({ userData: { ...response.data.ProfilePicData } });
         navigate("/");
-        login()
+        login();
         //   setImgUploaded(response)
       } catch (error) {
         console.log("error during sendImgUrl :", error);
       }
     }
   }
- // Handles the Skip
+  // Handles the Skip
   function handleSkipClick() {
     navigate("/");
   }
   return (
     <div className=" w-96 h-96 mx-auto items-center justify-center">
-     <div className=" h-96 items-center justify-center flex mx-auto ">
-            <ProfileField width="16" height="16" profilePicUrl={profilePicUrl} />
-     </div>
+      <div className=" h-96 items-center justify-center flex mx-auto ">
+        <ProfileField width="16" height="16" profilePicUrl={profilePicUrl} />
+      </div>
       <div className="bg-gray-400 items-center justify-center flex mx-auto ">
         <input
           className="inputType"
@@ -100,7 +95,6 @@ function ProfileUpload() {
       <div className="items-center justify-center flex mx-auto ">
         <button onClick={handleSkipClick}>Skip</button>
       </div>
-     
     </div>
   );
 }

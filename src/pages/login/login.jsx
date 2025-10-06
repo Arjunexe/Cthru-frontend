@@ -2,7 +2,8 @@
 import "../login/login.css";
 // import Container from "react-bootstrap/esm/Container";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../api/axios";
 import { isitEmpty } from "../../valid.js/signupValid";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -31,7 +32,7 @@ function Login() {
       e.preventDefault();
       const userData = { emailOrmobile, password };
       if (isitEmpty({ ...userData, setError })) {
-        const response = await axios.post("/user/login", userData);
+        const response = await API.post("/user/login", userData);
         localStorage.setItem(jwtToken, response.data.token);
 
         // setIsLoggedIn(true)

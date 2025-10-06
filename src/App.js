@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./context/provider";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/context/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";

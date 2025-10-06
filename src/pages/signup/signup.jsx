@@ -5,7 +5,8 @@ import "../signup/signup.css";
 // import Container from "react-bootstrap/esm/Container";
 import { useContext, useEffect, useState } from "react";
 import { isValidate } from "../../valid.js/signupValid";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
 import SessionContext from "../../context/SessionContext";
@@ -48,7 +49,7 @@ function Signup() {
       }
       if (!/[@$#!%*?&]/.test(value)) {
         setPassError(
-          "Password must contain at least one special character (@$!%*?&)."
+          "Password must contain at least one special character (@$!%*?&).",
         );
         return;
       }
@@ -72,7 +73,7 @@ function Signup() {
       const userData = { Fullname, Username, EmailOrMobile, Password };
       // const isValidate = await signupValid(userData)
       if (await isValidate({ ...userData, seter: setError })) {
-        const response = await axios.post("/user/signup", userData);
+        const response = await API.post("/user/signup", userData);
         localStorage.setItem(jwtToken, response.data.token);
         console.log("hiiiiiiiii");
         // UserLoggedIn(userData)

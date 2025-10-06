@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { jwtToken } from "../../jwt/jwt";
 import "../home/home.css";
 import jwtDecode from "jwt-decode";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
@@ -19,8 +20,8 @@ function Home() {
   // Function to fetch user details based on userId
   const getUser = async (userId) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/user/getUser/${userId}`
+      const response = await API.get(
+        `http://localhost:5000/user/getUser/${userId}`,
       );
       const userDetails = response.data;
       console.log("response of userId is:", userDetails);
