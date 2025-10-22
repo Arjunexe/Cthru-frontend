@@ -34,6 +34,7 @@ function OptionsModal({
   async function handleDelete() {
     setLoader(true);
     const PublicId = extractPublicId(realImg);
+
     try {
       const postDeleted = await deletePost(PublicId, realImg, setImgUploaded);
       if (postDeleted) onClose();

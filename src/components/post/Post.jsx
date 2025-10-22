@@ -99,10 +99,10 @@ function Post({ post }) {
 
   // Move this to OptionsModal component later!
   // To delete post
-  function handleOptions() {
-    const publicId = extractPublicId(realImg);
-    deletePost(publicId, realImg, setImgUploaded);
-  }
+  // function handleOptions() {
+  //   const publicId = extractPublicId(realImg);
+  //   deletePost(publicId, realImg, setImgUploaded);
+  // }
 
   // Handle Like $ unlike
   async function handleLikeOrUnlike() {

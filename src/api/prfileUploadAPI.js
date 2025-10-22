@@ -90,6 +90,7 @@ export async function getPostData(userId) {
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
 export async function deletePost(publicId, postImg, setImgUploaded) {
   try {
+    console.log("haalooo deleteeee");
     const deleted = await API.post("/user/deletePost", {
       publicId,
       postImg,
