@@ -47,58 +47,21 @@ function Login() {
   }
 
   return (
-    // <div className=" flex justify-center text-red-700 ">
-    //   <form >
-    //     <div className=" border border-red-600  items-center">
-    //       <div className="">
-    //         <label>Email or Mobile Number</label>
-    //         <input className="bg-gray-50 border border-gray-300 "
-    //           type="text"
-    //           name="emailOrmobile"
-    //           value={emailOrmobile}
-    //           onChange={(e) => {
-    //             seTEmailPassword(e.target.value);
-    //           }}
-    //           placeholder="Enter your email or mobile number"
-    //         />
-    //         <p className="">
-    //           We'll never share your email with anyone else.
-    //         </p>
-    //       </div>
-
-    //       <div className="">
-    //         <label>Password</label>
-    //         <input
-    //           type="password"
-    //           name="Password"
-    //           value={password}
-    //           onChange={(e) => {
-    //             seTPassword(e.target.value);
-    //           }}
-    //           placeholder="Password"
-    //         />
-    //       </div>
-
-    //       {/* <div className="mb-3" controlId="formBasicCheckbox">
-    //         <Form.Check type="checkbox" label="Check me out" />
-    //       </div> */}
-    //       <button variant="primary" type="submit" onClick={handleClick}>
-    //         Submit
-    //       </button>
-    //       <h4>
-    //         <Link to="/signup">Signup</Link>
-    //       </h4>
-
-    //       {errors ? <p className="errors">{`! ${errors} `}</p> : null}
-    //     </div>
-    //   </form>
-    // </div>
-
-    <div className="flex justify-center w-full   mt-9">
+    <div
+      className="flex justify-center w-full h-screen bg-gradient-to-b from-slate-950
+      to-slate-950 "
+    >
+      <h1 className="absolute mt-28 text-center w-full text-5xl  text-white tracking-widest">
+        Cthru
+      </h1>
       <form className="">
-        <div className="bg-slate-800 border border-gray-400 rounded-md p-8">
+        {/* bg-slate-400/20 */}
+        <div
+          className=" bg-gradient-to-b from-slate-800
+      to-slate-950 backdrop-blur-xl border-2 mt-52 border-gray-500 rounded-2xl p-8"
+        >
           <div className="mb-4">
-            <label className="block text-sm font-bold text-gray-500 mb-2">
+            <label className="block text-sm font-bold text-white mb-2">
               Email or Mobile Number
             </label>
             <input
@@ -109,17 +72,17 @@ function Login() {
               onChange={(e) => seTEmailPassword(e.target.value)}
               placeholder="Email or Mobile number"
             />
-            <p className="text-gray-500 text-xs italic mt-2">
+            <p className="text-white text-xs italic mt-2">
               We'll never share your email with anyone else.
             </p>
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-bold text-gray-500 mb-2">
+            <label className="block text-sm font-bold text-white  mb-2">
               Password
             </label>
             <input
-              className="w-full py-2 px-3 border morph-shadow"
+              className="w-full py-2 px-3 border rounded morph-shadow"
               type="password"
               name="password"
               value={password}
@@ -129,15 +92,16 @@ function Login() {
           </div>
 
           <button
-            className="bg-morph-gray hover:bg-gray-600 text-gray-600 font-semibold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+            // className="bg-morph-gray hover:bg-gray-600 text-gray-600 font-semibold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+            className="w-full mt-4 bg-cyan-500/80 hover:bg-cyan-400 text-white font-semibold py-2 rounded-full transition duration-300"
             type="submit"
             onClick={handleClick}
           >
-            Submit
+            Login
           </button>
 
           <h4 className="mt-4 text-sm">
-            <Link to="/signup" className="text-gray-700 hover:underline">
+            <Link to="/signup" className="text-white hover:underline">
               Signup
             </Link>
           </h4>
