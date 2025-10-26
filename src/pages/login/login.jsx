@@ -57,7 +57,7 @@ function Login() {
       <form className="">
         {/* bg-slate-400/20 */}
         <div
-          className=" bg-gradient-to-b from-slate-800
+          className="w-80 bg-gradient-to-b from-slate-800
       to-slate-950 backdrop-blur-xl border-2 mt-52 border-gray-500 rounded-2xl p-8"
         >
           <div className="mb-4">
@@ -73,7 +73,7 @@ function Login() {
               placeholder="Email or Mobile number"
             />
             <p className="text-white text-xs italic mt-2">
-              We'll never share your email with anyone else.
+              We'll never share your email or mobile number with anyone else.
             </p>
           </div>
 
@@ -93,18 +93,24 @@ function Login() {
 
           <button
             // className="bg-morph-gray hover:bg-gray-600 text-gray-600 font-semibold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-            className="w-full mt-4 bg-cyan-500/80 hover:bg-cyan-400 text-white font-semibold py-2 rounded-full transition duration-300"
+            className="w-full mt-4 bg-cyan-500/80 hover:bg-cyan-400 text-white font-semibold py-2 rounded transition duration-300"
             type="submit"
             onClick={handleClick}
           >
             Login
           </button>
 
-          <h4 className="mt-4 text-sm">
-            <Link to="/signup" className="text-white hover:underline">
+          <p className="mt-4 text-sm">
+            <span className="text-white">Don't have an account?</span>
+            <br />
+
+            <Link
+              to="/signup"
+              className="text-cyan-600 hover:underline font-semibold"
+            >
               Signup
             </Link>
-          </h4>
+          </p>
 
           {errors && (
             <p className="text-red-500 text-xs italic mt-4">{`! ${errors} `}</p>

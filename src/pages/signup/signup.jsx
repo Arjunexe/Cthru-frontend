@@ -9,6 +9,7 @@ import { isValidate } from "../../valid.js/signupValid";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
+import { Link } from "react-router-dom";
 import SessionContext from "../../context/SessionContext";
 
 // import { UserLoggedIn } from "../../valid.js/userCheck";
@@ -97,16 +98,25 @@ function Signup() {
   return (
     // Ai
 
-    <div className="flex justify-center w-full ">
-      <div className="container  mx-auto p-4 w-80">
-        <p className="text-center">
-          Sign up to see photos and videos from your friends.
-        </p>
-        <form className="mt-4">
+    <div
+      className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-b from-slate-950
+      to-slate-950"
+    >
+      <h1 className=" -mt-14 text-center w-full text-5xl  text-white tracking-widest">
+        Cthru
+      </h1>
+      <div
+        className="mt-12 bg-gradient-to-b from-slate-800
+      to-slate-950 backdrop-blur-xl border-2 w-80 border-gray-500 rounded-2xl p-8"
+      >
+        {/* <p className="text-center"> */}
+        {/*   Sign up to see photos and videos from your friends. */}
+        {/* </p> */}
+        <form className="">
           <div className="mb-4">
             <label
               htmlFor="fullName"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-bold  text-white"
             >
               Full Name
             </label>
@@ -124,7 +134,7 @@ function Signup() {
           <div className="mb-4">
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-bold text-white"
             >
               Username
             </label>
@@ -142,7 +152,7 @@ function Signup() {
           <div className="mb-4">
             <label
               htmlFor="emailOrMobile"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-bold text-white"
             >
               Email or Mobile Number
             </label>
@@ -155,7 +165,7 @@ function Signup() {
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Enter your email or mobile number"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-white mt-1">
               We'll never share your email or mobile number with anyone else.
             </p>
           </div>
@@ -163,7 +173,7 @@ function Signup() {
           <div className="mb-4">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-bold text-white"
             >
               Password
             </label>
@@ -183,12 +193,22 @@ function Signup() {
           ) : null}
 
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-cyan-500/80 hover:bg-cyan-400 text-white mt-4  w-full font-semibold py-2 rounded transition duration-300"
             type="button"
             onClick={handleClick}
           >
             Sign Up
           </button>
+          <p className="mt-4 text-sm">
+            <span className="text-white">Have an account?</span>
+            <br />
+            <Link
+              to="/login"
+              className="text-cyan-600 hover:underline font-semibold"
+            >
+              Login
+            </Link>
+          </p>
 
           {error ? (
             <p className="text-red-500 text-sm mt-2">{`! ${error}`}</p>
