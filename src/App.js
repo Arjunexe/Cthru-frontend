@@ -28,7 +28,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const Token = localStorage.getItem(jwtToken);
-  const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error"];
+  const noSidebar = ["/login", "/signup", "/ProfileUpload", "/error", "/a"];
   const noSidebarEndWith = ["/saved", "/liked", "/logout"];
   const endsWith = noSidebarEndWith.some((ending) =>
     location.pathname.endsWith(ending),
@@ -144,7 +144,7 @@ function App() {
     <>
       <div className="flex ">
         {renderSidebar && (
-          <div className="  hidden sm:block bg-slate-400 ">
+          <div className="  hidden sm:block bg-gradient-to-r from-slate-500 to-slate-700">
             {/* <MainSidebar */}
             {/*   openCreateModal={toggleCreateModal} */}
             {/*   redDot={redDot} */}

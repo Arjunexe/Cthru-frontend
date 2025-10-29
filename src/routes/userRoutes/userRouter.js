@@ -22,6 +22,7 @@ import Logout from "../../pages/settings/Logout";
 import BlockedAc from "../../pages/settings/BlockedAc";
 import MainSidebar from "../../components/sidebar/MainSidebar";
 import Explore from "../../pages/Explore/Explore";
+import ExampleLogin from "../../pages/egxample/ExampleLogin";
 import MessagePage from "../../pages/egxample/XampleChat";
 // import { adminRouter } from "../adminRoutes/adminRouter";
 // import ProtectedRoutes from "../../context/ProtectedRoutes";
@@ -59,7 +60,7 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element: <MessagePage />, // <MainSidebar /> <Xample />,    <PrevModal />,
+        element: <ExampleLogin />, // <MessagePage />, <MainSidebar /> <Xample />,    <PrevModal />,
       },
       {
         path: "explore",
