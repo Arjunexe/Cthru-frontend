@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
 import SessionContext from "../../context/SessionContext";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock, FaEye, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye } from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -110,16 +110,6 @@ function Login() {
             </button>
           </div>
 
-          {/* <div className="flex items-center justify-between text-sm text-slate-300"> */}
-          {/*   <label className="inline-flex items-center gap-2"> */}
-          {/*     <input type="checkbox" className="rounded-sm" /> */}
-          {/*     <span> Remember me</span> */}
-          {/*   </label> */}
-          {/*   <a href="#" className="hover:underline"> */}
-          {/*     Forgot? */}
-          {/*   </a> */}
-          {/* </div> */}
-
           <button
             type="submit"
             onClick={handleClick}
@@ -148,66 +138,6 @@ function Login() {
           By continuing you agree to Cthru's Terms.
         </div>
       </motion.div>
-
-      {/*--------------- card -------------*/}
-      {/* <form className=""> */}
-      {/*   <div className="w-80  backdrop-blur-xl border-2  mt-52 bg-gradient-to-b from-slate-950/10 to-slate-800/15 border-white/30 shadow-lg rounded-2xl p-8"> */}
-      {/*     <div className="mb-4"> */}
-      {/*       <label className="block text-sm font-bold text-white mb-2"> */}
-      {/*         Email or Mobile Number */}
-      {/*       </label> */}
-      {/*       <input */}
-      {/*         className="w-full py-2 px-3 border border-gray-300 rounded" */}
-      {/*         type="text" */}
-      {/*         name="emailOrmobile" */}
-      {/*         value={emailOrmobile} */}
-      {/*         onChange={(e) => seTEmailPassword(e.target.value)} */}
-      {/*         placeholder="Email or Mobile number" */}
-      {/*       /> */}
-      {/*       <p className="text-white text-xs italic mt-2"> */}
-      {/*         We'll never share your email or mobile number with anyone else. */}
-      {/*       </p> */}
-      {/*     </div> */}
-      {/**/}
-      {/*     <div className="mb-4"> */}
-      {/*       <label className="block text-sm font-bold text-white  mb-2"> */}
-      {/*         Password */}
-      {/*       </label> */}
-      {/*       <input */}
-      {/*         className="w-full py-2 px-3 border rounded morph-shadow" */}
-      {/*         type="password" */}
-      {/*         name="password" */}
-      {/*         value={password} */}
-      {/*         onChange={(e) => seTPassword(e.target.value)} */}
-      {/*         placeholder="Password" */}
-      {/*       /> */}
-      {/*     </div> */}
-      {/**/}
-      {/*     <button */}
-      {/*       className="w-full mt-4 bg-cyan-500/80 hover:bg-cyan-400 text-white font-semibold py-2 rounded transition duration-300" */}
-      {/*       type="submit" */}
-      {/*       onClick={handleClick} */}
-      {/*     > */}
-      {/*       Login */}
-      {/*     </button> */}
-      {/**/}
-      {/*     <p className="mt-4 text-sm"> */}
-      {/*       <span className="text-white">Don't have an account?</span> */}
-      {/*       <br /> */}
-      {/**/}
-      {/*       <Link */}
-      {/*         to="/signup" */}
-      {/*         className="text-cyan-600 hover:underline font-semibold" */}
-      {/*       > */}
-      {/*         Signup */}
-      {/*       </Link> */}
-      {/*     </p> */}
-      {/**/}
-      {/*     {errors && ( */}
-      {/*       <p className="text-red-500 text-xs italic mt-4">{`! ${errors} `}</p> */}
-      {/*     )} */}
-      {/*   </div> */}
-      {/* </form> */}
 
       <style>{`
         :root { color-scheme: dark; }

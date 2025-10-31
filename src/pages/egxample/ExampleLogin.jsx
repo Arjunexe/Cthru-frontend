@@ -1,18 +1,94 @@
+import "../signup/signup.css";
+import { useContext, useState } from "react";
+import { isValidate } from "../../valid.js/signupValid";
+import API from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { jwtToken } from "../../jwt/jwt";
+import { Link } from "react-router-dom";
+import SessionContext from "../../context/SessionContext";
+
 import React from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock, FaEye, FaGithub, FaTwitter } from "react-icons/fa";
-
-// CthruLogin.jsx
-// React + Tailwind + Framer Motion version (JavaScript)
-// Uses react-icons instead of lucide-react to prevent CDN build issues
+import { FaEnvelope, FaLock, FaEye, FaUser } from "react-icons/fa";
+import { FaAddressCard } from "react-icons/fa";
 
 export default function CthruLogin() {
-  return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-slate-900 relative overflow-hidden">
-      {/* Background gradient + subtle radial color pops */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-[#071126] to-[#0b1320] opacity-90" />
+  const navigate = useNavigate();
+  const { login } = useContext(SessionContext);
+  const [Fullname, setFullName] = useState("");
+  const [Username, setUsername] = useState("");
+  const [EmailOrMobile, setEmailOrMobile] = useState("");
+  const [error, setError] = useState("");
+  const [Password, setPassword] = useState("");
+  const [passErrors, setPassError] = useState("");
 
-      {/* Noise texture */}
+  function passwordValid(value) {
+    const passwordRegex = /^(?!\s*$).+/;
+    if (!passwordRegex.test(value)) {
+      setPassError("Password is required.");
+    } else {
+      if (!/[A-Z]/.test(value)) {
+        setPassError("Password must contain at least one uppercase letter.");
+        return;
+      }
+      if (!/[a-z]/.test(value)) {
+        setPassError("Password must contain at least one lowercase letter.");
+        return;
+      }
+      if (!/\d/.test(value)) {
+        setPassError("Password must contain at least one digit.");
+        return;
+      }
+      if (!/[@$#!%*?&]/.test(value)) {
+        setPassError(
+          "Password must contain at least one special character (@$!%*?&).",
+        );
+        return;
+      }
+      if (value.length < 6) {
+        setPassError("Password must contain at least 6 characters");
+        return;
+      }
+    }
+    setPassError("");
+    return;
+  }
+
+  const handlePassword = async (value) => {
+    setPassword(value);
+    passwordValid(value);
+  };
+
+  const handleClick = async (e) => {
+    try {
+      e.preventDefault();
+      const userData = { Fullname, Username, EmailOrMobile, Password };
+      // const isValidate = await signupValid(userData)
+      if (await isValidate({ ...userData, seter: setError })) {
+        const response = await API.post("/user/signup", userData);
+        localStorage.setItem(jwtToken, response.data.token);
+        console.log("hiiiiiiiii");
+        // UserLoggedIn(userData)
+        login();
+        navigate("/ProfileUpload");
+
+        // setFullName("");
+        // setUsername("");
+        // setEmailOrMobile("");
+        // setPassword("");
+        // setError("");
+        // setPassError("");
+      } else {
+        console.log("didn't go through Axios");
+      }
+    } catch (error) {
+      console.log("error during handleClick: ", error);
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center w-full min-h-screen bg-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-[#071126] to-[#0b1320] opacity-90" />
       <div
         className="pointer-events-none absolute inset-0 opacity-20"
         style={{
@@ -22,12 +98,9 @@ export default function CthruLogin() {
           mixBlendMode: "overlay",
         }}
       />
-
-      {/* Color blobs */}
       <div className="absolute -left-32 -top-24 w-96 h-96 rounded-full blur-3xl opacity-30 bg-gradient-to-br from-pink-500 via-violet-500 to-indigo-500" />
       <div className="absolute -right-32 -bottom-24 w-80 h-80 rounded-full blur-2xl opacity-25 bg-gradient-to-tr from-cyan-400 via-sky-500 to-emerald-400" />
 
-      {/* Card */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -53,23 +126,59 @@ export default function CthruLogin() {
           </div>
         </div>
 
-        {/* Login form */}
+        {/*------------------- login form ----------------*/}
         <form className="space-y-4">
+          {/* ------- Full name ------- */}
           <div className="relative flex items-center">
-            <FaEnvelope className="absolute left-3 text-slate-300" />
+            <FaAddressCard className="absolute left-3 text-slate-300" />
             <input
-              type="email"
-              placeholder="you@example.com"
+              type="text"
+              id="fullName"
+              value={Fullname}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder="Full Name"
+              name="Fullname"
               className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               required
             />
           </div>
-
+          {/* -------User name ------- */}
+          <div className="relative flex items-center">
+            <FaUser className="absolute left-3 text-slate-300" />
+            <input
+              type="text"
+              id="username"
+              value={Username}
+              placeholder="Username"
+              name="Username"
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              required
+            />
+          </div>
+          {/* -------- Email or Mobile Number ---------- */}
+          <div className="relative flex items-center">
+            <FaEnvelope className="absolute left-3 text-slate-300" />
+            <input
+              type="text"
+              id="emailOrMobile"
+              placeholder="Email or Mobile Number"
+              name="EmailOrMobile"
+              value={EmailOrMobile}
+              onChange={(e) => setEmailOrMobile(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+              required
+            />
+          </div>
+          {/* -------- Password ---------- */}
           <div className="relative flex items-center">
             <FaLock className="absolute left-3 text-slate-300" />
             <input
               type="password"
-              placeholder="••••••••"
+              id="password"
+              name="Password"
+              value={Password}
+              onChange={(e) => handlePassword(e.target.value)}
               className="w-full pl-10 pr-10 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               required
             />
@@ -82,44 +191,32 @@ export default function CthruLogin() {
             </button>
           </div>
 
-          <div className="flex items-center justify-between text-sm text-slate-300">
-            <label className="inline-flex items-center gap-2">
-              <input type="checkbox" className="rounded-sm" />
-              <span>Remember me</span>
-            </label>
-            <a href="#" className="hover:underline">
-              Forgot?
-            </a>
-          </div>
+          {passErrors ? (
+            <p className="text-red-500 text-sm">{passErrors}</p>
+          ) : null}
 
           <button
-            type="submit"
+            type="button"
+            onClick={handleClick}
             className="w-full mt-2 py-3 rounded-xl text-white font-semibold text-sm
                        bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500
                        hover:scale-[1.01] active:scale-95 transition-transform shadow-md"
           >
-            Sign in
+            Sign up
           </button>
+          {error ? (
+            <p className="text-red-500 text-sm mt-2">{`! ${error}`}</p>
+          ) : null}
         </form>
 
-        <div className="mt-5 text-center text-slate-300">or continue with</div>
-
-        <div className="mt-3 grid grid-cols-2 gap-3">
-          <button className="flex items-center justify-center gap-2 py-2 rounded-xl bg-white/10 border border-white/10 text-white">
-            <FaGithub />
-            <span className="text-sm">GitHub</span>
-          </button>
-          <button className="flex items-center justify-center gap-2 py-2 rounded-xl bg-white/10 border border-white/10 text-white">
-            <FaTwitter />
-            <span className="text-sm">Twitter</span>
-          </button>
-        </div>
-
         <div className="mt-6 text-center text-sm text-slate-300">
-          Don't have an account?{" "}
-          <a href="/" className="text-white font-medium hover:underline">
-            Sign up
-          </a>
+          Have an account?{" "}
+          <Link
+            to="/login"
+            className="text-indigo-500 hover:underline font-semibold"
+          >
+            Log in
+          </Link>
         </div>
 
         <div className="mt-4 text-xs text-slate-400/70 text-center">
