@@ -20,7 +20,6 @@ import SavedPosts from "../../pages/settings/SavedPosts";
 import LIkedPosts from "../../pages/settings/LIkedPosts";
 import Logout from "../../pages/settings/Logout";
 import BlockedAc from "../../pages/settings/BlockedAc";
-import MainSidebar from "../../components/sidebar/MainSidebar";
 import Explore from "../../pages/Explore/Explore";
 import ExampleLogin from "../../pages/egxample/ExampleLogin";
 import MessagePage from "../../pages/egxample/XampleChat";

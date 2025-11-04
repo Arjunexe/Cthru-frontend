@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 // import MainContext from "../../hooks/context";
-import { useOutletContext } from "react-router-dom";
 import ProfileField from "../profileLayouts/ProfileField";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
@@ -8,11 +7,8 @@ import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
 import MainContext from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
-import { extractPublicId } from "cloudinary-build-url";
-import { deletePost, handleLikeApi } from "../../api/prfileUploadAPI";
+import { handleLikeApi } from "../../api/prfileUploadAPI";
 import { FcLike } from "react-icons/fc";
-import PortalModal from "../modals/commentModal/PortalModal";
-import Exampl from "../modals/commentModal/exampl";
 import CommentModal from "../modals/commentModal/CommentModal";
 import OptionsModal from "../modals/optionsModal/OptionsModal";
 
@@ -96,13 +92,6 @@ function Post({ post }) {
   function handleUnfollow() {
     handleUnfollowApi(following, setUserDetails);
   }
-
-  // Move this to OptionsModal component later!
-  // To delete post
-  // function handleOptions() {
-  //   const publicId = extractPublicId(realImg);
-  //   deletePost(publicId, realImg, setImgUploaded);
-  // }
 
   // Handle Like $ unlike
   async function handleLikeOrUnlike() {
@@ -190,15 +179,6 @@ function Post({ post }) {
             loggedUserId={loggedUserId}
           />
         )}
-        {/* 
-        <button className="bg-blue-600" onClick={() => setCommentModal(true)}>
-          Close
-        </button>
-
-        <button className="bg-red-600" onClick={() => setModal(true)}>
-          Close
-        </button>
-        {modal && <Exampl onClose={() => setModal(false)} />} */}
       </div>
 
       {optionsModal && (

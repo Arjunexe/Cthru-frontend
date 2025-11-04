@@ -7,12 +7,10 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate, useLocation } from "react-router-dom";
 import MainContext from "..//src/context/context";
 import { jwtToken, userData } from ".././src/jwt/jwt";
-import Siidebar from "./components/sidebar/Sidebar";
 // import CommentModal from "./components/modals/commentModal/CommentModal";
 import CreatePostModal from "./components/modals/createPostModal/createPostModal";
 import SessionContext from "./context/SessionContext";
 import { flagChangeApi, getPostData } from "./api/prfileUploadAPI";
-import MainSidebar from "./components/sidebar/MainSidebar";
 import { connectSocket, getSocket } from "./utils/socket";
 import MainSidebarAnimation from "./components/sidebar/MainSidebarAnimation";
 // import UserSessionContext from "./context/sessionProvider";
@@ -144,12 +142,7 @@ function App() {
     <>
       <div className="flex ">
         {renderSidebar && (
-          <div className="  hidden sm:block bg-gradient-to-r from-slate-500 to-slate-700">
-            {/* <MainSidebar */}
-            {/*   openCreateModal={toggleCreateModal} */}
-            {/*   redDot={redDot} */}
-            {/*   setRedDot={setRedDot} */}
-            {/* /> */}
+          <div className="  hidden sm:block bg-orange-500">
             <MainSidebarAnimation
               openCreateModal={toggleCreateModal}
               redDot={redDot}
@@ -159,13 +152,6 @@ function App() {
           </div>
         )}
 
-        {/* {commentModal && (
-          <div>
-            <CommentModal closeCommentModal={toggleCommentModal} commentId={commentId} />
-          </div>
-        )} */}
-
-        {/* <Outlet context={{ toggleCommentModal }} /> */}
         <Outlet />
       </div>
     </>

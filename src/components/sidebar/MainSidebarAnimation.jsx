@@ -124,7 +124,7 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
     <motion.div
       animate={{ x: settings ? 50 : 0 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="flex mt-32 ml-10 bg-gradient-to-br"
+      className="flex mt-32 ml-10"
     >
       <div className="relative w-60 p-6 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
         <AnimatePresence mode="popLayout">
