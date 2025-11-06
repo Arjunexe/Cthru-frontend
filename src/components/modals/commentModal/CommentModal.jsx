@@ -64,12 +64,12 @@ function CommentModal({ onClose, postId, loggedUserId }) {
 
   return (
     <div
-      className="w-full h-full fixed top-0 left-0 bg-black bg-opacity-25 z-30 flex justify-center items-center"
+      className="w-full h-full fixed z-[9999]  top-0 left-0 bg-black bg-opacity-25  flex justify-center items-center"
       onClick={onClose}
     >
       {/* MODAL BODY */}
       <div
-        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-2xl bg-white bg-opacity-10  shadow-xl backdrop-blur-lg border border-white border-opacity-30 noise-textur"
+        className="w-[750px] h-[800px] p-5 relative flex flex-col rounded-2xl bg-white bg-opacity-10  shadow-xl backdrop-blur-xl border border-white border-opacity-30 noise-textur"
         onClick={(e) => e.stopPropagation()}
       >
         {/*---------- Infinite scroll -----------*/}

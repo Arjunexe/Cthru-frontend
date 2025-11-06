@@ -1,99 +1,89 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Home, User, MessageCircle, Settings } from "lucide-react";
-
+import ProfileField from "../../components/profileLayouts/ProfileField";
 export default function ExampleLogin() {
-  const [posts] = useState([
-    {
-      id: 1,
-      user: "Arjun",
-      img: "https://picsum.photos/600/400?1",
-      caption: "Morning vibes 🌤️",
-    },
-    {
-      id: 2,
-      user: "Maya",
-      img: "https://picsum.photos/600/400?2",
-      caption: "Weekend mood 🍃",
-    },
-    {
-      id: 3,
-      user: "Ravi",
-      img: "https://picsum.photos/600/400?3",
-      caption: "City lights ✨",
-    },
-  ]);
-
   return (
-    <div className="min-h-screen w-full flex bg-slate-950 text-white relative overflow-hidden">
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 pointer-events-none"></div>
-
-      {/* Sidebar */}
-      <motion.aside
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="m-6 hidden md:flex flex-col justify-between p-6 rounded-3xl 
-          bg-white/10 backdrop-blur-2xl border border-white/15 
-          shadow-[0_0_25px_rgba(255,255,255,0.05)] w-64 h-[90vh] sticky top-6"
-      >
-        <div>
-          <h1 className="text-2xl font-bold tracking-widest text-white/90 mb-10">
-            Cthru
-          </h1>
-          <nav className="flex flex-col gap-4">
-            <NavItem icon={<Home />} label="Home" />
-            <NavItem icon={<User />} label="Profile" />
-            <NavItem icon={<MessageCircle />} label="Messages" />
-            <NavItem icon={<Settings />} label="Settings" />
-          </nav>
+    <div className="min-h-screen w-screen flex justify-center items-centerbg-black/95 text-white">
+      <div className="w-full max-w-lg p-8 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+        {/* Profile Picture */}
+        <div className="flex flex-col items-center mb-8 relative">
+          <div className="relative">
+            <input
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+              accept="image/jpeg, image/png, image/webp, image/jpg"
+              type="file"
+            />
+            <ProfileField
+              width="20"
+              height="20"
+              profilePicUrl={
+                "https://res.cloudinary.com/da05006gl/image/upload/v1762347352/bvk4rshzqeiu1rquc96c.jpg"
+              }
+            />
+          </div>
+          <p className="mt-3 text-sm text-gray-300">
+            Tap to change profile picture
+          </p>
         </div>
-        <div className="flex items-center gap-3 mt-10 border-t border-white/10 pt-4">
-          <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md" />
+
+        {/* Section Title */}
+        <h2 className="text-xl font-semibold text-center mb-6 tracking-wide">
+          Edit Profile
+        </h2>
+
+        {/* Bio */}
+        <div className="w-full mb-6">
+          <label className="block text-sm mb-2 text-gray-300">Bio</label>
+          <textarea
+            className="w-full p-3 rounded-lg bg-white/5 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-sm text-white placeholder-gray-400"
+            rows="3"
+            placeholder="Write something about yourself..."
+          ></textarea>
+        </div>
+
+        {/* Input Fields */}
+        <div className="space-y-5">
           <div>
-            <p className="text-sm font-medium">You</p>
-            <p className="text-xs text-slate-400">View Profile</p>
+            <label className="block text-sm mb-1 text-gray-300">Username</label>
+            <input
+              type="text"
+              className="w-full p-3 rounded-lg bg-white/5 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm mb-1 text-gray-300">
+              Full Name
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 rounded-lg bg-white/5 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm mb-1 text-gray-300">
+              Email or Phone
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 rounded-lg bg-white/5 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+            />
           </div>
         </div>
-      </motion.aside>
 
-      {/* Main Feed */}
-      <main className="flex-1 p-6 md:p-10 flex flex-col items-center gap-8 overflow-y-auto">
-        {posts.map((post) => (
-          <motion.div
-            key={post.id}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="w-full max-w-xl rounded-2xl overflow-hidden backdrop-blur-2xl 
-              bg-white/10 border border-white/10 shadow-xl hover:bg-white/15 transition"
-          >
-            <div className="p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md" />
-              <h2 className="text-lg font-semibold">{post.user}</h2>
-            </div>
-            <img
-              src={post.img}
-              alt="post"
-              className="w-full object-cover max-h-[500px]"
-            />
-            <p className="p-4 text-slate-200 text-sm">{post.caption}</p>
-          </motion.div>
-        ))}
-      </main>
+        {/* Submit Button */}
+        <div className="mt-8">
+          <button className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 hover:from-indigo-600 hover:to-blue-600 transition-all shadow-md font-semibold">
+            Save Changes
+          </button>
+        </div>
+
+        {/* Change Password */}
+        <div className="mt-6 text-center">
+          <button className="text-sm text-gray-400 hover:text-blue-400 transition">
+            Change Password
+          </button>
+        </div>
+      </div>
     </div>
-  );
-}
-
-function NavItem({ icon, label }) {
-  return (
-    <button
-      className="flex items-center gap-3 px-3 py-2 w-full rounded-xl 
-      hover:bg-white/10 transition text-slate-200"
-    >
-      <span className="text-xl">{icon}</span>
-      <span className="text-sm font-medium tracking-wide">{label}</span>
-    </button>
   );
 }

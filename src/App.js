@@ -1,4 +1,3 @@
-// import './App.css';
 import React, { useEffect, useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 // import MainContextProvider from "./context/provider";
@@ -131,30 +130,22 @@ function App() {
     setPostModal((prev) => !prev);
   }
 
-  // TOGGLE COMMENT MODAL
-  // function toggleCommentModal(data) {
-  //   setCommentModal((prev) => !prev);
-  //   setCommentId(data)
-
-  // }
-
   return (
-    <>
-      <div className="flex ">
-        {renderSidebar && (
-          <div className="  hidden sm:block bg-orange-500">
-            <MainSidebarAnimation
-              openCreateModal={toggleCreateModal}
-              redDot={redDot}
-              setRedDot={setRedDot}
-            />
-            {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
-          </div>
-        )}
+    <div className="flex bg-slate-950  z-10  text-white ">
+      {/* <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 z-0 pointer-events-none"></div> */}
+      {renderSidebar && (
+        <div className="hidden sm:block ">
+          <MainSidebarAnimation
+            openCreateModal={toggleCreateModal}
+            redDot={redDot}
+            setRedDot={setRedDot}
+          />
+          {postModal && <CreatePostModal PostModalProp={toggleCreateModal} />}
+        </div>
+      )}
 
-        <Outlet />
-      </div>
-    </>
+      <Outlet />
+    </div>
   );
 }
 

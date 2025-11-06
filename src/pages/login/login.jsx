@@ -1,4 +1,3 @@
-import "../login/login.css";
 import { useContext, useEffect, useState } from "react";
 import API from "../../api/axios";
 import { isitEmpty } from "../../valid.js/signupValid";

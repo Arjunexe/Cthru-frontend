@@ -20,7 +20,6 @@ function Post({ post }) {
   const [flowstate, setflowState] = useState("");
   // const [likeState, setLikeState] = useState(false);
 
-  const [modal, setModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
   const navigate = useNavigate();
@@ -33,18 +32,11 @@ function Post({ post }) {
   const followInfo = userDetails?.userFollowData?.following || [];
   const loggedUserId = userDetails?.userData?._id || "";
 
-  // if(followInfo.includes(following)){
-  //   setflowState(followInfo)
-  //  } else {
-  //   setflowState("")
-  //  }
-
   let imagee = post.postImage;
   let usernamee = post.userId.Username;
   let profilepic = post.userId.ProfilePic;
   let userID = post.userId._id; // User Id of the post
   let postId = post._id; // Id of the post
-  let likesId = post.like;
   let saved = post.saved;
 
   useEffect(() => {
@@ -108,26 +100,27 @@ function Post({ post }) {
     }
   }
 
-  function handleComment() {}
-
   return (
-    <div className="mt-5 bg-yellow-300 rounded-lg">
-      {/* <div className="flex {*bg-orange-700*} "> */}
-      <div className=" flex items-center space-x-2 justify-between">
+    <div
+      className="mt-5 rounded-xl bg-white/15 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_0_8px_32px_rgba(0,0,0,0.3)]
+      hover:bg-white/20 transition p-4 "
+    >
+      {/* Actual post content sits ABOVE the blur */}
+      <div className=" flex items-center space-x-2 justify-between mb-3">
         {/* profile pic & userName */}
         <div
-          className=" flex items-center space-x-2 cursor-pointer bg-red-600"
+          className=" flex items-center space-x-2 cursor-pointer"
           onClick={handleProfileClick}
         >
           <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
-          <span className="text-white">{username} •</span>
+          <span className="font-medium text-white">{username} •</span>
 
           {/* -------------------------------------------------------- */}
 
           <div className="" onClick={(e) => e.stopPropagation()}>
             {!flowstate && (
               <button
-                className="bg-white ml-3 cursor-pointer px-2 py-1 text-xs rounded "
+                className="bg-black ml-3 cursor-pointer px-2 py-1 text-xs rounded "
                 onClick={handleFollow}
               >
                 Follow
@@ -137,7 +130,7 @@ function Post({ post }) {
         </div>
 
         <button
-          className="bg-lime-700 cursor-pointer"
+          className="cursor-pointer"
           onClick={() => {
             setOptionsModal(true);
           }}
@@ -146,29 +139,18 @@ function Post({ post }) {
         </button>
       </div>
 
-      {/* </div> */}
-
       <img
-        className="w-full max-w-[468px] max-h-[585px] h-auto flex items-center justify-center  object-contain border-2 border-[#969696] transition-transform "
+        className=" rounded-xl border border-white/10 w-full max-w-[468px] max-h-[585px] h-auto flex items-center justify-center  object-contain transition-transform "
         src={realImg}
         alt=""
       />
       {/* ----------Like and Comment------------ */}
-      <div className="flex mt-2">
+      <div className="flex mt-3 text-white/80">
         <button className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </button>
         {/* -----------Comment--------- */}
-        <button
-          className="ml-3"
-          // onClick={() =>
-          //   toggleCommentModal({
-          //     postId,
-          //     loggedUserId,
-          //   })
-          // }
-          onClick={() => setCommentModal(true)}
-        >
+        <button className="ml-3" onClick={() => setCommentModal(true)}>
           <FaRegComment size={25} />
         </button>
 

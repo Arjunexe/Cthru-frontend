@@ -130,17 +130,17 @@ export default function Profile() {
   }
 
   return (
-    <div className="bg-slate-500 min-h-screen w-screen flex flex-col items-center overflow-auto">
+    <div className=" h-screen w-screen flex flex-col items-center overflow-auto">
       {/* Top section */}
       <div className="w-full flex flex-col items-center mt-6">
         <div className="relative inline-block">
           <ProfileField width="10" height="10" profilePicUrl={profilePicUrl} />
         </div>
 
-        <div className="text-green-500 text-2xl mt-2">{UserName}</div>
+        <div className="text-white text-2xl mt-2">{UserName}</div>
 
         <div
-          className="bg-amber-400 cursor-pointer px-4 py-1 mt-2 rounded"
+          className="bg-white text-black cursor-pointer px-4 py-1 mt-2 rounded"
           onClick={handleSettingsModal}
         >
           Settings

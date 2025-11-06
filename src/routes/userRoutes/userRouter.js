@@ -59,7 +59,7 @@ const Router = createBrowserRouter([
 
       {
         path: "a",
-        element: <ExampleLogin />, // <MessagePage />, <MainSidebar /> <Xample />,    <PrevModal />,
+        element: <ExampleLogin />, //<MessagePage />,  <MainSidebar /> <Xample />,    <PrevModal />,
       },
       {
         path: "explore",

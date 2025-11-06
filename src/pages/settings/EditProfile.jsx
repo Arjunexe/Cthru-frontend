@@ -17,8 +17,8 @@ function EditProfile() {
   const emailOrPhnumber = userDetails?.userData?.EmailOrMobile || "";
 
   const inputStyle =
-    " w-1/2 px-4 py-2 m-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500";
-  const labelStyle = "mr-72 p-0 text-sm font-medium text-gray-700 w-24";
+    " w-1/2 px-4 py-2 m-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500";
+  const labelStyle = "mr-72 p-0 text-sm font-medium text-white ";
 
   useEffect(() => {
     setEmailorPh(emailOrPhnumber);
@@ -33,7 +33,7 @@ function EditProfile() {
     if (selectedFile) {
       const newPicUploaded = await handleUploadClickAPI(
         selectedFile,
-        setUserDetails
+        setUserDetails,
       );
       if (newPicUploaded) {
         setTimeout(() => {
@@ -66,9 +66,63 @@ function EditProfile() {
           </div>
         </div>
       </div>
+      <div className="mt-3 text-sm text-gray-300">
+        Tap to change profile picutre
+      </div>
+      {/* ----------------------- */}
+      <div className="w-full mb-6 ">
+        <label className="block text-sm mb-2 text-gray-300">Bio</label>
+        <textarea
+          className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-sm text-white placeholder-gray-400"
+          rows="3"
+          placeholder="Write something about yourself..."
+        ></textarea>
+      </div>
 
-      <div className="bg-pink-500">BIO</div>
+      {/* Input Fields */}
+      <div className="w-full space-y-5 flex flex-col justify-center">
+        <div>
+          <label className="block text-sm mb-1 text-gray-300">Username</label>
+          <input
+            type="text"
+            className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+          />
+        </div>
 
+        <div>
+          <label className="block text-sm mb-1 text-gray-300">Full Name</label>
+          <input
+            type="text"
+            className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm mb-1 text-gray-300">
+            Email or Phone
+          </label>
+          <input
+            type="text"
+            className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+          />
+        </div>
+      </div>
+
+      {/* Submit Button */}
+      <div className="w-full mt-8">
+        <button className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 transition-all shadow-md font-semibold">
+          Save Changes
+        </button>
+      </div>
+
+      {/* Change Password */}
+      <div className="mt-6 w-full text-center">
+        <button className="text-base text-gray-400 hover:text-blue-500 transition">
+          Change Password
+        </button>
+      </div>
+
+      {/* -------------------------- */}
       <div className=" flex w-full flex-col justify-center mt-9 items-center">
         <label className={labelStyle}>Username</label>
         <input
@@ -98,7 +152,6 @@ function EditProfile() {
           Submit
         </div>
       </div>
-
       <div className="bg-orange-600">Change password</div>
     </div>
   );

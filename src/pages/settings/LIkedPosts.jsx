@@ -24,11 +24,11 @@ function LIkedPosts() {
   }, []);
 
   return (
-    <div className="h-screen scrollbar no-scrollbar bg-yellow-200  flex flex-row overflow-auto w-1/2">
-      <div className="scrollbar no-scrollbar h-full bg-green-500">
-      {post.map((post,index)=>{
-        return <Post key={index} post={post} />
-      })}
+    <div className="h-screen scrollbar no-scrollbar bg-slate-950  flex flex-row overflow-auto w-1/2">
+      <div className="scrollbar no-scrollbar h-full bg-slate-950">
+        {post.map((post, index) => {
+          return <Post key={index} post={post} />;
+        })}
       </div>
     </div>
   );

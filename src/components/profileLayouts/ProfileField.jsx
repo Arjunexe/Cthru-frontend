@@ -21,7 +21,7 @@ export default function ProfileField({
     <>
       <div>
         <img
-          className="rounded-full object-cover"
+          className="rounded-full  border-2 border-white object-cover"
           style={{ width: `${width}rem`, height: `${height}rem` }}
           src={Dp}
           alt=""

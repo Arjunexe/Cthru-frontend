@@ -18,7 +18,7 @@ function Explore() {
   }, []);
 
   return (
-    <div className="w-full bg-slate-600 h-screen">
+    <div className="w-full overflow-auto bg-slate-950 h-screen">
       <div className="p-4 m-8 grid grid-cols-4">
         {postImage.map((post, index) => {
           return <ProfileGrid key={index} post={post} />;

@@ -18,9 +18,9 @@ function OptionsModal({
   const [loader, setLoader] = useState(false);
   const [saveState, setSaveState] = useState(saved.includes(loggedUserId));
   const [loggedInUser, setItsLoggedUser] = useState(false);
-  const optionSpan = "text-white text-opacity-95";
+  const optionSpan = "text-white";
   const buttonStyle =
-    "w-80 h-12 items-center justify-center hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition duration-150 shadow shadow-black/20";
+    "w-80 h-12 items-center justify-center hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-150 shadow shadow-black/20";
   // shadow-[0_1px_10px_0_rgba(255,255,255,0.70)]
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function OptionsModal({
       ) : (
         // Modal body
         <div
-          className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white border-opacity-30  shadow-xl noise-texture"
+          className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white border-opacity-30  shadow-xl noise-texture"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Options */}

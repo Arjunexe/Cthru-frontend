@@ -118,7 +118,7 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
   ];
 
   const baseItemClasses =
-    "w-full flex items-center space-x-3 text-white hover:bg-white/20 px-4 py-2 rounded-lg transition-all";
+    "w-full flex items-center space-x-3 text-white hover:bg-white/30 px-4 py-2 rounded-lg transition-all";
 
   return (
     <motion.div
@@ -126,7 +126,7 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="flex mt-32 ml-10"
     >
-      <div className="relative w-60 p-6 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
+      <div className="relative w-60 p-6 rounded-3xl backdrop-blur-xl bg-white/15 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
         <AnimatePresence mode="popLayout">
           {options.map(({ label, icon, path, onClick }) => {
             const content = (

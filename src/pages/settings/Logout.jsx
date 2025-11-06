@@ -13,8 +13,8 @@ function Logout() {
     }
   }
   return (
-    <div className="h-full bg-yellow-300 w-1/2">
-      <div className="bg-blue-500">
+    <div className="h-full bg-slate-950 p-24 w-1/2">
+      <div className="bg-slate-900">
         <button className="" onClick={handleLogout}>
           <span>logout</span>
         </button>

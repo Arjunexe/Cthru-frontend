@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Timeline.css";
 // import Suggestion from "../suggestion/Suggestion";
 import Post from "../post/Post";
 import ImageContext from "../../context/context";
@@ -25,7 +24,7 @@ function Timeline() {
   }, [imgUploaded]);
 
   return (
-    <div className="bg-green-600 md:h-full block">
+    <div className=" md:h-full block">
       <div className="">
         {postImagee.map((post, index) => (
           <Post key={index} post={post} />

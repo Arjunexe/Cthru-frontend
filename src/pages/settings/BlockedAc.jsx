@@ -12,23 +12,22 @@ function BlockedAc() {
     async function getBlockedList() {
       try {
         const blockedList = await fetchBockList(loggedUserId);
-       setBlockedList(blockedList) 
-      } catch (error) {  
+        setBlockedList(blockedList);
+      } catch (error) {
         console.log("error during getBlockList: ", error);
       }
-    } 
+    }
     getBlockedList();
   }, []);
 
   return (
-    <div className="h-full bg-yellow-300 w-1/2">
-      <div className=" bg-blue-500">
-        <h1>Blocked Accounts</h1> 
+    <div className="h-full bg-slate-950 pt-24 w-1/2">
+      <div className=" bg-slate-900">
+        <h1>Blocked Accounts</h1>
         <div>
-{blockedList.map((list, index)=>{
-  return <UserChatBox key={index} user={list}/>
-
-        })}
+          {blockedList.map((list, index) => {
+            return <UserChatBox key={index} user={list} />;
+          })}
         </div>
       </div>
     </div>

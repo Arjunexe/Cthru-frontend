@@ -1,4 +1,3 @@
-import "../signup/signup.css";
 import { useContext, useState } from "react";
 import { isValidate } from "../../valid.js/signupValid";
 import API from "../../api/axios";
@@ -176,6 +175,7 @@ function Signup() {
             <input
               type="password"
               id="password"
+              placeholder="••••••••"
               name="Password"
               value={Password}
               onChange={(e) => handlePassword(e.target.value)}
