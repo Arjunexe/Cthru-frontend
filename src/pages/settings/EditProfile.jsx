@@ -28,6 +28,7 @@ function EditProfile() {
   async function handleChangeClick(event) {
     setLoader(true);
     const profiePicDeleted = await delteFromCloudinaryAPI(dP);
+    console.log("pic is deleted from cloudinary: ", profiePicDeleted);
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
@@ -69,7 +70,7 @@ function EditProfile() {
       <div className="mt-3 text-sm text-gray-300">
         Tap to change profile picutre
       </div>
-      {/* ----------------------- */}
+      {/*------------- BIO -------------*/}
       <div className="w-full mb-6 ">
         <label className="block text-sm mb-2 text-gray-300">Bio</label>
         <textarea
@@ -79,80 +80,56 @@ function EditProfile() {
         ></textarea>
       </div>
 
-      {/* Input Fields */}
       <div className="w-full space-y-5 flex flex-col justify-center">
+        {/*------------ Username --------------*/}
         <div>
           <label className="block text-sm mb-1 text-gray-300">Username</label>
           <input
             type="text"
+            value={userName}
+            onChange={(e) => setEmailorPh(e.target.value)}
             className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
           />
         </div>
 
+        {/*------------ Full Name --------------*/}
         <div>
           <label className="block text-sm mb-1 text-gray-300">Full Name</label>
           <input
             type="text"
+            value={fullName}
+            onChange={(e) => setEmailorPh(e.target.value)}
             className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
           />
         </div>
 
+        {/*------------ Email or Ph --------------*/}
         <div>
           <label className="block text-sm mb-1 text-gray-300">
             Email or Phone
           </label>
           <input
             type="text"
+            value={emailOrPh}
+            onChange={(e) => setEmailorPh(e.target.value)}
             className="w-full p-3 rounded-lg bg-white/10 border border-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
           />
         </div>
       </div>
 
-      {/* Submit Button */}
+      {/*---------------- Submit Button -----------*/}
       <div className="w-full mt-8">
         <button className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 transition-all shadow-md font-semibold">
           Save Changes
         </button>
       </div>
 
-      {/* Change Password */}
+      {/*---------- Change Password --------------*/}
       <div className="mt-6 w-full text-center">
         <button className="text-base text-gray-400 hover:text-blue-500 transition">
           Change Password
         </button>
       </div>
-
-      {/* -------------------------- */}
-      <div className=" flex w-full flex-col justify-center mt-9 items-center">
-        <label className={labelStyle}>Username</label>
-        <input
-          type="text"
-          value={userName}
-          onChange={(e) => setEmailorPh(e.target.value)}
-          className={inputStyle}
-        />
-
-        <label className={labelStyle}>Full Name</label>
-        <input
-          type="text"
-          value={fullName}
-          onChange={(e) => setEmailorPh(e.target.value)}
-          className={inputStyle}
-        />
-
-        <label className={labelStyle}>Email or Phone</label>
-        <input
-          type="text"
-          value={emailOrPh}
-          onChange={(e) => setEmailorPh(e.target.value)}
-          className={inputStyle}
-        />
-
-        <div className="bg-gray-400 px-4 py-2 rounded cursor-pointer hover:bg-gray-500 transition mt-4">
-          Submit
-        </div>
-      </div>
-      <div className="bg-orange-600">Change password</div>
     </div>
   );
 }

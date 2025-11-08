@@ -81,9 +81,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
             hasMore={hasMore}
             loader={<h4>Loading...</h4>}
             endMessage={
-              <h4 className="text-white text-opacity-95 font-light">
-                All good
-              </h4>
+              <h4 className="text-white text-opacity-95 font-light"></h4>
             }
             scrollableTarget="parentScroll"
           >

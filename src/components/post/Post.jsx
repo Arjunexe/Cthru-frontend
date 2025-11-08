@@ -102,7 +102,7 @@ function Post({ post }) {
 
   return (
     <div
-      className="mt-5 rounded-xl bg-white/15 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_0_8px_32px_rgba(0,0,0,0.3)]
+      className="mt-5 bg-white/15 rounded-xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_0_8px_32px_rgba(0,0,0,0.3)]
       hover:bg-white/20 transition p-4 "
     >
       {/* Actual post content sits ABOVE the blur */}

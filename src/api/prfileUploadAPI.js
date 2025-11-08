@@ -110,9 +110,10 @@ export async function delteFromCloudinaryAPI(image) {
     const deleteFromCloudinary = await API.post("/user/deleteFromCloud", {
       publicId,
     });
-    if (!deleteFromCloudinary) {
+    if (!deleteFromCloudinary?.data?.deletedFromCloud) {
       console.error("image not deleted form the cloud: ", deleteFromCloudinary);
     }
+    return deleteFromCloudinary.data.deletedFromCloud;
   } catch (error) {
     console.log("error during delteFromCloudinaryAPI: ", error);
   }

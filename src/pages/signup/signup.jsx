@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import "./signup.css";
 import { isValidate } from "../../valid.js/signupValid";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaLock, FaEye, FaUser } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
+import OtpModal from "../../components/modals/otpModal/OtpModal";
 
 function Signup() {
   const navigate = useNavigate();
@@ -58,29 +60,57 @@ function Signup() {
     passwordValid(value);
   };
 
-  const handleClick = async (e) => {
-    try {
-      e.preventDefault();
-      const userData = { Fullname, Username, EmailOrMobile, Password };
-      // const isValidate = await signupValid(userData)
-      if (await isValidate({ ...userData, seter: setError })) {
-        const response = await API.post("/user/signup", userData);
-        localStorage.setItem(jwtToken, response.data.token);
-        console.log("hiiiiiiiii");
-        // UserLoggedIn(userData)
-        login();
-        navigate("/ProfileUpload");
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const userData = { Fullname, Username, EmailOrMobile, Password };
+  //     // const isValidate = await signupValid(userData)
+  //     if (await isValidate({ ...userData, seter: setError })) {
+  //       const response = await API.post("/user/signup", userData);
+  //       localStorage.setItem(jwtToken, response.data.token);
+  //       console.log("hiiiiiiiii");
+  //       // UserLoggedIn(userData)
+  //       login();
+  //       navigate("/ProfileUpload");
+  //
+  //       // setFullName("");
+  //       // setUsername("");
+  //       // setEmailOrMobile("");
+  //       // setPassword("");
+  //       // setError("");
+  //       // setPassError("");
+  //     } else {
+  //       console.log("didn't go through Axios");
+  //     }
+  //   } catch (error) {
+  //     console.log("error during handleClick: ", error);
+  //     setError("Something went wrong");
+  //   }
+  // };
+  // ----------------------------------------
 
-        // setFullName("");
-        // setUsername("");
-        // setEmailOrMobile("");
-        // setPassword("");
-        // setError("");
-        // setPassError("");
-      } else {
-        console.log("didn't go through Axios");
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const userData = { Fullname, Username, EmailOrMobile, Password };
+
+      const isValid = await isValidate({ ...userData, seter: setError });
+      if (!isValid) {
+        console.log("Validatoin failed");
+        return;
       }
+
+      const response = await API.post("/user/signup", userData);
+
+      localStorage.setItem(jwtToken, response.data.token);
+      login();
+      navigate("/ProfileUpload");
     } catch (error) {
+      const backend = error.response?.data;
+      if (backend?.errorCode === "DUPLICATE_EMAIL") {
+        setError("This email is already exist.");
+      }
+
       console.log("error during handleClick: ", error);
     }
   };
@@ -125,8 +155,8 @@ function Signup() {
           </div>
         </div>
 
-        {/*------------------- login form ----------------*/}
-        <form className="space-y-4">
+        {/*------------------- Signup form ----------------*/}
+        <form className="space-y-4" onSubmit={handleClick}>
           {/* ------- Full name ------- */}
           <div className="relative flex items-center">
             <FaAddressCard className="absolute left-3 text-slate-300" />
@@ -179,8 +209,8 @@ function Signup() {
               name="Password"
               value={Password}
               onChange={(e) => handlePassword(e.target.value)}
-              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
               required
+              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
             <button
               type="button"
@@ -196,8 +226,7 @@ function Signup() {
           ) : null}
 
           <button
-            type="button"
-            onClick={handleClick}
+            type="submit"
             className="w-full mt-2 py-3 rounded-xl text-white font-semibold text-sm
                        bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500
                        hover:scale-[1.01] active:scale-95 transition-transform shadow-md"
@@ -229,6 +258,9 @@ function Signup() {
         input::placeholder{ color: rgba(203,213,225,0.45); }
         button:focus, input:focus { outline: 2px solid transparent; }
       `}</style>
+      {/* <div className="justify-center  items-center fixed w-full h-full flex z-50 top-0  left-0 custom-modal"> */}
+      {/*   <OtpModal /> */}
+      {/* </div> */}
     </div>
   );
 }

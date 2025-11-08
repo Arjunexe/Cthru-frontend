@@ -5,15 +5,11 @@
 /* install 'postcss language support' extension to remove the warning */
 
 * {
-    /* background-color: #1e293b; */
+  /* background-color: #5b4f4f; */
+  /* background-image: url("https://grainy-gradients.vercel.app/noise.svg"); */
+  /* opacity: 2; */
 
-    /* background-color: #5b4f4f; */
-
-    
-    /* color: rgb(255, 255, 255); */
-    margin: 0;
-    
-    
+  margin: 0;
 }
 
 /* body {
@@ -29,13 +25,14 @@
 } */
 
 @layer utilities {
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-   /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
+
