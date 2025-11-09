@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./signup.css";
-import { isValidate } from "../../valid.js/signupValid";
+import { isValidate, validEmailorPhone } from "../../valid.js/signupValid";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
@@ -60,33 +60,6 @@ function Signup() {
     passwordValid(value);
   };
 
-  // const handleClick = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const userData = { Fullname, Username, EmailOrMobile, Password };
-  //     // const isValidate = await signupValid(userData)
-  //     if (await isValidate({ ...userData, seter: setError })) {
-  //       const response = await API.post("/user/signup", userData);
-  //       localStorage.setItem(jwtToken, response.data.token);
-  //       console.log("hiiiiiiiii");
-  //       // UserLoggedIn(userData)
-  //       login();
-  //       navigate("/ProfileUpload");
-  //
-  //       // setFullName("");
-  //       // setUsername("");
-  //       // setEmailOrMobile("");
-  //       // setPassword("");
-  //       // setError("");
-  //       // setPassError("");
-  //     } else {
-  //       console.log("didn't go through Axios");
-  //     }
-  //   } catch (error) {
-  //     console.log("error during handleClick: ", error);
-  //     setError("Something went wrong");
-  //   }
-  // };
   // ----------------------------------------
 
   const handleClick = async (e) => {
@@ -96,7 +69,7 @@ function Signup() {
 
       const isValid = await isValidate({ ...userData, seter: setError });
       if (!isValid) {
-        console.log("Validatoin failed");
+        console.log("Validation failed");
         return;
       }
 
@@ -112,6 +85,21 @@ function Signup() {
       }
 
       console.log("error during handleClick: ", error);
+    }
+  };
+
+  const handleOtp = async (e) => {
+    e.preventDefault();
+    try {
+      const userEmail = validEmailorPhone(EmailOrMobile, setError);
+      console.log("frontend this is it:", EmailOrMobile);
+      if (!userEmail) {
+        console.log("Invalid Email");
+      }
+
+      const otpResponse = await API.post("/user/otpEmail", { EmailOrMobile });
+    } catch (error) {
+      console.log("error during handleOtp", error);
     }
   };
 
@@ -156,7 +144,7 @@ function Signup() {
         </div>
 
         {/*------------------- Signup form ----------------*/}
-        <form className="space-y-4" onSubmit={handleClick}>
+        <form className="space-y-4" onSubmit={handleOtp}>
           {/* ------- Full name ------- */}
           <div className="relative flex items-center">
             <FaAddressCard className="absolute left-3 text-slate-300" />

@@ -54,7 +54,7 @@ function validUsername(Username, seter) {
   }
 }
 
-function validEmailorPhone(EmailOrMobile, seter) {
+export function validEmailorPhone(EmailOrMobile, seter) {
   try {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneNumberRegex = /^\+?\d{1,4}[-.\s]?\d{1,14}$/;
