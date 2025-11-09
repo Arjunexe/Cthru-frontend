@@ -22,6 +22,8 @@ function Signup() {
   const [error, setError] = useState("");
   const [Password, setPassword] = useState("");
   const [passErrors, setPassError] = useState("");
+  const [otpVerified, setOtpVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function passwordValid(value) {
     const passwordRegex = /^(?!\s*$).+/;
@@ -90,16 +92,26 @@ function Signup() {
 
   const handleOtp = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const userEmail = validEmailorPhone(EmailOrMobile, setError);
       console.log("frontend this is it:", EmailOrMobile);
       if (!userEmail) {
         console.log("Invalid Email");
+        setLoading(false);
+        return;
       }
 
       const otpResponse = await API.post("/user/otpEmail", { EmailOrMobile });
+      console.log("response from the otp: ", otpResponse.data.success);
+
+      if (otpResponse.data.success) {
+        setOtpVerified(true);
+      }
     } catch (error) {
       console.log("error during handleOtp", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -215,11 +227,16 @@ function Signup() {
 
           <button
             type="submit"
-            className="w-full mt-2 py-3 rounded-xl text-white font-semibold text-sm
-                       bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500
-                       hover:scale-[1.01] active:scale-95 transition-transform shadow-md"
+            className={`w-full mt-2 py-3 rounded-xl text-white font-semibold text-sm
+             bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500
+             hover:scale-[1.01] active:scale-95 transition-transform shadow-md
+             flex justify-center items-center`}
           >
-            Sign up
+            {loading ? (
+              <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              "Sign up"
+            )}
           </button>
           {error ? (
             <p className="text-red-500 text-sm mt-2">{`! ${error}`}</p>
@@ -246,9 +263,15 @@ function Signup() {
         input::placeholder{ color: rgba(203,213,225,0.45); }
         button:focus, input:focus { outline: 2px solid transparent; }
       `}</style>
-      {/* <div className="justify-center  items-center fixed w-full h-full flex z-50 top-0  left-0 custom-modal"> */}
-      {/*   <OtpModal /> */}
-      {/* </div> */}
+
+      {otpVerified && (
+        <div className="justify-center  items-center fixed w-full h-full flex z-50 top-0  left-0 custom-modal">
+          <OtpModal
+            onClose={() => setOtpVerified(false)}
+            handleOtp={handleOtp}
+          />
+        </div>
+      )}
     </div>
   );
 }
