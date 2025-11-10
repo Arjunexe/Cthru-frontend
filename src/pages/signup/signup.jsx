@@ -64,8 +64,8 @@ function Signup() {
 
   // ----------------------------------------
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const handleClick = async () => {
+    // e.preventDefault();
     try {
       const userData = { Fullname, Username, EmailOrMobile, Password };
 
@@ -269,6 +269,8 @@ function Signup() {
           <OtpModal
             onClose={() => setOtpVerified(false)}
             handleOtp={handleOtp}
+            EmailOrMobile={EmailOrMobile}
+            handleClick={handleClick}
           />
         </div>
       )}

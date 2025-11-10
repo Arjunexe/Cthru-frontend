@@ -1,43 +1,15 @@
-// import React from "react";
-//
-// function OtpModal({ onClose }) {
-//   return (
-//     <div
-//       className="bg-white/15  w-1/5 h-1/4 z-50 rounded-xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_0_8px_32px_rgba(0,0,0,0.3)]
-//       hover:bg-white/20 transition p-4"
-//     >
-//       <div onClick={onClose}>OTP Authentication</div>
-//     </div>
-//   );
-// }
-//
-// export default OtpModal;
-//
-//
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./otpModal.css";
+import API from "../../../api/axios";
 
-export default function OtpModal({ handleOtp, onClose }) {
+export default function OtpModal({
+  handleClick,
+  handleOtp,
+  onClose,
+  EmailOrMobile,
+}) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-
-  // const handleChange = (e, index) => {
-  //   const value = e.target.value.slice(-1);
-  //   if (!/^[0-9]?$/.test(value)) return;
-  //   const newOtp = [...otp];
-  //   newOtp[index] = value;
-  //   setOtp(newOtp);
-  //   if (value && index < 5) {
-  //     document.getElementById(`otp-${index + 1}`).focus();
-  //   }
-  // };
-  // //
-  // const handleSubmit = () => {
-  //   onSubmit(otp.join(""));
-  // };
-  //
-  // if (!isOpen) return null;
 
   const handleChange = (e, index) => {
     const { value } = e.target;
@@ -57,6 +29,32 @@ export default function OtpModal({ handleOtp, onClose }) {
       document.getElementById(`otp-${index - 1}`).focus();
     }
   };
+
+  async function handleVerify() {
+    try {
+      const enteredOtp = otp.join("");
+      console.log("all otp: ", enteredOtp);
+      if (enteredOtp.length < 6) {
+        alert("Please enter all 6 digits of the OTP");
+        return;
+      }
+
+      const response = await API.post("/user/otpVerify", {
+        EmailOrMobile,
+        enteredOtp,
+      });
+
+      if (!response.data.success) {
+        console.log("response from otp verify: ", response.data.success);
+      } else {
+        console.log("response from otp verify: ", response.data.success);
+        handleClick();
+      }
+    } catch (error) {
+      console.log("error during handleVerify: ", error);
+    }
+  }
+
   return (
     <AnimatePresence>
       <motion.div
@@ -71,7 +69,7 @@ export default function OtpModal({ handleOtp, onClose }) {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative w-96 p-6 rounded-2xl bg-white/5 border-2 border-white/15 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-3xl flex flex-col items-center space-y-5 noise-textures"
+          className="relative w-96 p-6 rounded-2xl bg-white/5 border-2 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-3xl flex flex-col items-center space-y-5 noise-textures"
         >
           <h2 className="text-white text-xl font-semibold z-10">
             OTP Authentication
@@ -109,7 +107,7 @@ export default function OtpModal({ handleOtp, onClose }) {
 
           <div className="flex space-x-4 z-10">
             <button
-              onClick={onClose}
+              onClick={handleVerify}
               className="px-5 py-2 rounded-xl bg-indigo-500/80 hover:bg-indigo-500 text-white font-medium backdrop-blur-md transition"
             >
               Verify
