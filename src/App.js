@@ -65,7 +65,7 @@ function App() {
 
         console.log("insdie");
         const flagRedNotification = await flagChangeApi(userID, true);
-        if (flagRedNotification == true) {
+        if (flagRedNotification === true) {
           setRedDot(true);
         }
       });
