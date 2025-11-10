@@ -90,6 +90,7 @@ function Signup() {
     }
   };
 
+  // HANDLE OTP
   const handleOtp = async (e) => {
     e.preventDefault();
     setLoading(true);
