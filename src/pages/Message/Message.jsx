@@ -4,7 +4,7 @@ import UserChatList from "../../components/chat/UserChatList";
 
 function Message() {
   return (
-    <div className="flex h-screen bg-gray-400 w-full">
+    <div className="flex h-screen w-full">
       <div className="">
         <UserChatList />
       </div>

@@ -25,6 +25,7 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
   const [openNotification, setOpenNotification] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const messagePage = location.pathname === "/message";
 
   const dP = userDetails?.userData?.ProfilePic || "Guest";
   const userName = userDetails?.userData?.Username || "";
@@ -73,7 +74,7 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
             icon: <ImagePlus size={25} />,
             onClick: openCreateModal,
           },
-          { label: "Message", icon: <Mail />, path: `/message` },
+          // { label: "Message", icon: <Mail />, path: `/message` },
           {
             label: "Notification",
             icon: !redDot && !flagRed ? <Bell /> : <Redbell />,
@@ -117,24 +118,29 @@ function MainSidebarAnimation({ openCreateModal, redDot, setRedDot }) {
     },
   ];
 
-  const baseItemClasses =
-    "w-full flex items-center space-x-3 text-white hover:bg-white/30 px-4 py-2 rounded-lg transition-all";
+  const baseItemClasses = messagePage
+    ? "w-full flex items-center justify-center text-white hover:bg-white/30 px-4 py-2 rounded-lg transition-all"
+    : "w-full flex items-center space-x-3 text-white hover:bg-white/30 px-4 py-2 rounded-lg transition-all";
 
   return (
     <motion.div
       animate={{ x: settings ? 50 : 0 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="flex mt-32 ml-10"
+      className="flex mt-52 ml-10"
     >
-      <div className="relative w-60 p-6 rounded-3xl backdrop-blur-xl bg-white/15 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4">
+      <div
+        className={`relative ${messagePage ? "w-auto" : "w-60"}  p-6 rounded-3xl backdrop-blur-xl bg-white/15 border border-white/30 shadow-2xl flex flex-col justify-center space-y-4`}
+      >
         <AnimatePresence mode="popLayout">
           {options.map(({ label, icon, path, onClick }) => {
             const content = (
               <>
-                <span className="flex items-center justify-center w-5 h-5">
+                <span className="flex items-center justify-center ">
                   {icon}
                 </span>
-                <span className="text-sm font-medium">{label}</span>
+                {!messagePage && (
+                  <span className="text-sm font-medium">{label}</span>
+                )}
               </>
             );
 

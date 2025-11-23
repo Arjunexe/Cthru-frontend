@@ -134,7 +134,7 @@ function App() {
     <div className="flex bg-slate-950  z-10  text-white ">
       {/* <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 z-0 pointer-events-none"></div> */}
       {renderSidebar && (
-        <div className="hidden sm:block ">
+        <div className="hidden sm:block">
           <MainSidebarAnimation
             openCreateModal={toggleCreateModal}
             redDot={redDot}

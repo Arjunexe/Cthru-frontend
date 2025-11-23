@@ -69,8 +69,9 @@ export default function OtpModal({
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative w-96 p-6 rounded-2xl bg-white/5 border-2 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-3xl flex flex-col items-center space-y-5 noise-textures"
+          className="relative w-96 p-6 rounded-2xl bg-white/10 border-2 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-3xl flex flex-col items-center space-y-5 "
         >
+          {/* <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 z-0 pointer-events-none"></div> */}
           <h2 className="text-white text-xl font-semibold z-10">
             OTP Authentication
           </h2>
@@ -85,6 +86,7 @@ export default function OtpModal({
                 id={`otp-${index}`}
                 type="text"
                 maxLength="1"
+                autoComplete="off"
                 value={digit}
                 onChange={(e) => handleChange(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)} // 👈 handle backspace here

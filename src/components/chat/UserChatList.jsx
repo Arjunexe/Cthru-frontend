@@ -24,7 +24,7 @@ function UserChatList() {
   console.log("userNames: ", following);
 
   return (
-    <div className="bg-gray-600 h-screen w-80  ">
+    <div className="bg-slate-950 h-screen w-80  ">
       <div className=" font-bold bg-yellow-200 justify-center flex">
         <h1>Messages</h1>
       </div>
