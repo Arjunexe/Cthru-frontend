@@ -1,34 +1,49 @@
 import React, { useContext, useEffect, useState } from "react";
-// import Siidebar from "../../components/sidebar/Sidebar";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../context/context";
-import { getPostData, handleUploadClickAPI } from "../../api/prfileUploadAPI";
+import { getPostData } from "../../api/prfileUploadAPI";
 import SessionContext from "../../context/SessionContext";
 import ProfileGrid from "../../components/profileLayouts/profileGrid";
 import { useNavigate, useParams } from "react-router-dom";
 import SettingsModal from "../../components/modals/settingsModal/SettingsModal";
+import ProfileHeader from "./ProfileHeader";
 
 export default function Profile() {
-  const { logout } = useContext(SessionContext);
+  // CONTEXT & STATE
   const [profilePicUrl, setProfilePic] = useState("");
   const [UserName, setUserName] = useState("");
-  const [profilePic, setProfilePics] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [post, setPost] = useState([]);
   const [profileData, setProfileData] = useState({});
   const [settingsModal, setSettingsModal] = useState(false);
+
   const navigate = useNavigate();
   const { urlUsername } = useParams();
-  const { userDetails, setUserDetails, imgUploaded } = useContext(MainContext);
+  const { userDetails, imgUploaded } = useContext(MainContext);
+  const { logout } = useContext(SessionContext);
+
   const userName = userDetails?.userData?.Username || "Guest";
   const DP = userDetails?.userData?.ProfilePic || "Guest";
   const userId = userDetails?.userData?._id || "Guest";
 
+  // PROFILE DATA FOR STATS
+  // const currentProfileData = loggedIn
+  //   ? userDetails?.userData
+  //   : profileData?.userData;
+
+  // FOLLOWER DATA FOR STATS
+  const currentFollowerData = loggedIn
+    ? userDetails?.userFollowData
+    : profileData?.userFollowData;
+
+  const followerCount = currentFollowerData?.followers?.length || 0;
+  const followingCount = currentFollowerData?.following?.length || 0;
+  const postCount = post?.length || 0;
+  const bioText = userDetails?.userData?.Bio || "";
+
   // CHECK IF THE USER IS LOGGED IN OR NOT
   useEffect(() => {
     function checkLoggedIn() {
-      console.log("lowkeyyyyyyyy: ", userId);
-
       if (userName === urlUsername) {
         console.log("its the logged user");
         setLoggedIn(true);
@@ -80,26 +95,6 @@ export default function Profile() {
     }
   }, [loggedIn, profileData?.userData?.Username, userName]);
 
-  // SEND PROFILEPIC TO UPLOAD FUNCTION || NO NEED
-  // useEffect(() => {
-  //   if (profilePic) {
-  //     async function uploadProfileImage() {
-  //       const uploadedImg = await handleUploadClickAPI(
-  //         profilePic,
-  //         setUserDetails
-  //       );
-  //       return uploadedImg;
-  //     }
-  //     uploadProfileImage();
-  //   }
-  // }, [profilePic, setUserDetails]);
-
-  // HANDLES THE PROFILE PIC UPLOAD CHANGE
-  // async function handleChangeClick(event) {
-  //   const selectedFile = event.target.files[0];
-  //   setProfilePics(selectedFile);
-  // }
-
   // GET POSTS
   useEffect(() => {
     async function getPost() {
@@ -132,19 +127,37 @@ export default function Profile() {
   return (
     <div className=" h-screen w-screen flex flex-col items-center overflow-auto">
       {/* Top section */}
-      <div className="w-full flex flex-col items-center mt-6">
-        <div className="relative inline-block">
-          <ProfileField width="10" height="10" profilePicUrl={profilePicUrl} />
-        </div>
+      {/* <div className="w-full flex flex-col items-center mt-6"> */}
+      {/*   <div className="relative inline-block"> */}
+      {/*     <ProfileField width="10" height="10" profilePicUrl={profilePicUrl} /> */}
+      {/*   </div> */}
+      {/**/}
+      {/*   <div className="text-white text-2xl mt-2">{UserName}</div> */}
+      {/**/}
+      {/*   <div */}
+      {/*     className="bg-white text-black cursor-pointer px-4 py-1 mt-2 rounded" */}
+      {/*     onClick={handleSettingsModal} */}
+      {/*   > */}
+      {/*     Settings */}
+      {/*   </div> */}
+      {/* </div> */}
 
-        <div className="text-white text-2xl mt-2">{UserName}</div>
+      <ProfileHeader
+        profilePicUrl={profilePicUrl}
+        handleSettingsModal={handleSettingsModal}
+        UserName={UserName}
+        bioText={bioText}
+        postCount={postCount}
+        followingCount={followingCount}
+        followerCount={followerCount}
+      />
 
-        <div
-          className="bg-white text-black cursor-pointer px-4 py-1 mt-2 rounded"
-          onClick={handleSettingsModal}
-        >
-          Settings
-        </div>
+      {/* -----------------Posts grid----------------- */}
+      <div className="xl:px-56 lg:px-4 grid grid-cols-3 gap-1 sm:gap-1 md:gap-1 w-full ">
+        {/* <div className="px-56 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4"> */}
+        {post.map((post, index) => (
+          <ProfileGrid key={index} post={post} />
+        ))}
       </div>
 
       {/* -------------Settings Modal--------------- */}
@@ -156,14 +169,6 @@ export default function Profile() {
           urlUsername={urlUsername}
         />
       )}
-
-      {/* -----------------Posts grid----------------- */}
-      <div className="xl:px-56 lg:px-4 grid grid-cols-3 gap-1 sm:gap-1 md:gap-1 w-full ">
-        {/* <div className="px-56 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4"> */}
-        {post.map((post, index) => (
-          <ProfileGrid key={index} post={post} />
-        ))}
-      </div>
     </div>
   );
 }

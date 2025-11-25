@@ -81,7 +81,7 @@ function OptionsModal({
       ) : (
         // Modal body
         <div
-          className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white border-opacity-30  shadow-xl noise-texture"
+          className="w-80 items-center relative flex flex-col bg-white bg-opacity-10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white border-opacity-30  shadow-xl noise-options-texture"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Options */}
