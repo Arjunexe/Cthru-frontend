@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProfileField from "../../components/profileLayouts/ProfileField";
+// import ProfileField from "../../components/profileLayouts/ProfileField";
 import MainContext from "../../context/context";
 import { getPostData } from "../../api/prfileUploadAPI";
 import SessionContext from "../../context/SessionContext";
@@ -12,8 +12,8 @@ export default function Profile() {
   // CONTEXT & STATE
   const [profilePicUrl, setProfilePic] = useState("");
   const [UserName, setUserName] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [post, setPost] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(null);
+  const [postImage, setPost] = useState([]);
   const [profileData, setProfileData] = useState({});
   const [settingsModal, setSettingsModal] = useState(false);
 
@@ -36,9 +36,10 @@ export default function Profile() {
     ? userDetails?.userFollowData
     : profileData?.userFollowData;
 
+  const currnetProfileId = profileData?.userData?._id;
   const followerCount = currentFollowerData?.followers?.length || 0;
   const followingCount = currentFollowerData?.following?.length || 0;
-  const postCount = post?.length || 0;
+  const postCount = postImage?.length || 0;
   const bioText = userDetails?.userData?.Bio || "";
 
   // CHECK IF THE USER IS LOGGED IN OR NOT
@@ -99,8 +100,9 @@ export default function Profile() {
   useEffect(() => {
     async function getPost() {
       let userInfo = loggedIn ? userId : urlUsername;
-      const Data = await getPostData(userInfo);
-      setPost(Data.data.userPost);
+      const response = await getPostData(userInfo);
+      console.log("the userPost :", response);
+      setPost(response.data.userPost);
     }
     getPost().catch((err) => console.error("error during getPost:", err));
   }, [imgUploaded, loggedIn, urlUsername]);
@@ -126,21 +128,7 @@ export default function Profile() {
 
   return (
     <div className=" h-screen w-screen flex flex-col items-center overflow-auto">
-      {/* Top section */}
-      {/* <div className="w-full flex flex-col items-center mt-6"> */}
-      {/*   <div className="relative inline-block"> */}
-      {/*     <ProfileField width="10" height="10" profilePicUrl={profilePicUrl} /> */}
-      {/*   </div> */}
-      {/**/}
-      {/*   <div className="text-white text-2xl mt-2">{UserName}</div> */}
-      {/**/}
-      {/*   <div */}
-      {/*     className="bg-white text-black cursor-pointer px-4 py-1 mt-2 rounded" */}
-      {/*     onClick={handleSettingsModal} */}
-      {/*   > */}
-      {/*     Settings */}
-      {/*   </div> */}
-      {/* </div> */}
+      {/* --------------Header----------- */}
 
       <ProfileHeader
         profilePicUrl={profilePicUrl}
@@ -150,12 +138,15 @@ export default function Profile() {
         postCount={postCount}
         followingCount={followingCount}
         followerCount={followerCount}
+        loggedIn={loggedIn}
+        currnetProfileId={currnetProfileId}
+        urlUsername={urlUsername}
       />
 
       {/* -----------------Posts grid----------------- */}
       <div className="xl:px-56 lg:px-4 grid grid-cols-3 gap-1 sm:gap-1 md:gap-1 w-full ">
         {/* <div className="px-56 grid grid-cols-3 gap-1 sm:gap-2 md:gap-4"> */}
-        {post.map((post, index) => (
+        {postImage.map((post, index) => (
           <ProfileGrid key={index} post={post} />
         ))}
       </div>

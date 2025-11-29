@@ -1,4 +1,7 @@
+import FollowButton from "../../components/button/FollowButton";
 import ProfileField from "../../components/profileLayouts/ProfileField";
+import { Settings } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileHeader({
   profilePicUrl,
@@ -8,7 +11,12 @@ export default function ProfileHeader({
   postCount,
   followingCount,
   followerCount,
+  loggedIn,
+  currnetProfileId,
+  urlUsername,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full relative mb-8 mt-32">
       {/* 1. Artificial "Cover Photo" Gradient */}
@@ -41,16 +49,25 @@ export default function ProfileHeader({
         </div>
 
         {/* Action Button (Pill Shaped) */}
-        <div className="mt-6">
-          <button className="px-8 py-2 rounded-md bg-blue-600 text-white font-semibold text-sm hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20">
-            Follow
-          </button>
+        <div className="flex mt-6">
+          {loggedIn === null ? null : loggedIn ? (
+            <button
+              className="px-4 py-2 rounded-md bg-gray-500 text-white font-semibold text-sm hover:bg-gray-400 transition-all shadow-lg shadow-gray-600/20"
+              onClick={() => {
+                navigate(`/${urlUsername}/settings/edit`);
+              }}
+            >
+              Edit Profile
+            </button>
+          ) : (
+            <FollowButton userID={currnetProfileId} />
+          )}
 
           <button
             onClick={handleSettingsModal}
-            className="ml-2 px-2 py-2 rounded-md bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-all shadow-lg shadow-white/10"
+            className="ml-2 px-2 py-1 rounded-md bg-white text-black font-semibold text-sm hover:bg-gray-300 transition-all shadow-lg shadow-white/10"
           >
-            Settings
+            <Settings />
           </button>
         </div>
 

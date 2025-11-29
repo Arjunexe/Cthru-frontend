@@ -6,6 +6,7 @@ function ProfileGrid({ post }) {
   const [img, setImage] = useState("");
   const [postExpand, setPostExpand] = useState(false);
 
+  console.log("the post: ", post);
   const image = post.postImage;
 
   useEffect(() => {

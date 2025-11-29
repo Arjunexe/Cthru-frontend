@@ -113,14 +113,14 @@ function Post({ post }) {
           onClick={handleProfileClick}
         >
           <ProfileField width="2" height="2" profilePicUrl={profilePicUrl} />
-          <span className="font-medium text-white">{username} •</span>
+          <span className="font-medium text-white">{username}</span>
 
           {/* -------------------------------------------------------- */}
 
           <div className="" onClick={(e) => e.stopPropagation()}>
             {!flowstate && (
               <button
-                className="bg-black ml-3 cursor-pointer px-2 py-1 text-xs rounded "
+                className="bg-black ml-2 cursor-pointer px-2 py-1 text-xs rounded "
                 onClick={handleFollow}
               >
                 Follow
