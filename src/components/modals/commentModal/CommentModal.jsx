@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Comment from "../../comment/Comment";
 import { getCommentList, handleComment } from "../../../api/prfileUploadAPI";
 
-function CommentModal({ onClose, postId, loggedUserId }) {
+function CommentModal({ onClose, postId, loggedUserId, onCommentAdded }) {
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
   const [page, setPage] = useState(1);
@@ -43,6 +43,7 @@ function CommentModal({ onClose, postId, loggedUserId }) {
       });
       setComment("");
       if (commentPosted) {
+        onCommentAdded();
         const updatedList = await getCommentList(postId, 1);
         if (updatedList) {
           setCommentList(updatedList);

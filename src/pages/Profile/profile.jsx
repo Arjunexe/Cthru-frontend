@@ -101,7 +101,7 @@ export default function Profile() {
     async function getPost() {
       let userInfo = loggedIn ? userId : urlUsername;
       const response = await getPostData(userInfo);
-      console.log("the userPost :", response);
+      console.log("the userPost :", response.data.userPost);
       setPost(response.data.userPost);
     }
     getPost().catch((err) => console.error("error during getPost:", err));

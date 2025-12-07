@@ -86,7 +86,15 @@ export async function getPostData(userId) {
     return error;
   }
 }
-
+//---------------------------------------------------
+// export async function getHomePostData(userId) {
+//   try {
+//     const response = await API.get(`/user/getHomePostData/${userId}`);
+//   } catch (error) {
+//     console.log("error during getHomePostData: ", error);
+//   }
+// }
+//
 // DELETE POST BY SENDING PUBLIC ID AND POST LINK
 export async function deletePost(publicId, postImg, setImgUploaded) {
   try {

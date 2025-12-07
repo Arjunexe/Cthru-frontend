@@ -18,10 +18,13 @@ function Post({ post }) {
   const [profilePicUrl, setDp] = useState("");
   const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState("");
-  // const [likeState, setLikeState] = useState(false);
-
   const [commentModal, setCommentModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
+  const [likesCountState, setLikesCountState] = useState(post.like.length);
+  const [commentsCountState, setCommentsCountState] = useState(
+    post.comment.length,
+  );
+
   const navigate = useNavigate();
   // const { toggleCommentModal } = useOutletContext();
   const { setImgUploaded, userDetails, setUserDetails } =
@@ -32,6 +35,7 @@ function Post({ post }) {
   const followInfo = userDetails?.userFollowData?.following || [];
   const loggedUserId = userDetails?.userData?._id || "";
 
+  // const commentsCount = post.comment.length || 0;
   let imagee = post.postImage;
   let usernamee = post.userId.Username;
   let profilepic = post.userId.ProfilePic;
@@ -46,17 +50,13 @@ function Post({ post }) {
     setUsername(usernamee);
     setDp(profilepic);
 
-    if (followInfo.includes(following)) {
+    if (loggedUserId === userID) {
+      setflowState(true);
+    } else if (followInfo.includes(following)) {
       setflowState(true);
     } else {
       setflowState(false);
     }
-    // --------Like and Unlike ting---------
-    // if (likesId.includes(loggedUserId)) {
-    //   setLikeState(true);
-    // } else {
-    //   setLikeState(false);
-    // }
   }, [
     post.postImage,
     post.userId.ProfilePic,
@@ -92,8 +92,12 @@ function Post({ post }) {
 
       if (postLiked) {
         setLikeState(true);
+
+        setLikesCountState((prev) => prev + 1);
       } else {
         setLikeState(false);
+
+        setLikesCountState((prev) => prev - 1);
       }
     } catch (error) {
       console.log("error during handleLikeApi: ", error);
@@ -149,16 +153,20 @@ function Post({ post }) {
         <button className="cursor-pointer" onClick={handleLikeOrUnlike}>
           {likeState ? <FcLike size={25} /> : <FaRegHeart size={25} />}
         </button>
+        <span className="pl-1">{likesCountState}</span>
         {/* -----------Comment--------- */}
-        <button className="ml-3" onClick={() => setCommentModal(true)}>
-          <FaRegComment size={25} />
+        <button className="ml-4" onClick={() => setCommentModal(true)}>
+          <FaRegComment size={24} />
         </button>
+
+        <span className="pl-1">{commentsCountState}</span>
 
         {commentModal && (
           <CommentModal
             onClose={() => setCommentModal(false)}
             postId={postId}
             loggedUserId={loggedUserId}
+            onCommentAdded={() => setCommentsCountState((prev) => prev + 1)}
           />
         )}
       </div>

@@ -10,6 +10,7 @@ function Explore() {
       try {
         const response = await getPostData();
         setPostImage(response.data);
+        console.log("post data on explore: ", response.data);
       } catch (error) {
         console.log("error during getImageUrl: ", error);
       }
