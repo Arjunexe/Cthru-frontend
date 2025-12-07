@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { handleFollowAPI, handleUnfollowApi } from "../../api/followAPI";
 import MainContext from "../../context/context";
 
-export default function FollowButton({ userID }) {
+export default function FollowButton({ userID, setFollowCountStatus }) {
   // const [following, setFollowing] = useState("");
   const [flowstate, setflowState] = useState(null);
 
@@ -18,9 +18,13 @@ export default function FollowButton({ userID }) {
   }, [followInfo, userID]);
 
   function handleFollow() {
+    setflowState(true);
+    setFollowCountStatus((prev) => prev + 1);
     handleFollowAPI(userID, setUserDetails);
   }
   function handleUnfollow() {
+    setflowState(false);
+    setFollowCountStatus((prev) => prev - 1);
     handleUnfollowApi(userID, setUserDetails);
   }
 

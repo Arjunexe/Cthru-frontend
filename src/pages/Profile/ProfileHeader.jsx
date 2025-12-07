@@ -2,6 +2,7 @@ import FollowButton from "../../components/button/FollowButton";
 import ProfileField from "../../components/profileLayouts/ProfileField";
 import { Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function ProfileHeader({
   profilePicUrl,
@@ -15,7 +16,14 @@ export default function ProfileHeader({
   currnetProfileId,
   urlUsername,
 }) {
+  const [followCountStatus, setFollowCountStatus] = useState(followerCount);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setFollowCountStatus(followerCount);
+  }, [followerCount]);
+
+  console.log("the count man: ", followerCount);
 
   return (
     <div className="w-full relative mb-8 mt-32">
@@ -60,7 +68,10 @@ export default function ProfileHeader({
               Edit Profile
             </button>
           ) : (
-            <FollowButton userID={currnetProfileId} />
+            <FollowButton
+              userID={currnetProfileId}
+              setFollowCountStatus={setFollowCountStatus}
+            />
           )}
 
           <button
@@ -85,7 +96,7 @@ export default function ProfileHeader({
 
           <div className="flex flex-col items-center px-4 cursor-pointer hover:opacity-80 transition">
             <span className="text-xl font-bold text-white">
-              {followerCount}
+              {followCountStatus}
             </span>
             <span className="text-xs text-gray-400 uppercase tracking-wider">
               Followers
