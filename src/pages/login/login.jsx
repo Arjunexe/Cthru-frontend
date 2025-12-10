@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
 import SessionContext from "../../context/SessionContext";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock, FaEye } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ function Login() {
   const [emailOrmobile, seTEmailPassword] = useState("");
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleClick(e) {
     try {
@@ -92,7 +93,7 @@ function Login() {
           <div className="relative flex items-center">
             <FaLock className="absolute left-3 text-slate-300" />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={password}
               onChange={(e) => seTPassword(e.target.value)}
@@ -102,10 +103,11 @@ function Login() {
             />
             <button
               type="button"
+              onClickCapture={() => setShowPassword(!showPassword)}
               className="absolute right-3 text-slate-300 opacity-80"
               aria-label="toggle password"
             >
-              <FaEye />
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
 

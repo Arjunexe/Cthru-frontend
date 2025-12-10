@@ -9,7 +9,7 @@ import SessionContext from "../../context/SessionContext";
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock, FaEye, FaUser } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaUser, FaEyeSlash } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import OtpModal from "../../components/modals/otpModal/OtpModal";
 
@@ -24,6 +24,7 @@ function Signup() {
   const [passErrors, setPassError] = useState("");
   const [otpVerified, setOtpVerified] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   function passwordValid(value) {
     const passwordRegex = /^(?!\s*$).+/;
@@ -204,7 +205,7 @@ function Signup() {
           <div className="relative flex items-center">
             <FaLock className="absolute left-3 text-slate-300" />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="••••••••"
               name="Password"
@@ -215,10 +216,11 @@ function Signup() {
             />
             <button
               type="button"
+              onClickCapture={() => setShowPassword(!showPassword)}
               className="absolute right-3 text-slate-300 opacity-80"
               aria-label="toggle password"
             >
-              <FaEye />
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
 

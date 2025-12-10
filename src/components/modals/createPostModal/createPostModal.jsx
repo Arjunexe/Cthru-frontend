@@ -13,6 +13,7 @@ function CreatePostModal({ PostModalProp }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [loading, setLoading] = useState(false);
   //  const [croppedImg, setCroppedImg] = useState(null)
   const { setImgUploaded } = useContext(ImageContext);
 
@@ -33,10 +34,16 @@ function CreatePostModal({ PostModalProp }) {
 
   //Passing image crop data to getCroppedImg
   async function handleUpload() {
-    const croppedImage = await getCroppedImg(img, croppedAreaPixels);
-    console.log("finalImage: ", croppedImage);
-    // setCroppedImg(croppedImage)
-    handleClick(croppedImage);
+    try {
+      setLoading(true);
+
+      const croppedImage = await getCroppedImg(img, croppedAreaPixels);
+      // console.log("finalImage: ", croppedImage);
+      // setCroppedImg(croppedImage)
+      handleClick(croppedImage);
+    } catch (error) {
+      console.log("upload error: ", error);
+    }
   }
 
   // UPLOADING IMAGE TO CLOUDINARY
@@ -51,6 +58,9 @@ function CreatePostModal({ PostModalProp }) {
         "https://api.cloudinary.com/v1_1/da05006gl/image/upload",
         formData,
       ).then((response) => {
+        PostModalProp();
+        setLoading(false);
+
         // URL OF THE POST IMAGE
         sendImgUrl(response.data.secure_url);
       });
@@ -98,8 +108,22 @@ function CreatePostModal({ PostModalProp }) {
         {img && (
           <div className="cropper-wrapper">
             <div>
-              <button className="croper-button" onClick={handleUpload}>
-                upload
+              <button
+                className="croper-button relative disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                onClick={handleUpload}
+                disabled={loading}
+              >
+                {loading && (
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">
+                    <div className="w-5 h-5 border-[3px] border-current border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+
+                <span
+                  className={`block ${loading ? "opacity-0 mx-4" : "opacity-100"} transition-opacity duration-200`}
+                >
+                  Upload
+                </span>
               </button>
             </div>
             <div className="crop-container">
