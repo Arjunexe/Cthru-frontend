@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 import { jwtToken } from "../../jwt/jwt";
 import SessionContext from "../../context/SessionContext";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaExclamation,
+} from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,6 +21,7 @@ function Login() {
   const [password, seTPassword] = useState("");
   const [errors, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showDemoBox, setShowDemoBox] = useState(false);
 
   async function handleClick(e) {
     try {
@@ -145,6 +152,68 @@ function Login() {
         input::placeholder{ color: rgba(203,213,225,0.45); }
         button:focus, input:focus { outline: 2px solid transparent; }
       `}</style>
+
+      {/* Floating Demo Button and Modal */}
+
+      {showDemoBox && (
+        <div
+          className="fixed bottom-20 right-6 z-50 bg-white/10 border border-white/20 
+                  backdrop-blur-2xl shadow-xl p-4 rounded-xl w-60 text-white"
+        >
+          <h3 className="font-semibold text-sm mb-2">Demo Account</h3>
+
+          <p className="text-xs text-slate-300">Email:</p>
+          <div className="flex items-center justify-between bg-white/5 px-2 py-1 rounded">
+            <span className="text-sm">demo@gmail.com</span>
+            <button
+              onClick={() => navigator.clipboard.writeText("demo@gmail.com")}
+              className="text-xs hover:text-indigo-400"
+            >
+              Copy
+            </button>
+          </div>
+
+          <p className="text-xs mt-2 text-slate-300">Password:</p>
+          <div className="flex items-center justify-between bg-white/5 px-2 py-1 rounded">
+            <span className="text-sm">Demo$0account</span>
+            <button
+              onClick={() => navigator.clipboard.writeText("Demo$0account")}
+              className="text-xs hover:text-indigo-400"
+            >
+              Copy
+            </button>
+          </div>
+
+          {/* <button */}
+          {/*   onClick={() => setShowDemoBox(false)} */}
+          {/*   className="w-full mt-3 text-xs text-slate-400 hover:text-white transition" */}
+          {/* > */}
+          {/*   Close */}
+          {/* </button> */}
+
+          <button
+            className="pt-2"
+            onClick={() => {
+              seTEmailPassword("demo@gmail.com");
+              seTPassword("Demo$0account");
+            }}
+          >
+            <span className="text-sm text-indigo-400 hover:underline">
+              Auto-fill
+            </span>
+          </button>
+        </div>
+      )}
+
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => setShowDemoBox(!showDemoBox)}
+          className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/20 
+               text-white text-xl flex items-center justify-center shadow-lg hover:scale-105 transition"
+        >
+          <FaExclamation size={19} />
+        </button>
+      </div>
     </div>
   );
 }
