@@ -17,7 +17,7 @@ function ProfileGrid({ post }) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-gray-700">
       <div
         className="aspect-square overflow-hidden cursor-pointer"
         onClick={handleProfilePost}
